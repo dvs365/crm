@@ -25,7 +25,7 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
+<div wrapper>
     <?php
     NavBar::begin([
         'brandLabel' => 'My Company',
