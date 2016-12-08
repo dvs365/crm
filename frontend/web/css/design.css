@@ -1,0 +1,1474 @@
+/* CSS Reset
+-----------------------------------------------------------------------------*/
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    /*font: inherit;*/
+    vertical-align: baseline;
+}
+table, td {
+    vertical-align: top;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/* KM adds */
+input[type=radio], select {
+    margin: 0;
+}
+html * {
+    max-height: 999999px;
+    letter-spacing: normal;
+    text-rendering: auto;
+    word-spacing: normal;
+}
+
+/* Fonts
+-----------------------------------------------------------------------------*/
+@font-face {font-family: 'PT Sans';
+    src: url('pts55f_w.eot');
+    src: local('PT Sans'), url('PTS55F_W.woff') format('woff'),url('PTS55F_W.ttf') format('truetype'), url('PTS55F_W.svg#PTSans-Regular') format('svg');}
+
+@font-face {font-family: 'PT Sans';
+    font-style: italic;
+    src: url('pts56f_w.eot');
+    src: local('PT Sans Italic'), url('PTS56F_W.woff') format('woff'),url('PTS56F_W.ttf') format('truetype'), url('PTS56F_W.svg#PTSans-Italic') format('svg');}
+
+@font-face {font-family: 'PT Sans';
+    src: url('pts75f_w.eot');
+    font-style: normal;
+    font-weight: bold;
+    src: local('PT Sans Bold'), url('PTS75F_W.woff') format('woff'),url('PTS75F_W.ttf') format('truetype'), url('PTS75F_W.svg#PTSans-Bold') format('svg');}
+
+@font-face {font-family: 'PT Sans';
+    font-style: italic;
+    font-weight: bold;
+    src: url('pts76f_w.eot');
+    src: local('PT Sans Bold Italic'), url('PTS76F_W.woff') format('woff'),url('PTS76F_W.ttf') format('truetype'), url('PTS76F_W.svg#PTSans-BoldItalic') format('svg');}
+
+/* Base
+-----------------------------------------------------------------------------*/
+html {
+    height: 100%;
+}
+body {
+    font: 16px/20px 'PT Sans', Tahoma, Arial, Verdana;
+    color: rgb(0,0,0);
+    height: 100%;
+    cursor: default;
+    background: rgb(255,255,255);
+    box-shadow: inset 0px 5px 10px -5px rgba(0,0,0,0.5);
+}
+[wrapper] {
+    min-width: 990px;
+    max-width: 1460px;
+    margin: 0 auto;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    padding: 0 60px;
+}
+[centering] {
+    margin: 0px auto;
+}
+[maxwidth] {
+    max-width: 1880px;
+}
+[nobr] {
+    white-space: nowrap;
+}
+
+/* Base style
+-----------------------------------------------------------------------------*/
+[wrapper] a {
+    color: rgb(65,105,225);
+    text-decoration: none;
+    cursor: pointer;
+}
+[wrapper] a:hover, [wrapper] a:active {
+    color: rgb(220,20,60);
+}
+[wrapper] u {
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Base add-ons
+-----------------------------------------------------------------------------*/
+[ecount] {
+    margin-top: -48px;
+    margin-right: 5px;
+    display: inline-block;
+    background: rgb(220,220,220);
+    height: 22px;
+    width: 22px;
+    text-align: center;
+    line-height: 22px;
+    float: right;
+    border-radius: 11px;
+    font-size: 0.8em;
+}
+
+/* Authorization
+-----------------------------------------------------------------------------*/
+[allwr] {
+    padding-top: 40px;
+}
+[login] {
+    width: 400px;
+}
+[login] input[type=submit] {
+    width: 100%;
+}
+[headerwr] {
+    border-bottom: solid 1px rgb(220,220,220);
+}
+[row] {
+    margin-top: 20px;
+}
+[row]:first-child {
+    margin-top: 0;
+}
+[row~=sect] {
+    margin-top: 40px;
+}
+[row~=close] {
+    margin-top: 0;
+}
+[message] {
+    padding: 5px 10px;
+    margin-left: -6px;
+    margin-right: -6px;
+    margin-top: 40px;
+}
+[message~=error] {
+    background: rgba(178,34,34,0.1);
+    border: solid 1px rgba(178,34,34,0.4);
+    color:  rgba(178,34,34,1);
+    box-shadow: 0px 0px 20px -5px rgba(178,34,34,0.75);
+}
+
+/* Head
+-----------------------------------------------------------------------------*/
+[navig~=main] {
+    margin-right: 250px;
+    margin-bottom: -1px;
+}
+[navig~=main] a {
+    font-size: 20px;
+}
+[navig], [cust-dop-menu], [cust-dop-menu-horizontal] {
+    font-size: 0;
+    display: block;
+    margin-top: -2px;
+    border-bottom: solid 1px rgb(220,220,220);
+}
+[navig] li, [cust-dop-menu-horizontal] li {
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-bottom: -1px;
+}
+[navig] a, [cust-dop-menu-horizontal] a {
+    display: block;
+    padding: 10px 20px;
+    height: 20px;
+    background: rgb(245,245,245);
+    border: solid 1px rgb(220,220,220);
+    border-left: none;
+}
+[navig] li:first-child a, [cust-dop-menu-horizontal] li:first-child a {
+    border-left: solid 1px rgb(220,220,220);
+}
+[navig] a[cur], [cust-dop-menu-horizontal] a[cur] {
+    background: none;
+    border-bottom-color: rgb(255,255,255);
+    padding-top: 12px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    color: rgb(0,0,0);
+    cursor: default;
+}
+[cust-dop-menu-horizontal] {
+    margin-bottom: -20px;
+}
+[user] {
+    float: right;
+    width: 240px;
+    padding-left: 10px;
+    font-size: 0.9em;
+}
+[username] {
+    height: 20px;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+[long-text-hide] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 60px;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+}
+[user] a {
+    margin-right: 20px;
+}
+
+/* Workarea
+-----------------------------------------------------------------------------*/
+[workarea] {
+    padding: 40px 0;
+}
+[workarea] table {
+    margin-top: 20px;
+}
+/* Customers
+-----------------------------------------------------------------------------*/
+[colcont] {
+    margin-top: -41px;
+}
+[dop-menu] {
+    width: 240px;
+    float: right;
+}
+[cust-dop-menu] li {
+    font-size: 16px;
+    margin-bottom: -1px;
+}
+[cust-dop-menu] li a {
+    display: block;
+    padding: 10px 20px;
+    height: 20px;
+    background: rgb(245,245,245);
+    border: solid 1px rgb(220,220,220);
+    border-bottom: none;
+}
+[cust-dop-menu] li:first-child a {
+    border-top-right-radius: 0px;
+    border-top: none;
+}
+[cust-dop-menu] li:last-child a {
+    border-bottom: solid 1px rgb(220,220,220);
+    border-bottom-right-radius: 0px;
+}
+[cust-dop-menu] a[cur] {
+    background: none;
+    border-left: none;
+    padding-top: 12px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: rgb(0,0,0);
+    cursor: default;
+}
+[filters] {
+    margin: 3px 240px 0 0;
+}
+[search-form] {
+    padding: 18px 0;
+}
+[search-field] input[type=text] {
+    width: 50%;
+}
+[search-field] input[type=submit] {
+    margin: 0 10px;
+}
+[search-field] select#manager {
+    width: 250px;
+    margin-left: 10px;
+    font-size: 14px;
+    height: 34px;
+    vertical-align: top;
+}
+[search-form] p, p[quick-name] {
+    margin-top: 5px !important;
+}
+[not-link] {
+    border-bottom: dashed 1px;
+    display: inline-block;
+    margin-left: 15px;
+}
+[not-link]:first-child {
+    margin-left: 0;
+}
+[cards] {
+    margin: 3px 240px 0 0;
+}
+[smallcard] {
+    width: 100%;
+}
+[smallcard] a, [smallcard] a:hover, [smallcard] a:active {
+    display: block;
+    color: rgb(0,0,0);
+    padding: 10px 20px;
+    margin: 0 0 0 -20px;
+}
+[smallcard] a:hover, [smallcard] a:active {
+    background: rgb(245,245,245);
+}
+[smallcard] a [lnk] {
+    color: rgb(65,105,225);
+}
+[smallcard] a:hover [lnk], [smallcard] a:active [lnk] {
+    color: rgb(220,20,60);
+}
+[smallcard] input[type=submit][take] {
+    margin: 8px 0;
+    background: none;
+    font-size: 14px;
+    color: rgb(115,140,215);
+    border: none;
+    border-bottom: 1px solid rgb(158,176,230);
+    height: 17px;
+    padding: 0;
+    width: 67px;
+}
+[smallcard] input[type=submit][take]:hover {
+    color: rgb(220,20,60);
+    border: none;
+    border-bottom: 1px solid rgb(234,127,149);
+    background: none;
+}
+
+/* Customer's card
+-----------------------------------------------------------------------------*/
+[cust-content] {
+    margin-top: -20px;
+}
+[col1], [col2] {
+    display: inline-block;
+    vertical-align: top;
+}
+[col1] {
+    width: 49.5%;
+}
+[col2] {
+    width: 50%;
+}
+[cust-inf-block] {
+    background: rgb(245,245,245);
+    margin: 5px 0;
+    padding: 10px;
+}
+[cust-inf-block] [tit] {
+    font-size: 24px;
+}
+[tit][inf]:hover {
+    cursor: pointer;
+}
+[cust-inf-block] [up], [cust-inf-block] .hidden [down], [cust-inf-block] [add] {
+    padding: 0 3px;
+    margin-left: 5px;
+    font-size: 16px;
+    color: rgb(128,128,128);
+    border: 1px solid rgb(216, 216, 216);
+    display: inline;
+}
+[cust-inf-block] .hidden [up], [cust-inf-block] [down] {
+    display: none;
+}
+[cust-edit] {
+    border-bottom: 1px solid rgb(216, 216, 216)!important;
+    margin-top: -20px;
+    color: rgb(128,128,128)!important;
+}
+[cust-edit]:hover {
+    border-bottom: 1px solid rgb(250,75,110);
+}
+[cust-edit][expand-link-movetorefused] {
+    margin-left: 20px;
+    cursor: pointer;
+}
+form[expand-block-movetorefused] textarea, form[expand-block-movetorefused] input {
+    margin-top: 10px;
+}
+[cust-inf-block] u[comment] {
+    text-decoration: none;
+    font-size: 14px;
+}
+[korpus] {
+    margin-top: 20px;
+}
+[korpus] > div[call-mail-wr], [korpus] > input {
+    display: none;
+}
+[korpus] label {
+    color: rgb(65,105,225);
+    padding: 12px 20px 9px;
+    border: 1px solid rgb(220,220,220);
+    line-height: 35px;
+    cursor: pointer;
+    position: relative;
+    bottom: 1px;
+}
+[korpus] label:hover {
+    color: rgb(220,20,60);
+}
+[korpus] input[type="radio"]:checked + label {
+    border-bottom-color: rgb(255,255,255);
+    padding: 12px 20px 9px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    color: rgb(0,0,0);
+    cursor: default;
+    background: #fff;
+}
+[korpus] > input:nth-of-type(1):checked ~ div[call-mail-wr]:nth-of-type(1), [korpus] > input:nth-of-type(2):checked ~ div[call-mail-wr]:nth-of-type(2) {
+    display: block;
+}
+[call-mail-forms] {
+    background: rgb(255,255,255)!important;
+}
+[call-mail-forms] {
+    padding: 10px;
+    width: 96%;
+    border-left: solid 1px rgb(220,220,220);
+    border-top: solid 1px rgb(220,220,220);
+}
+[call-mail-forms] input, [call-mail-forms] select {
+    margin: 5px 0;
+}
+[call-mail-forms] textarea {
+    margin-right: 3px;
+}
+input#date, input#dateend, input#datestart {
+    border: none;
+    border-bottom: dashed 1px;
+    height: 18px;
+    width: 84px!important;
+    cursor: pointer!important;
+    color: rgb(65,105,225);
+    font-size: 16px;
+}
+input:hover#date, input:hover#dateend, input:hover#datestart {
+    color: rgb(220,20,60);
+}
+input#datepicker {
+    border: none;
+    border-bottom: dashed 1px;
+    height: 18px;
+    width: 84px!important;
+    cursor: pointer!important;
+    color: rgb(65,105,225);
+    font-size: 16px;
+}
+input:hover#datepicker {
+    color: rgb(220,20,60);
+}
+[datepicker] {
+    font: 14px/20px 'PT Sans', Tahoma, Arial, Verdana;
+    margin-top: 0px;
+}
+[cust-inf-block] table, [cust-inf-block] table [descript]  {
+    width: 100%;
+}
+[cust-inf-block] table td {
+    padding: 10px;
+}
+[cust-inf-block] table tr:nth-child(odd) {
+    background-color: rgb(255,255,255);
+}
+[cust-inf-block][delivery] table tr:first-child, [cust-inf-block][contract] table tr:first-child, [cust-inf-block][invoice] table tr:first-child, [cust-inf-block][booking] table tr:first-child {
+    font-size: 14px;
+    color: rgb(128,128,128);
+}
+td[status] {
+    width: 100px;
+}
+[state] .checkbox:not(checked) + label:before {
+    background: rgb(228,126,0);
+    color: rgb(255,255,255);
+    width: 90px;
+    padding: 3px 0 0 0px;
+    font-size: 14px;
+    text-align: center;
+}
+[state] .checkbox:not(checked) + label:after {
+    display: none;
+}
+[state] .checkbox:checked + label:before {
+    background: rgb(16,146,16);
+    color: rgb(255,255,255);
+    width: 90px;
+    padding: 3px 0 0 0px;
+    font-size: 14px;
+    text-align: center;
+}
+[delivery] [state] .checkbox:not(checked) + label:before {
+    content: 'Отправлен';
+}
+[delivery] [state] .checkbox:checked + label:before {
+    content: 'Доставлен';
+}
+[contract] [state] .checkbox:not(checked) + label:before {
+    content: 'Не подписан';
+}
+[contract] [state] .checkbox:checked + label:before {
+    content: 'Подписан';
+}
+[invoice] [state] .checkbox:not(checked) + label:before {
+    content: 'Не оплачен';
+}
+[invoice] [state] .checkbox:checked + label:before {
+    content: 'Оплачен';
+}
+
+
+/* Customer's card edit
+-----------------------------------------------------------------------------*/
+[edit-card] [tit] {
+    margin-bottom: 10px;
+}
+.add-main {
+    padding: 0 7px;
+    font-size: 20px;
+    color: rgb(128,128,128);
+}
+.add-main [bird] {
+    display: none;
+}
+.add-main.added-main, .add-main.added-main:hover {
+    padding: 0 7px;
+    font-size: 20px;
+    color: rgb(0,185,0);
+}
+.add-main.added-main [bird] {
+    display: inline;
+}
+[com-inf] input[type=text] {
+    width: 800px;
+    margin: 5px 0;
+}
+[com-inf] input[type=text][country], [cont-inf] input[type=text][country] {
+    width: 45px;
+}
+[com-inf] input[type=text][city], [cont-inf] input[type=text][city] {
+    width: 50px;
+}
+[com-inf] input[type=text][number], [cont-inf] input[type=text][number] {
+    width: 120px;
+}
+[com-inf] input[type=text][phone-comment] {
+    width: 566px;
+}
+[com-inf] input[type=text][e-mail], [cont-inf] input[type=text][e-mail] {
+    width: 395px;
+}
+[com-inf] input[type=text][mail-comment] {
+    width: 400px;
+}
+[edit-card] input[type=checkbox] {
+    width: 20px;
+    vertical-align: middle;
+}
+[edit-card] [cust-add] {
+    border-bottom: 1px dashed rgb(216, 216, 216)!important;
+    margin-top: -20px;
+    color: rgb(128,128,128)!important;
+}
+[edit-card] [cust-add]:hover {
+    color: rgb(220,20,60)!important;
+    border-bottom-color: rgb(230,120,140)!important;
+}
+[cont-inf], [adress-inf] {
+    counter-reset: num;
+}
+[cont-inf] [num]:before, [adress-inf] [num]:before {
+    content: counter(num) '.';
+    counter-increment: num;
+}
+[edit-card] [num] {
+    padding-left: 15px;
+    margin-bottom: 40px;
+}
+[edit-card] [num]:before {
+    margin-left: -15px;
+    color: rgb(128,128,128);
+}
+[cont-inf] input[type=text] {
+    width: 785px;
+    margin: 5px 0;
+}
+[cont-inf] input[type=text][phone-comment] {
+    width: 551px;
+}
+[cont-inf] input[type=text][mail-comment] {
+    width: 385px;
+}
+[adress-inf] input[type=text] {
+    width: 390px;
+    margin: 5px 0;
+}
+[adress-inf] input[type=text][note] {
+    width: 785px;
+}
+[dop-inf] {
+    margin-bottom: 70px;
+}
+[dop-inf] select {
+    width: 400px;
+    margin-top: 10px;
+}
+[bot-fixed] {
+    position: fixed;
+    height: 90px;
+    bottom: 0;
+    left: 0;
+    background: rgb(255,255,255);
+    border-top: 1px solid rgb(128,128,128);
+    width: 100%;
+    z-index: 100;
+}
+[bot-fixed] div {
+    min-width: 930px;
+    max-width: 1460px;
+    margin: 0 auto;
+    padding: 25px 60px;
+    box-shadow: 0 -5px 10px -5px rgb(128,128,128);
+}
+
+/* Doings
+-----------------------------------------------------------------------------*/
+[period] {
+    margin-top: 3px;
+    padding: 8px 0 20px;
+    width: 240px;
+    float: right;
+}
+[period] a {
+    display: inline-block;
+    padding: 10px 30px;
+    margin: 20px 20px 0 0;
+    height: 18px;
+    background: rgb(245,245,245);
+    border: solid 1px rgb(220,220,220);
+    border-radius: 4px;
+    font-size: 18px;
+    box-shadow: 1px 1px 0px 0px rgb(181,181,181);
+    width: 55px;
+    text-align: center;
+}
+[period] a[cur] {
+    background: rgb(249,249,249);
+    cursor: default;
+    color: rgb(0,0,0);
+    box-shadow: inset 1px 1px 0px 0px rgb(181,181,181);
+}
+[period] a[new] {
+    background: rgb(115,140,215);
+    border-color: rgb(115,140,215);
+    color: rgb(255,255,255);
+    margin-top: 40px;
+}
+[period] a[new]:after {
+    content: "\271b";
+    display: inline-block;
+    border-radius: 11px;
+    width: 21px;
+    color: rgb(115,140,215);
+    border: solid 1px rgb(115,140,215);
+    background-color: rgb(255,255,255);
+    margin: -8px -57px 8px 57px;
+}
+[period] a[new]:hover {
+    background: rgb(220,20,60);
+    border-color: rgb(220,20,60);
+}
+[period] a[new]:hover:after {
+    content: "\271b";
+    display: inline-block;
+    border-radius: 11px;
+    width: 21px;
+    color: rgb(220,20,60);
+    border: solid 1px rgb(220,20,60);
+    background-color: rgb(255,255,255);
+}
+[period] form {
+    margin: 15px 0;
+}
+[do] [search-field] input[type=text] {
+    width: 80%;
+}
+
+/* Day doings
+-----------------------------------------------------------------------------*/
+[important] {
+    color: rgb(128,128,128);
+    margin: 10px 0 -10px !important;
+    font-size: 14px;
+}
+[flag] {
+    color: rgb(220,20,60);
+    font-size: 18px;
+    font-weight: bold;
+}
+[missed] table, [current] table {
+    width: 100%;
+    margin-left: -36px;
+}
+[missed] tr:hover, [current] tr:hover {
+    background: rgb(245,245,245);
+}
+[missed] tr:hover input[type=checkbox], [current] tr:hover input[type=checkbox] {
+    opacity: 100;
+    cursor: pointer;
+}
+[missed] td, [current] td {
+    font-size: 16px;
+    color: rgb(128,128,128);
+    padding: 8px 5px;
+}
+[missed] td:first-child, [missed] td:nth-child(2), [current] td:first-child, [current] td:nth-child(2) {
+    width: 20px;
+}
+[missed] td:nth-child(3), [current] td:nth-child(3) {
+    width: 150px;
+    font-size: 18px;
+    color: rgb(0,0,0);
+}
+[missed] td:nth-child(5), [missed] td:nth-child(6), [current] td:nth-child(5), [current] td:nth-child(6) {
+    width: 80px;
+    text-align: right;
+}
+[missed] td:last-child, [current] td:last-child {
+    padding-right: 10px;
+}
+[missed] th, [current] th {
+    text-align: left;
+    font-weight: normal;
+    font-size: 18px;
+    vertical-align: top;
+    padding: 8px 5px;
+}
+[missed] th a {
+    color: rgb(220,20,60);
+}
+[missed] input[type=checkbox], [current] input[type=checkbox] {
+    width: 20px;
+    height: 18px;
+    vertical-align: middle;
+    opacity: 0;
+}
+
+/* Week doings
+-----------------------------------------------------------------------------*/
+[week] {
+    margin-right: 20px;
+    padding-top: 7px;
+}
+[week] table {
+    width: 100%;
+    counter-reset: num;
+    table-layout: fixed;
+}
+[week] table a {
+    font-size: 14px;
+    display: block;
+    position: relative;
+}
+[week] table a:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -8px;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+}
+[week] table tr:hover a:after {
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%);
+}
+[week] table tr td:hover a:after {
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(234, 234, 234,1) 100%);
+}
+[week] table tr:hover {
+    background: rgb(245,245,245);
+}
+[week] table tr td:hover {
+    background: rgb(234, 234, 234);
+}
+[week] table tr:first-child:hover, [week] table tr:first-child td:hover, [week] table tr:first-child a:after, [week] table tr:first-child:hover a:after, [week] table tr:first-child td:hover a:after {
+    background: none;
+}
+[week] table tr:first-child td a {
+    color: rgb(128,128,128);
+}
+[week] tr:first-child:before {
+    content: '';
+}
+[week] table tr:first-child td[today] a {
+    font-weight: bold;
+    font-size: 18px;
+}
+[week] table tr:first-child td a:hover, [week] table tr:first-child td[today] a:hover {
+    color: rgb(220,20,60);
+}
+[week] tr.num:before {
+    content: counter(num) '';
+    counter-increment: num;
+    color: rgb(128,128,128);
+    display: inline-block;
+    width: 35px;
+    margin-top: 7px;
+}
+[week] table td {
+    width: 14%;
+    border-left: 1px solid rgb(220,220,220);
+    padding: 8px;
+    overflow: hidden;
+}
+[week] [long] {
+    color: rgb(128,128,128);
+    font-size: 12px;
+}
+
+/* Month doings
+-----------------------------------------------------------------------------*/
+[month] {
+    margin-right: 20px;
+}
+[month] table {
+    width: 100%;
+}
+[month] table tr:first-child {
+    background: none;
+}
+[month] table tr:first-child td {
+    font-size: 14px;
+    color: rgb(128,128,128);
+    text-align: left;
+    border-left: 1px solid rgb(220,220,220);
+}
+[month] table tr:first-child td:first-child {
+    border-left: none;
+}
+[month] table tr {
+    background: rgb(245,245,245);
+}
+[month] table td {
+    width: 14%;
+    padding: 25px 8px;
+    text-align: center;
+    border-left: 1px solid rgb(255,255,255);
+}
+[month] table td:first-child {
+    border-left: none;
+}
+[month] table td[today] {
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.85);
+}
+[month] table td[today] a {
+    font-size: 56px;
+    color: rgb(0,0,0);
+}
+[month] a {
+    display: block;
+    color: rgb(66,66,66);
+    font-size: 40px;
+    height: 40px;
+    -webkit-transition: color 0.8s;
+    -moz-transition: color 0.8s;
+    transition: color 0.8s;
+}
+[month] table td:hover a {
+    color: rgb(0,0,0);
+    -webkit-transition: color 0.8s;
+    -moz-transition: color 0.8s;
+    transition: color 0.8s;
+}
+[month] a span {
+    color: rgb(0,0,0);
+    background: rgba(255,255,255,0.5);
+    -webkit-transition: background 0.8s;
+    -moz-transition: background 0.8s;
+    transition: background 0.8s;
+    border-radius: 40px;
+    display: inline-block;
+    font-size: 20px;
+    width: 25px;
+    height: 25px;
+    vertical-align: sub;
+    padding: 8px 5px 3px;
+    margin: -5px;
+    text-align: center;
+}
+[month] table td:hover a span {
+    background: rgba(255,255,255,1);
+    -webkit-transition: background 0.8s, box-shadow 0.8s;
+    -moz-transition: background 0.8s, box-shadow 0.8s;
+    transition: background 0.8s, box-shadow 0.8s;
+    box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.65);
+}
+
+/* Add-doing
+-----------------------------------------------------------------------------*/
+[add-doing] input[type=text], [add-doing] textarea {
+    width: 800px;
+    margin: 5px 0;
+}
+[add-doing] input[type=time] {
+    margin: 0 80px 0 0;
+}
+[add-doing] input#dateend, [add-doing] input#datestart, [add-doing] input#date {
+    background: none;
+}
+[add-doing] select {
+    width: 200px;
+    height: 32px;
+    margin: 0 0 0 10px;
+}
+
+/* Functions-changes
+-----------------------------------------------------------------------------*/
+[smallcard][function] {
+    margin-left: -70px;
+    padding: 10px 0 10px 70px;
+}
+[function]:after {
+    content: '.';
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+    font-size: 0;
+}
+[check-all] {
+    width: 100px;
+    margin: 0px 0 10px -60px;
+    font-size: 14px;
+    color: rgb(65,105,225);
+
+}
+[check-all]:hover {
+    color: rgb(220,20,60);
+}
+[function] [check] {
+    width: 60px;
+    float: left;
+    margin: 10px 0 0 -60px;
+}
+[smallcard][function]:hover {
+    background: rgb(245,245,245);
+}
+[smallcard][function] a {
+    display: inline;
+    color: rgb(65,105,225);
+    margin: 0;
+    padding: 0;
+}
+[smallcard][function] a:hover {
+    background: none;
+    color: rgb(220,20,60);
+}
+[smallcard][function] p {
+    margin: 5px 0 0;
+}
+[smallcard][function] h3 {
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+[function] [changes] {
+    display: inline-block;
+    width: 40%;
+    margin: 0px 0px 10px -10px;
+    padding: 10px 20px 10px 10px;
+    vertical-align: top;
+    font-size: 18px;
+}
+[function] [changes]:hover {
+    background: rgb(255,255,255);
+}
+[function] [changes] a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: rgb(0,0,0);
+    margin: -10px;
+    padding: 10px;
+}
+[function] [changes] a:hover {
+    color: rgb(0,0,0);
+}
+[function] [changes] a [input] {
+    margin-top: 10px;
+    display: block;
+    width: 100px;
+    padding: 8px 0;
+    background: rgb(115,140,215);
+    color: rgb(255,255,255);
+    font-size: 18px;
+    text-align: center;
+}
+[function] [changes] a:hover [input] {
+    background: rgb(220,20,60);
+}
+[pages] {
+    margin: 20px 0 80px 0;
+}
+[pages] a, [pages] span {
+    margin-right: 25px;
+    font-size: 20px;
+}
+[pages] a[scroll] {
+    color: rgb(255,255,255);
+    background: rgb(192,192,192);
+    display: inline-block;
+    padding: 8px;
+    border-radius: 20px;
+    width: 20px;
+    text-align: center;
+}
+[pages] a[cur] {
+    color: rgb(128,128,128);
+    cursor: default;
+    font-weight: bold;
+}
+[func-footer] input[type=submit] {
+    width: 180px;
+}
+
+
+/* Functions-refusals
+-----------------------------------------------------------------------------*/
+[function] [refusals] {
+    margin: 0px 0px 10px 0;
+    padding: 10px 0;
+    font-size: 18px;
+}
+[refusals] input[type=submit] {
+    margin: 10px 100px 0 0;
+}
+
+/* Functions-clients-transfer
+-----------------------------------------------------------------------------*/
+[search-block] {
+    background: rgb(245,245,245);
+    padding: 10px;
+    margin: 0 2px 40px 0;
+}
+[search-block] [search-field] input[type=text] {
+    width: 400px;
+}
+[cards][tranfer] {
+    margin-right: 0;
+    margin-bottom: 80px;
+}
+[tranfer] [function] p {
+    display: inline-block;
+    vertical-align: top;
+}
+[tranfer] p[company] {
+    width: 250px;
+}
+[tranfer] p[result] {
+    width: 600px;
+}
+[search-field] p {
+    margin-top: 0!important;
+}
+[bot-fixed] [search-field] select#manager {
+    margin-left: 0;
+}
+[bot-fixed] [search-field] input[type=text] {
+    margin-left: 10px;
+}
+
+/* Sales-control
+-----------------------------------------------------------------------------*/
+[control] {
+    margin: 0 242px 0 0;
+}
+[control] table td:first-child a {
+    color: rgb(0,0,0);
+}
+[control] table td:first-child a:hover {
+    color: rgb(220,20,60);
+}
+[control] [cust-inf-block] [tit] {
+    display: inline-block;
+}
+select[contr] {
+    margin: 10px 0;
+    width: 400px;
+}
+[control] p[move-down]:first-child {
+    margin: 5px 0 10px 0;
+}
+
+/* Sales-booking
+-----------------------------------------------------------------------------*/
+[dop-menu] a[new] {
+    background: rgb(115,140,215);
+    color: rgb(255,255,255);
+    display: inline-block;
+    padding: 10px 30px;
+    margin: 40px 20px 0 0;
+    height: 18px;
+    border: solid 1px rgb(115,140,215);
+    border-radius: 4px;
+    font-size: 18px;
+    box-shadow: 1px 1px 0px 0px rgb(181,181,181);
+    width: 100px;
+    text-align: center;
+}
+[dop-menu] a[new]:after {
+    content: "\271b";
+    display: inline-block;
+    border-radius: 11px;
+    width: 21px;
+    color: rgb(115,140,215);
+    border: solid 1px rgb(115,140,215);
+    background-color: rgb(255,255,255);
+    margin: -8px -80px 8px 80px;
+}
+[dop-menu] a[new]:hover {
+    background: rgb(220,20,60);
+    border-color: rgb(220,20,60);
+}
+[dop-menu] a[new]:hover:after {
+    content: "\271b";
+    display: inline-block;
+    border-radius: 11px;
+    width: 21px;
+    color: rgb(220,20,60);
+    border: solid 1px rgb(220,20,60);
+    background-color: rgb(255,255,255);
+}
+[cards][booking] table, [cards][invoice] table, [cards][contract] table, [cards][delivery] table {
+    width: 100%;
+    margin-left: -10px;
+}
+[cards][booking] table tr:first-child, [cards][invoice] table tr:first-child, [cards][contract] table tr:first-child, [cards][delivery] table tr:first-child {
+    color: rgb(128,128,128);
+    font-size: 14px;
+}
+[cards][booking] table tr:hover, [cards][invoice] table tr:hover, [cards][contract] table tr:hover, [cards][delivery] table tr:hover {
+    background: rgb(245,245,245);
+}
+[cards][booking] table tr:first-child:hover, [cards][invoice] table tr:first-child:hover, [cards][contract] table tr:first-child:hover, [cards][delivery] table tr:first-child:hover {
+    background: none;
+}
+[cards][booking] table td, [cards][invoice] table td, [cards][contract] table td, [cards][delivery] table td {
+    padding: 10px;
+    width: 50px;
+}
+[cards][booking] table td:last-child, [cards][invoice] table td:last-child {
+    width: 5px;
+}
+[cards][booking] table td:nth-child(3), [cards][invoice] table td:nth-child(3), [cards][contract] table td:nth-child(3), [cards][delivery] table td:first-child {
+    width: 50%;
+}
+[cards][booking] [remove], [cards][invoice] [to-del] {
+    cursor: pointer;
+}
+[cards] table td[status] {
+    width: 100px;
+}
+[cards][invoice] .deleted, [cards][contract] .deleted {
+    text-decoration: line-through;
+}
+[cards][invoice] .deleted [to-del], [cards][invoice] .deleted [state], [cards][contract] .deleted [state] {
+    display: none;
+}
+
+/* Sales-contract
+-----------------------------------------------------------------------------*/
+[dop-menu] a[new][contract] {
+    font-size: 14px;
+}
+
+/* Sales-new-booking
+-----------------------------------------------------------------------------*/
+
+[new-booking] input#org {
+    width: 500px;
+    margin-right: 10px;
+    height: 26px;
+}
+[new-booking] select#jur {
+    width: 390px;
+    margin: 20px 10px 0 0;
+}
+[new-booking] select#adress {
+    width: 800px;
+    margin: 20px 0px 0 0;
+    font-size: 14px;
+}
+[new-booking][col1] {
+    width: 65%;
+    margin-bottom: 80px;
+}
+[new-booking][col2] {
+    width: 34.5%;
+}
+[cust-inf-block][new-booking-form] table tr:first-child, [cust-inf-block][new-booking-form] table tr:last-child {
+    font-weight: bold;
+}
+[cust-inf-block][new-booking-form] table td {
+    font-size: 14px;
+}
+[cust-inf-block][new-booking-form] table td:last-child {
+    width: 55px;
+}
+[cust-inf-block][new-booking-form] input {
+    width: 40px;
+    height: 20px;
+    font-size: 12px;
+}
+[cust-inf-block][new-booking-form] select {
+    width: 70px;
+    height: 24px;
+    font-size: 12px;
+    margin: 0 3px 3px 0;
+}
+[new-booking-form] ul {
+    margin-top: 20px;
+    background: rgb(255,255,255);
+    font-size: 14px;
+}
+[new-booking-form] ul li {
+    padding: 10px 0;
+}
+[new-booking-form] ul li:hover {
+    background: rgb(245,245,245);
+}
+[new-booking-form] ul li:first-child:hover, [new-booking-form] ul li:last-child:hover {
+    background: none;
+}
+[new-booking-form] ul li:last-child {
+    padding: 10px;
+}
+[new-booking-form] ul li:nth-child(2) {
+    display: none;
+}
+[new-booking-form] ul li div {
+    display: table;
+    width: 100%;
+}
+[new-booking-form] ul li div div {
+    display: table-cell;
+    vertical-align: top;
+    padding: 0 10px;
+}
+[new-booking-form] ul li div[wid1] {
+    width: 50px;
+}
+[new-booking-form] ul li div[wid2] {
+    width: 40%;
+}
+[new-booking-form] ul li div[wid3] {
+    width: 43px;
+}
+[new-booking-form] ul li div[wid4] {
+    width: 112px;
+}
+[new-booking-form] ul li div[wid5] {
+    width: 100px;
+}
+[new-booking-form] ul li div[wid6] {
+    width: 5px;
+}
+[new-booking-form] a, [new-booking-form] a:hover {
+    color: rgb(0,0,0);
+    cursor: default;
+}
+[cust-inf-block][new-booking-form] [remove] {
+    border: none;
+    cursor: pointer;
+}
+[cust-inf-block][new-booking-product] {
+    margin-bottom: 80px;
+    height: 500px;
+    overflow: scroll;
+}
+[cust-inf-block][new-booking-product] table td[bold] {
+    background: rgb(192,192,192);
+}
+[cust-inf-block][new-booking-product] table td {
+    background: rgb(255,255,255);
+}
+
+/* Sales-new-invoice
+-----------------------------------------------------------------------------*/
+
+[cust-inf-block][new-invoice] {
+    margin-bottom: 80px;
+}
+[cust-inf-block][new-invoice] table, [cust-inf-block][new-invoice-inf] p {
+    width: 60%;
+}
+[cust-inf-block][new-invoice] table tr, [cust-inf-block][new-invoice] table tr:first-child:hover, [cust-inf-block][new-invoice] table tr:last-child:hover {
+    background: rgb(255,255,255);
+}
+[cust-inf-block][new-invoice] table tr:hover {
+    background: rgb(245,245,245);
+}
+[invoice-footer] input[type=submit] {
+    width: 130px;
+    margin-right: 10px;
+}
+[invoice-footer] input[type=submit][fl-right] {
+    margin-right: 0px;
+}
+[invoice-footer] input[type=submit][to-del] {
+    margin-right: 0px;
+    margin-left: 90px;
+}
+
+/* Sales-new-conract
+-----------------------------------------------------------------------------*/
+select#contract-type, [cust-inf-block][new-conract] input[type=text]#contract-number {
+    width: 200px;
+    margin: 20px 0;
+}
+select#own-jur {
+    width: 200px;
+}
+[cust-inf-block][new-conract] p[contract-city] {
+    display: inline-block;
+    width: 670px;
+}
+[cust-inf-block][new-conract] p[contract-date] {
+    display: inline-block;
+    width: 130px;
+}
+[cust-inf-block][new-conract] input[type=text], [cust-inf-block][new-conract] select#jur {
+    width: 800px;
+    margin: 5px 0;
+}
+[cust-inf-block][new-conract] input[type=text]#boss-name, [cust-inf-block][new-conract] input[type=text]#details {
+    width: 100%;
+}
+[cust-inf-block][new-conract] input[type=text]#boss-basis, [cust-inf-block][new-conract] input[type=text]#jur {
+    width: 600px;
+}
+[cust-inf-block][new-conract] a.expand-link {
+    border-bottom: 1px dashed;
+}
+[cust-inf-block][new-conract] input[type=text]#details-short {
+    width: 400px;
+}
+[cust-inf-block][add-file] {
+    margin-bottom: 80px;
+}
+[cust-inf-block][add-file] input[type=checkbox]#ending {
+    cursor: pointer;
+    vertical-align: middle;
+    width: 15px;
+}
+[cust-inf-block][add-file] input[type=checkbox]#ending + label {
+    font-size: 14px;
+    cursor: pointer;
+    color: rgb(128,128,128);
+}
+
+/* Common forms
+-----------------------------------------------------------------------------*/
+textarea {
+    font: 18px 'PT Sans', Tahoma, Arial, Verdana;
+    min-height: 100px;
+}
+input, select {
+    font: 18px 'PT Sans', Tahoma, Arial, Verdana;
+    border: solid 1px #909090;
+    height: 30px;
+}
+input[type=text], input[type=password], textarea, select {
+    width: 100%;
+}
+input[type=submit], input[type=button] {
+    cursor: pointer;
+    width: 100px;
+    background: rgb(115,140,215);
+    color: #ffffff;
+    border-color: rgb(115,140,215);
+    height: 33px;
+}
+input[type=submit]:hover {
+    background: #B2062E;
+    border-color: #B2062E;
+}
+.checkbox {
+    vertical-align: top;
+    width: 17px;
+    height: 17px;
+    margin: 0 3px 0 0;
+}
+.checkbox + label {
+    cursor: pointer;
+}
+.checkbox:not(checked) {
+    position: absolute;
+    opacity: 0;
+}
+.checkbox:not(checked) + label {
+    position: relative;
+    padding: 0 0 0 60px;
+}
+.checkbox:not(checked) + label:before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 50px;
+    height: 26px;
+    border-radius: 13px;
+    background: rgb(192,192,192);
+    box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
+}
+.checkbox:not(checked) + label:after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    width: 22px;
+    height: 22px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0 2px 5px rgba(0,0,0,.3);
+    transition: all .2s;
+}
+.checkbox:checked + label:before {
+    background: rgb(115,140,215);
+}
+.checkbox:checked + label:after {
+    left: 26px;
+}
+.checkbox:focus + label:before {
+    box-shadow: 0 0 0 3px rgba(255,255,0,.5);
+}
+
+/* Fixes
+-----------------------------------------------------------------------------*/
+[clearfix]:after {
+    content: '.';
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+    font-size: 0;
+}
