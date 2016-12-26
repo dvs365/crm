@@ -29,9 +29,11 @@ class Client extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user', 'name'], 'required'],
-            [['user'], 'integer'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'namelaw'], 'required'],
+			[['name', 'namelaw'], 'string', 'max' => 255],
+			[['name','namelaw'], 'default', 'value' => 'sss'],
+			//[['name'], 'default', 'value' => '222'],
+			[['user'], 'integer'],
             [['user'], 'unique'],
             [['user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user' => 'id']],
         ];
@@ -40,6 +42,7 @@ class Client extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+
     public function attributeLabels()
     {
         return [

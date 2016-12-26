@@ -45,7 +45,7 @@ AppAsset::register($this);
 		];
 		if (Yii::$app->user->can('moder')) {
 			$menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/signup']];
-		}	
+		}
 		$menuItems[] = [
 			'label' => 'Выйти (' . Yii::$app->user->identity->username . ')',
 			'url' => ['/site/logout'],
