@@ -8,6 +8,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 /* @var $model common\models\Client */
 /* @var $form yii\widgets\ActiveForm */
 
+
 ?>
 <div cust-content edit-card>
 
