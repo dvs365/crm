@@ -1472,3 +1472,11 @@ input[type=submit]:hover {
     height: 0;
     font-size: 0;
 }
+
+/* Правки
+-----------------------------------------------------------------------------*/
+div.container-items, div.item, div.client_field{
+	width: 800px;
+	display: inline;
+}
+

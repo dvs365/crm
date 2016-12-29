@@ -4,10 +4,15 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\Client;
+use common\models\ClientJur;
 use app\models\ClientSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+use app\base\Model;
 
 /**
  * ClientController implements the CRUD actions for Client model.
@@ -51,8 +56,11 @@ class ClientController extends Controller
      */
     public function actionView($id)
     {
+		$model = $this->findModel($id);
+		$modelsClientJur = $model->clientJurs;
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+			'modelsClientJur' => $modelsClientJur,
         ]);
     }
 
@@ -63,15 +71,49 @@ class ClientController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Client();
+        $model = new Client;
+		$modelsClientJur = [new ClientJur];
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+		if ($model->load(Yii::$app->request->post())) {
+
+			$modelsClientJur = Model::createMultiple(ClientJur::classname());
+			Model::loadMultiple($modelsClientJur, Yii::$app->request->post());
+
+			$user = Yii::$app->user;
+			$role = Yii::$app->authManager->getRolesByUser($user->id);
+			if ($role['user']) {
+				$model->user_id = $user->id;
+			}
+			// validate all models
+			$valid = $model->validate();
+			$valid = Model::validateMultiple($modelsClientJur) && $valid;
+			if ($valid) {
+				$transaction = \Yii::$app->db->beginTransaction();
+				try {
+					if ($flag = $model->save(false)) {
+						foreach ($modelsClientJur as $modelClientJur) {
+							$modelClientJur->client_id = $model->id;
+							if (! ($flag = $modelClientJur->save(false))) {
+								$transaction->rollBack();
+								break;
+							}
+						}
+					}
+
+					if ($flag) {
+						$transaction->commit();
+						return $this->redirect(['view', 'id' => $model->id]);
+					}
+				} catch (Exception $e) {
+					$transaction->rollBack();
+				}
+			}
         }
+		return $this->render('create', [
+			'model' => $model,
+			'modelsClientJur' => (empty($modelsClientJur)) ? [new ClientJur] : $modelsClientJur
+		]);
+
     }
 
     /**
