@@ -26,7 +26,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup', 'index'],
+                'only' => ['logout', 'signup', 'index', 'delete'],
                 'rules' => [
                     [	//регистрация только для admin(гостя=?)
                         'actions' => ['logout', 'index'],
@@ -38,11 +38,16 @@ class SiteController extends Controller
                         'allow' => true,
                         'roles' => ['moder'],
                     ],
-                    [	//регистрация только для admin(гостя=?)
+                    [
                         'actions' => ['update'],
                         'allow' => true,
                         'roles' => ['updateClient'],
-                    ],					
+                    ],
+					[
+						'actions' => ['delete'],
+						'allow' => true,
+						'roles' => ['deleteClient'],
+					],
                 ],
             ],
             'verbs' => [

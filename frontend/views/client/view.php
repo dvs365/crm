@@ -25,13 +25,29 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
+    <? echo '<pre>'; print_r($modelsClientJur[1]->name); echo '</pre>'; die(); ?>
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
             'user_id',
             'name',
+            'value' => function ($model) {
+                return $model->getClientJurs();
+            }
         ],
     ]) ?>
+    <? foreach ($modelsClientJur as $modelClientJur) {?>
+        <?= DetailView::widget([
+            'model' => $modelClientJur,
+            'attributes' => [
+                'id',
+                'client_id',
+                'name',
+            ],
+        ]) ?>
+    <?}?>
+
 
 </div>

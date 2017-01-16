@@ -16,7 +16,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 
 	<div cust-inf-block com-inf>
 		<div tit>Информация об организации</div>
-		<?= $form->field($model, 'name', ['options' => ['class' => 'client_field'], 'template' => "{input}\r\n{error}"])->textInput(['class' => '', 'title' => 'Условное название', 'placeholder' => 'Условное название']) ?>
+		<?= $form->field($model, 'name', ['options' => ['class' => 'client_field'], 'template' => "{error}{input}"])->textInput(['class' => '', 'title' => 'Условное название', 'placeholder' => 'Условное название']) ?>
 		<?php	DynamicFormWidget::begin([
 			'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
 			'widgetBody' => '.container-items', // required: css class selector
@@ -35,20 +35,20 @@ use wbraganca\dynamicform\DynamicFormWidget;
 		<div class="container-items">
 			<? $count = count($modelsClientJur); ?>
 			<?php foreach ($modelsClientJur as $index => $modelClientJur): ?>
-				<?php
-				//necessary for update action.
-				if (! $modelClientJur->isNewRecord) {
-					echo Html::activeHiddenInput($modelClientJur, "[{$index}]name");
-				}
-				?>
 				<div class="item">
-					<?= $form->field($modelClientJur, "[{$index}]name", ['options' => ['class' => 'client_field'], 'template' => "{input}\r\n{error}"])->textInput(['maxlength' => true, 'class' => '', 'title' => 'Юр. лицо', 'placeholder' => 'Полное название юр. лица']) ?>
+					<?php
+					//necessary for update action.
+					if (! $modelClientJur->isNewRecord) {
+						echo Html::activeHiddenInput($modelClientJur, "[{$index}]id");
+					}
+					?>
+					<?= $form->field($modelClientJur, "[{$index}]name", ['options' => ['class' => 'client_field'], 'template' => "{error}{input}<a del-jur class=\"remove-item\" title=\"Удалить\"><span del>-</span></a>"])->textInput(['maxlength' => true, 'class' => '', 'title' => 'Юр. лицо', 'placeholder' => 'Полное название юр. лица']) ?>
 				</div>
 			<?php endforeach; ?>
 		</div>
 		<a add-jur class="add-item" title="Добавить"><span add>&#10011</span></a>
 		<?php DynamicFormWidget::end(); ?>
-		<div bot-fixed clearfix><div><?= Html::submitInput('Сохранить')?><?= Html::submitInput('Отменить', ['fl-right' => ''])?></div></div>
+		<div bot-fixed clearfix><div><?= Html::submitInput('Сохранить')?><?= Html::buttonInput('Отменить', ['onclick' => "javascript:location.href='".Yii::$app->request->referrer."'",'fl-right' => ''])?></div></div>
 	<?php ActiveForm::end(); ?>
 
 </div>

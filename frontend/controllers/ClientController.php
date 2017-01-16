@@ -124,15 +124,56 @@ class ClientController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+		$model = $this->findModel($id);
+		$modelsClientJur = $model->clientJurs;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post())) {
+
+			$user = Yii::$app->user;
+			$role = Yii::$app->authManager->getRolesByUser($user->id);
+			if ($role['user']) {
+				$model->user_id = $user->id;
+			}
+
+			$oldIDs = ArrayHelper::map($modelsClientJur, 'id', 'id');
+			$modelsClientJur = Model::createMultiple(ClientJur::classname(), $modelsClientJur);
+			Model::loadMultiple($modelsClientJur, Yii::$app->request->post());
+			$deletedIDs = array_diff($oldIDs, array_filter(ArrayHelper::map($modelsClientJur, 'id', 'id')));
+
+			//validate all models
+			$valid = $model->validate();
+			$valid = Model::validateMultiple($modelsClientJur) && $valid;
+
+			if ($valid) {
+				$transaction = \Yii::$app->db->beginTransaction();
+				try {
+					if ($flag = $model->save(false)) {
+						if (!empty($deletedIDs)) {
+							ClientJur::deleteAll(['id' => $deletedIDs]);
+						}
+						foreach ($modelsClientJur as $modelClientJur) {
+							$modelClientJur->client_id = $model->id;
+							if (! ($flag = $modelClientJur->save(false))) {
+								$transaction->rollBack();
+								break;
+							}
+						}
+					}
+					if ($flag) {
+						$transaction->commit();
+						return $this->redirect(['view', 'id' => $model->id]);
+					}
+				} catch (Exception $e) {
+					$transaction->rollBack();
+				}
+			}
         }
+
+		return $this->render('update', [
+			'model' => $model,
+			'modelsClientJur' => (empty($modelsClientJur)) ? [new ClientJur] : $modelsClientJur
+		]);
+
     }
 
     /**
