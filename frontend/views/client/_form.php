@@ -29,7 +29,6 @@ use wbraganca\dynamicform\DynamicFormWidget;
 			'model' => $model
 		]);
 		?>
-
 		<div bot-fixed clearfix><div><?= Html::submitInput('Сохранить')?><?= Html::buttonInput('Отменить', ['onclick' => "javascript:location.href='".Yii::$app->request->referrer."'",'fl-right' => ''])?></div></div>
 	<?php ActiveForm::end(); ?>
 
