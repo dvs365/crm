@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Client;
 use common\models\ClientJur;
+use common\models\ClientPhone;
 use app\models\ClientSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -94,6 +95,7 @@ class ClientController extends Controller
     {
         $model = new Client;
 		$modelsClientJur = [new ClientJur];
+		$modelsClientPhone = [new ClientPhone];
 
 		if ($model->load(Yii::$app->request->post())) {
 			$modelsClientJur = Model::createMultiple(ClientJur::classname());
@@ -128,7 +130,8 @@ class ClientController extends Controller
         }
 		return $this->render('create', [
 			'model' => $model,
-			'modelsClientJur' => (empty($modelsClientJur)) ? [new ClientJur] : $modelsClientJur
+			'modelsClientJur' => (empty($modelsClientJur)) ? [new ClientJur] : $modelsClientJur,
+			'modelsClientPhone' => (empty($modelsClientPhone)) ? [new ClientPhone] : $modelsClientPhone
 		]);
 
     }
