@@ -1,12 +1,12 @@
 <?
-namespace app\rbac;
+namespace common\components\rbac;
 
 use yii\rbac\Rule;
 
 /**
  * Checks if authorID matches user passed via params
  */
-class UserRule extends Rule
+class ManagerRule extends Rule
 {
     public $name = 'isAuthor';
 
@@ -18,6 +18,6 @@ class UserRule extends Rule
      */
     public function execute($user, $item, $params)
     {
-        return isset($params['post']) ? $params['post']->createdBy == $user : false;
+        return isset($params['client']) ? $params['client']->user_id == $user : false;
     }
 }

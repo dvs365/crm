@@ -38,16 +38,6 @@ class SiteController extends Controller
                         'allow' => true,
                         'roles' => ['moder'],
                     ],
-                    [
-                        'actions' => ['update'],
-                        'allow' => true,
-                        'roles' => ['updateClient'],
-                    ],
-					[
-						'actions' => ['delete'],
-						'allow' => true,
-						'roles' => ['deleteClient'],
-					],
                 ],
             ],
             'verbs' => [

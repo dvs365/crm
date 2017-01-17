@@ -8,7 +8,9 @@ use common\models\ClientJur;
 use app\models\ClientSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -25,10 +27,26 @@ class ClientController extends Controller
     public function behaviors()
     {
         return [
+			'access' => [
+				'class' => AccessControl::className(),
+				'only' => ['index', 'view', 'create'],
+				'rules' => [
+					[
+						'actions' => ['view', 'index'],
+						'allow' => true,
+						'roles' => ['@'],
+					],
+					[
+						'actions' => ['create'],
+						'allow' => true,
+						'roles' => ['createClient'],
+					],
+				],
+			],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['post', 'get'],
                 ],
             ],
         ];
@@ -81,7 +99,7 @@ class ClientController extends Controller
 
 			$user = Yii::$app->user;
 			$role = Yii::$app->authManager->getRolesByUser($user->id);
-			if ($role['user']) {
+			if ($role['manager']) {
 				$model->user_id = $user->id;
 			}
 			// validate all models
@@ -125,15 +143,14 @@ class ClientController extends Controller
     public function actionUpdate($id)
     {
 		$model = $this->findModel($id);
+
+		if (! \Yii::$app->user->can('updateClient', ['client' => $model])) {
+			throw new ForbiddenHttpException('Нет разрешения на редактирование клиента"'.$model->name.'"');
+		}
+
 		$modelsClientJur = $model->clientJurs;
 
         if ($model->load(Yii::$app->request->post())) {
-
-			$user = Yii::$app->user;
-			$role = Yii::$app->authManager->getRolesByUser($user->id);
-			if ($role['user']) {
-				$model->user_id = $user->id;
-			}
 
 			$oldIDs = ArrayHelper::map($modelsClientJur, 'id', 'id');
 			$modelsClientJur = Model::createMultiple(ClientJur::classname(), $modelsClientJur);
@@ -184,9 +201,22 @@ class ClientController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+		$model = $this->findModel($id);
+		if (! \Yii::$app->user->can('deleteClient', ['client' => $model])) {
+			throw new ForbiddenHttpException('Нет разрешения на удаление клиента"'.$model->name.'"');
+		}
+		$modelsClientJur = $model->clientJurs;
+		$transaction = \Yii::$app->db->beginTransaction();
+		foreach ($modelsClientJur as $modelClientJur) {
+			$modelClientJur->delete();
+		}
+		if (! $flagModel = $model->delete()) {
+			throw new ForbiddenHttpException('Удаление клиента "'.$model->name.'" не удалось!');
+			$transaction->rollBack();
+		} else {
+			$transaction->commit();
+		}
+		return $this->redirect(['index']);
     }
 
     /**
