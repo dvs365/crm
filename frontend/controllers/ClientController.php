@@ -29,10 +29,10 @@ class ClientController extends Controller
         return [
 			'access' => [
 				'class' => AccessControl::className(),
-				'only' => ['index', 'view', 'create'],
+				'only' => ['index', 'create'],
 				'rules' => [
 					[
-						'actions' => ['view', 'index'],
+						'actions' => ['index'],
 						'allow' => true,
 						'roles' => ['@'],
 					],
@@ -75,6 +75,9 @@ class ClientController extends Controller
     public function actionView($id)
     {
 		$model = $this->findModel($id);
+		if (! \Yii::$app->user->can('updateClient', ['client' => $model])) {
+			throw new ForbiddenHttpException('Нет разрешения на просмотр клиента"'.$model->name.'"');
+		}
 		$modelsClientJur = $model->clientJurs;
         return $this->render('view', [
             'model' => $model,
@@ -93,15 +96,11 @@ class ClientController extends Controller
 		$modelsClientJur = [new ClientJur];
 
 		if ($model->load(Yii::$app->request->post())) {
-
 			$modelsClientJur = Model::createMultiple(ClientJur::classname());
 			Model::loadMultiple($modelsClientJur, Yii::$app->request->post());
 
-			$user = Yii::$app->user;
-			$role = Yii::$app->authManager->getRolesByUser($user->id);
-			if ($role['manager']) {
-				$model->user_id = $user->id;
-			}
+			$model->user_id = Yii::$app->user->id;
+
 			// validate all models
 			$valid = $model->validate();
 			$valid = Model::validateMultiple($modelsClientJur) && $valid;
