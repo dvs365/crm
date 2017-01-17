@@ -1,12 +1,12 @@
 <?php
 return [
-    2 => [
-        'user',
-    ],
     1 => [
         'moder',
     ],
+    2 => [
+        'manager',
+    ],
     5 => [
-        'user',
+        'manager',
     ],
 ];

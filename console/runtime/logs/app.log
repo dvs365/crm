@@ -1707,3 +1707,1501 @@ Stack trace:
     ]
     'argc' => 2
 ]
+2017-01-16 13:42:31 [-][-][-][error][yii\console\Exception] yii\base\InvalidRouteException: Unable to resolve the request "rbac/init". in /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php:462
+Stack trace:
+#0 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#4 {main}
+
+Next yii\console\Exception: Unknown command "rbac/init". in /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php:183
+Stack trace:
+#0 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#3 {main}
+2017-01-16 13:42:31 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51368 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51368 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484563351.5898
+    'REQUEST_TIME' => 1484563351
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 13:42:55 [-][-][-][error][yii\console\Exception] yii\base\InvalidRouteException: Unable to resolve the request "rbac/init". in /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php:462
+Stack trace:
+#0 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#4 {main}
+
+Next yii\console\Exception: Unknown command "rbac/init". in /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php:183
+Stack trace:
+#0 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#3 {main}
+2017-01-16 13:42:55 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51368 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51368 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484563375.5314
+    'REQUEST_TIME' => 1484563375
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:23:59 [-][-][-][error][Error] Error: Class 'app\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:23:59 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484565839.1777
+    'REQUEST_TIME' => 1484565839
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:25:25 [-][-][-][error][Error] Error: Class 'console\controllers\app\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:45
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:25:25 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484565925.4688
+    'REQUEST_TIME' => 1484565925
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:28:52 [-][-][-][error][ParseError] ParseError: syntax error, unexpected '@' in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:45
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('console\\control...')
+#1 [internal function]: spl_autoload_call('console\\control...')
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(564): class_exists('console\\control...')
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(522): yii\base\Module->createControllerByID('rbac')
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(448): yii\base\Module->createController('init')
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:28:52 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484566132.8058
+    'REQUEST_TIME' => 1484566132
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:31:11 [-][-][-][error][Error] Error: Class 'common\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:46
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:31:11 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484566271.8364
+    'REQUEST_TIME' => 1484566271
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:32:09 [-][-][-][error][yii\base\UnknownClassException] yii\base\UnknownClassException: Unable to find 'common\components\rbac\ManagerRule' in file: /home/users2/s/sansfera/domains/crm3.sansfera.ru/common/components/rbac/ManagerRule.php. Namespace missing? in /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/BaseYii.php:291
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('common\\componen...')
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php(46): spl_autoload_call('common\\componen...')
+#2 [internal function]: console\controllers\RbacController->actionInit()
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#9 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#10 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#11 {main}
+2017-01-16 14:32:09 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484566329.6254
+    'REQUEST_TIME' => 1484566329
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:34:09 [-][-][-][error][Error] Error: Class 'yii\console\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:46
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:34:09 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484566449.3219
+    'REQUEST_TIME' => 1484566449
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:35:28 [-][-][-][error][Error] Error: Class 'yii\common\components\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:46
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:35:28 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484566528.291
+    'REQUEST_TIME' => 1484566528
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:38:09 [-][-][-][error][Error] Error: Class 'app\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:46
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:38:09 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484566689.6722
+    'REQUEST_TIME' => 1484566689
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:38:40 [-][-][-][error][Error] Error: Class 'app\common\components\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:46
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:38:40 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484566720.226
+    'REQUEST_TIME' => 1484566720
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:39:55 [-][-][-][error][Error] Error: Class 'app\common\components\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:39:55 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484566795.5652
+    'REQUEST_TIME' => 1484566795
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:40:50 [-][-][-][error][Error] Error: Class 'Yii\common\components\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:40:50 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484566850.3049
+    'REQUEST_TIME' => 1484566850
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:41:28 [-][-][-][error][Error] Error: Class 'console\controllers\app\common\components\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:41:28 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484566888.0678
+    'REQUEST_TIME' => 1484566888
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:41:54 [-][-][-][error][Error] Error: Class 'app\common\components\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:41:54 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484566914.7749
+    'REQUEST_TIME' => 1484566914
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:42:10 [-][-][-][error][yii\base\UnknownClassException] yii\base\UnknownClassException: Unable to find 'common\components\rbac\ManagerRule' in file: /home/users2/s/sansfera/domains/crm3.sansfera.ru/common/components/rbac/ManagerRule.php. Namespace missing? in /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/BaseYii.php:291
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('common\\componen...')
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php(44): spl_autoload_call('common\\componen...')
+#2 [internal function]: console\controllers\RbacController->actionInit()
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#9 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#10 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#11 {main}
+2017-01-16 14:42:10 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484566930.3892
+    'REQUEST_TIME' => 1484566930
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:42:50 [-][-][-][error][ParseError] ParseError: syntax error, unexpected '@' in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('console\\control...')
+#1 [internal function]: spl_autoload_call('console\\control...')
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(564): class_exists('console\\control...')
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(522): yii\base\Module->createControllerByID('rbac')
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(448): yii\base\Module->createController('init')
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:42:50 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484566970.7211
+    'REQUEST_TIME' => 1484566970
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:43:15 [-][-][-][error][Error] Error: Class 'app\common\components\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:43:15 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484566995.7976
+    'REQUEST_TIME' => 1484566995
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:43:31 [-][-][-][error][Error] Error: Class 'console\controllers\app\common\components\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:43:31 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484567011.5707
+    'REQUEST_TIME' => 1484567011
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:44:23 [-][-][-][error][Error] Error: Class 'app\common\components\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:44:23 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484567063.53
+    'REQUEST_TIME' => 1484567063
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:44:35 [-][-][-][error][Error] Error: Class 'app\common\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:44:35 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484567075.207
+    'REQUEST_TIME' => 1484567075
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:44:47 [-][-][-][error][Error] Error: Class 'app\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:44:47 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484567087.554
+    'REQUEST_TIME' => 1484567087
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:48:05 [-][-][-][error][ParseError] ParseError: syntax error, unexpected '@' in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('console\\control...')
+#1 [internal function]: spl_autoload_call('console\\control...')
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(564): class_exists('console\\control...')
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(522): yii\base\Module->createControllerByID('rbac')
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(448): yii\base\Module->createController('init')
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:48:05 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484567285.7748
+    'REQUEST_TIME' => 1484567285
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:48:27 [-][-][-][error][Error] Error: Class 'app\common\components\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:48:27 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484567307.3297
+    'REQUEST_TIME' => 1484567307
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:49:51 [-][-][-][error][ParseError] ParseError: syntax error, unexpected '/' in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('console\\control...')
+#1 [internal function]: spl_autoload_call('console\\control...')
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(564): class_exists('console\\control...')
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(522): yii\base\Module->createControllerByID('rbac')
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(448): yii\base\Module->createController('init')
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:49:51 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484567391.5381
+    'REQUEST_TIME' => 1484567391
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:50:30 [-][-][-][error][Error] Error: Class 'app\common\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:50:30 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484567430.2524
+    'REQUEST_TIME' => 1484567430
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:54:17 [-][-][-][error][Error] Error: Class 'yii\common\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:54:17 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484567657.7186
+    'REQUEST_TIME' => 1484567657
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 14:54:39 [-][-][-][error][Error] Error: Class 'yii\common\components\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 14:54:39 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484567679.2485
+    'REQUEST_TIME' => 1484567679
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 15:00:26 [-][-][-][error][Error] Error: Class 'console\controllers\app\common\components\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 15:00:26 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484568026.3186
+    'REQUEST_TIME' => 1484568026
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 15:01:17 [-][-][-][error][Error] Error: Class 'app\common\components\rbac\ManagerRule' not found in /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php:44
+Stack trace:
+#0 [internal function]: console\controllers\RbacController->actionInit()
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#2 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#9 {main}
+2017-01-16 15:01:17 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484568077.2312
+    'REQUEST_TIME' => 1484568077
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]
+2017-01-16 15:05:51 [-][-][-][error][yii\base\UnknownClassException] yii\base\UnknownClassException: Unable to find 'common\components\rbac\ManagerRule' in file: /home/users2/s/sansfera/domains/crm3.sansfera.ru/common/components/rbac/ManagerRule.php. Namespace missing? in /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/BaseYii.php:291
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('common\\componen...')
+#1 /home/users2/s/sansfera/domains/crm3.sansfera.ru/console/controllers/RbacController.php(45): spl_autoload_call('common\\componen...')
+#2 [internal function]: console\controllers\RbacController->actionInit()
+#3 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#5 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('init', Array)
+#6 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('init', Array)
+#7 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('rbac/init', Array)
+#8 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('rbac/init', Array)
+#9 /home/users2/s/sansfera/domains/crm3.sansfera.ru/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#10 /home/users2/s/sansfera/domains/crm3.sansfera.ru/yii(27): yii\base\Application->run()
+#11 {main}
+2017-01-16 15:05:51 [-][-][-][info][application] $_SERVER = [
+    'MANPATH' => '/usr/lib/courier-imap/man:'
+    'HOSTNAME' => 'srv126-h-st.jino.ru'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'HISTSIZE' => '1000'
+    'SSH_CLIENT' => '188.235.139.59 51384 22'
+    'SSH_TTY' => '/dev/pts/2'
+    'USER' => 'sansfera'
+    'LS_COLORS' => 'no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+    'MAIL' => '/var/spool/mail/sansfera'
+    'PATH' => '/opt/mariadb-10.1/usr/bin:/usr/kerberos/bin:/usr/lib/courier-imap/bin:/usr/local/bin:/bin:/usr/bin'
+    'INPUTRC' => '/etc/inputrc'
+    'PWD' => '/home/users2/s/sansfera/domains/crm3.sansfera.ru'
+    'LANG' => 'ru_RU.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/users2/s/sansfera'
+    'LOGNAME' => 'sansfera'
+    'SSH_CONNECTION' => '188.235.139.59 51384 81.177.141.192 22'
+    'LESSOPEN' => '|/usr/bin/lesspipe.sh %s'
+    'G_BROKEN_FILENAMES' => '1'
+    'OLDPWD' => '/home/users2/s/sansfera'
+    '_' => '/usr/bin/php7.0'
+    'PHP_SELF' => './yii'
+    'SCRIPT_NAME' => './yii'
+    'SCRIPT_FILENAME' => './yii'
+    'PATH_TRANSLATED' => './yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1484568351.8172
+    'REQUEST_TIME' => 1484568351
+    'argv' => [
+        0 => './yii'
+        1 => 'rbac/init'
+    ]
+    'argc' => 2
+]

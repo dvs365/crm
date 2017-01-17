@@ -379,7 +379,7 @@ body {
 [tit][inf]:hover {
     cursor: pointer;
 }
-[cust-inf-block] [up], [cust-inf-block] .hidden [down], [cust-inf-block] [add] {
+[cust-inf-block] [up], [cust-inf-block] .hidden [down], [cust-inf-block] [add], [cust-inf-block] [del] {
     padding: 0 3px;
     margin-left: 5px;
     font-size: 16px;
@@ -1408,7 +1408,7 @@ input[type=submit], input[type=button] {
     border-color: rgb(115,140,215);
     height: 33px;
 }
-input[type=submit]:hover {
+input[type=submit]:hover, input[type=button]:hover {
     background: #B2062E;
     border-color: #B2062E;
 }
@@ -1479,4 +1479,7 @@ div.container-items, div.item, div.client_field{
 	width: 800px;
 	display: inline;
 }
-
+div.help-block {
+	width: 800px;
+	margin: 15px 0 -5px;
+}
