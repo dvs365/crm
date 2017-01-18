@@ -33,7 +33,6 @@ class ClientPhone extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'client_id', 'phone', 'country', 'city', 'number', 'comment'], 'required'],
             [['id', 'client_id', 'phone'], 'integer'],
             [['country', 'city', 'number', 'comment'], 'string', 'max' => 255],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],
@@ -49,10 +48,10 @@ class ClientPhone extends \yii\db\ActiveRecord
             'id' => 'ID',
             'client_id' => 'Client ID',
             'phone' => 'Phone',
-            'country' => 'Country',
-            'city' => 'City',
-            'number' => 'Number',
-            'comment' => 'Comment',
+            'country' => 'Страна',
+            'city' => 'Город',
+            'number' => 'Номер',
+            'comment' => 'Комментарий',
         ];
     }
 

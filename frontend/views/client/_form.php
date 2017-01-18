@@ -11,7 +11,6 @@ use wbraganca\dynamicform\DynamicFormWidget;
 
 ?>
 <div cust-content edit-card>
-
 	<?php $form = ActiveForm::begin(['id' => 'dynamic-form']); ?>
 
 	<div cust-inf-block com-inf>

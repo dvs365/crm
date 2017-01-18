@@ -1475,7 +1475,7 @@ input[type=submit]:hover, input[type=button]:hover {
 
 /* Правки
 -----------------------------------------------------------------------------*/
-div.container-items, div.item, div.client_field{
+div.container-items, div.container-items_client_phone, div.item, div.item_client_phone, div.client_field{
 	width: 800px;
 	display: inline;
 }
