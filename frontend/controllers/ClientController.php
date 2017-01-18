@@ -83,6 +83,7 @@ class ClientController extends Controller
         return $this->render('view', [
             'model' => $model,
 			'modelsClientJur' => $modelsClientJur,
+			'modelsClientPhone' => $modelsClientPhone,
         ]);
     }
 
@@ -99,13 +100,16 @@ class ClientController extends Controller
 
 		if ($model->load(Yii::$app->request->post())) {
 			$modelsClientJur = Model::createMultiple(ClientJur::classname());
+			$modelsClientPhone = Model::createMultiple(ClientPhone::classname());
 			Model::loadMultiple($modelsClientJur, Yii::$app->request->post());
+			Model::loadMultiple($modelsClientPhone, Yii::$app->request->post());
 
 			$model->user_id = Yii::$app->user->id;
 
 			// validate all models
 			$valid = $model->validate();
-			$valid = Model::validateMultiple($modelsClientJur) && $valid;
+			$valid = Model::validateMultiple($modelsClientJur) && Model::validateMultiple($modelsClientPhone) && $valid;
+
 			if ($valid) {
 				$transaction = \Yii::$app->db->beginTransaction();
 				try {
@@ -113,6 +117,13 @@ class ClientController extends Controller
 						foreach ($modelsClientJur as $modelClientJur) {
 							$modelClientJur->client_id = $model->id;
 							if (! ($flag = $modelClientJur->save(false))) {
+								$transaction->rollBack();
+								break;
+							}
+						}
+						foreach ($modelsClientPhone as $modelClientPhone) {
+							$modelClientPhone->client_id = $model->id;
+							if (! ($flag = $modelClientPhone->save(false))) {
 								$transaction->rollBack();
 								break;
 							}
@@ -128,13 +139,14 @@ class ClientController extends Controller
 				}
 			}
         }
+
 		return $this->render('create', [
 			'model' => $model,
 			'modelsClientJur' => (empty($modelsClientJur)) ? [new ClientJur] : $modelsClientJur,
-			'modelsClientPhone' => (empty($modelsClientPhone)) ? [new ClientPhone] : $modelsClientPhone
+			'modelsClientPhone' => (empty($modelsClientPhone)) ? [new ClientPhone] : $modelsClientPhone,
 		]);
 
-    }
+	}
 
     /**
      * Updates an existing Client model.
@@ -151,28 +163,44 @@ class ClientController extends Controller
 		}
 
 		$modelsClientJur = $model->clientJurs;
+		$modelsClientPhone = $model->clientPhones;
 
         if ($model->load(Yii::$app->request->post())) {
 
-			$oldIDs = ArrayHelper::map($modelsClientJur, 'id', 'id');
+			$oldIDsJur = ArrayHelper::map($modelsClientJur, 'id', 'id');
+			$oldIDsPhone = ArrayHelper::map($modelsClientPhone, 'id', 'id');
 			$modelsClientJur = Model::createMultiple(ClientJur::classname(), $modelsClientJur);
+			$modelsClientPhone = Model::createMultiple(ClientPhone::classname(), $modelsClientPhone);
 			Model::loadMultiple($modelsClientJur, Yii::$app->request->post());
-			$deletedIDs = array_diff($oldIDs, array_filter(ArrayHelper::map($modelsClientJur, 'id', 'id')));
+			Model::loadMultiple($modelsClientPhone, Yii::$app->request->post());
+			$deletedIDsJur = array_diff($oldIDsJur, array_filter(ArrayHelper::map($modelsClientJur, 'id', 'id')));
+			$deletedIDsPhone = array_diff($oldIDsPhone, array_filter(ArrayHelper::map($modelsClientPhone, 'id', 'id')));
 
 			//validate all models
 			$valid = $model->validate();
 			$valid = Model::validateMultiple($modelsClientJur) && $valid;
+			$valid = Model::validateMultiple($modelsClientPhone) && $valid;
 
 			if ($valid) {
 				$transaction = \Yii::$app->db->beginTransaction();
 				try {
 					if ($flag = $model->save(false)) {
-						if (!empty($deletedIDs)) {
-							ClientJur::deleteAll(['id' => $deletedIDs]);
+						if (!empty($deletedIDsJur)) {
+							ClientJur::deleteAll(['id' => $deletedIDsJur]);
+						}
+						if (!empty($deletedIDsPhone)) {
+							ClientPhone::deleteAll(['id' => $deletedIDsPhone]);
 						}
 						foreach ($modelsClientJur as $modelClientJur) {
 							$modelClientJur->client_id = $model->id;
 							if (! ($flag = $modelClientJur->save(false))) {
+								$transaction->rollBack();
+								break;
+							}
+						}
+						foreach ($modelsClientPhone as $modelClientPhone) {
+							$modelClientPhone->client_id = $model->id;
+							if (! ($flag = $modelClientPhone->save(false))) {
 								$transaction->rollBack();
 								break;
 							}
@@ -190,7 +218,8 @@ class ClientController extends Controller
 
 		return $this->render('update', [
 			'model' => $model,
-			'modelsClientJur' => (empty($modelsClientJur)) ? [new ClientJur] : $modelsClientJur
+			'modelsClientJur' => (empty($modelsClientJur)) ? [new ClientJur] : $modelsClientJur,
+			'modelsClientPhone' => (empty($modelsClientPhone)) ? [new ClientPhone] : $modelsClientPhone
 		]);
 
     }
@@ -208,9 +237,13 @@ class ClientController extends Controller
 			throw new ForbiddenHttpException('Нет разрешения на удаление клиента"'.$model->name.'"');
 		}
 		$modelsClientJur = $model->clientJurs;
+		$modelsClientPhone = $model->clientPhones;
 		$transaction = \Yii::$app->db->beginTransaction();
 		foreach ($modelsClientJur as $modelClientJur) {
 			$modelClientJur->delete();
+		}
+		foreach ($modelsClientPhone as $modelClientPhone) {
+			$modelClientPhone->delete();
 		}
 		if (! $flagModel = $model->delete()) {
 			throw new ForbiddenHttpException('Удаление клиента "'.$model->name.'" не удалось!');
