@@ -10,7 +10,7 @@ return [
 	'language'=>'ru-RU',
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['debug'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
@@ -46,5 +46,11 @@ return [
         ],
         */
     ],
+	'modules' => [
+		'debug' =>[
+			'class' => 'yii\debug\Module',
+			'allowedIPs' => ['188.235.139.59'],
+		]
+	],
     'params' => $params,
 ];

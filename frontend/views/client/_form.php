@@ -12,23 +12,36 @@ use wbraganca\dynamicform\DynamicFormWidget;
 ?>
 <div cust-content edit-card>
 	<?php $form = ActiveForm::begin(['id' => 'dynamic-form']); ?>
-
-	<div cust-inf-block com-inf>
-		<div tit>Информация об организации</div>
-		<?= $form->field($model, 'name', ['options' => ['class' => 'client_field'], 'template' => "{error}{input}"])->textInput(['class' => '', 'title' => 'Условное название', 'placeholder' => 'Условное название']) ?>
-		<?= $this->render('_form_clientjur', [
+		<div cust-inf-block com-inf>
+			<div tit>Информация об организации</div>
+			<?= $form->field($model, 'name', ['options' => ['class' => 'client_field'], 'template' => "{error}{input}"])->textInput(['class' => '', 'title' => 'Условное название', 'placeholder' => 'Условное название']) ?>
+			<?= Html::a('<span>&#9875</span><span bird>&#10004</span>','#', ['title' => 'Якорный клиент', 'class' => 'add-main']).'<-checkbox может?'?>
+			<?= $this->render('_form_clientjur', [
+				'form'	=> $form,
+				'modelsClientJur' => $modelsClientJur,
+				'model' => $model
+			]).
+			$this->render('_form_client_phone', [
+				'form'	=> $form,
+				'modelsClientPhone' => $modelsClientPhone,
+				'model' => $model
+			]).
+			$this->render('_form_client_mail', [
+				'form'	=> $form,
+				'modelsClientMail' => $modelsClientMail,
+				'model' => $model
+			]);
+			?>
+		</div>
+		<div cust-inf-block cont-inf>
+		<?= $this->render('_form_client_contact', [
 			'form'	=> $form,
-			'modelsClientJur' => $modelsClientJur,
+			'modelsClientContact' => $modelsClientContact,
 			'model' => $model
-		]);
+			]);
 		?>
-		<?= $this->render('_form_client_phone', [
-			'form'	=> $form,
-			'modelsClientPhone' => $modelsClientPhone,
-			'model' => $model
-		]);
-		?>
-		<div bot-fixed clearfix><div><?= Html::submitInput('Сохранить')?><?= Html::buttonInput('Отменить', ['onclick' => "javascript:location.href='".Yii::$app->request->referrer."'",'fl-right' => ''])?></div></div>
+		</div>
+		<div bot-fixed clearfix><div><?= Html::submitInput('Сохранить')?><?= Html::buttonInput('Отменить', ['onclick' => "javascript:location.href='".Yii::$app->request->referrer."'",'fl-right' => ''])?></div>
 	<?php ActiveForm::end(); ?>
 
 </div>

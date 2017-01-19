@@ -42,10 +42,10 @@ use wbraganca\dynamicform\DynamicFormWidget;
 				<?= $form->field($modelClientPhone, "[{$index}]city", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'city' => '', 'title' => 'Код города/оператора', 'placeholder' => '919']) ?>
 				<?= $form->field($modelClientPhone, "[{$index}]number", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'number' => '', 'title' => 'Номер', 'placeholder' => '456-45-45']) ?>
 				<?= $form->field($modelClientPhone, "[{$index}]comment", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'phone-comment' => '', 'title' => 'Комментарий', 'placeholder' => 'Комментарий']) ?>
-				<a add-jur class="remove-item_client_phone" title="Удалить"><span add>-</span></a>
+				<a add-phone class="remove-item_client_phone" title="Удалить"><span add>-</span></a>
 			</u>
 		</div>
 	<?php endforeach; ?>
 </div>
-<a add-jur class="add-item_client_phone" title="Добавить"><span add>&#10011</span></a>
+<a add-phone class="add-item_client_phone" title="Добавить"><span add>&#10011</span></a>
 <?php DynamicFormWidget::end(); ?>
