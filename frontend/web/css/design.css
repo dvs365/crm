@@ -1475,8 +1475,8 @@ input[type=submit]:hover, input[type=button]:hover {
 
 /* Правки
 -----------------------------------------------------------------------------*/
-div.container-items, div.container-items_client_phone, div.container-items_client_mail, div.container-items_contact, div.container-items_client_contact_phone,
-div.item, div.item_client_phone, div.item_client_mail, div.item_contact, div.item_client_contact_phone,
+div.container-items, div.container-items_client_phone, div.container-items_client_mail, div.container-items_contact, div.container-items_client_contact_phone, div.container-items_client_contact_mail,
+div.item, div.item_client_phone, div.item_client_mail, div.item_contact, div.item_client_contact_phone, div.item_client_contact_mail,
 div.client_field{
 	width: 800px;
 	display: inline;

@@ -45,6 +45,11 @@ use wbraganca\dynamicform\DynamicFormWidget;
 					'indexContact' => $indexContact,
 					'modelsClientContactPhone' => $modelsClientContactPhone[$indexContact],
 				])?>
+				<?= $this->render('_form_client_contact_mail', [
+					'form'	=> $form,
+					'indexContact' => $indexContact,
+					'modelsClientContactMail' => $modelsClientContactMail[$indexContact],
+				])?>
 			</div>
 			<p add-contact><a class="remove-item_contact" title="Удалить" cust-add>Удалить контактное лицо</a></p>
 		</div>

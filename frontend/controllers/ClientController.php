@@ -9,6 +9,7 @@ use common\models\ClientPhone;
 use common\models\ClientMail;
 use common\models\ClientContact;
 use common\models\ClientContactPhone;
+use common\models\ClientContactMail;
 use app\models\ClientSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -106,6 +107,7 @@ class ClientController extends Controller
 		$modelsClientMail = [new ClientMail];
 		$modelsClientContact = [new ClientContact];
 		$modelsClientContactPhone = [[new ClientContactPhone]];
+		$modelsClientContactMail = [[new ClientContactMail]];
 
 		if ($model->load(Yii::$app->request->post())) {
 			$modelsClientJur = Model::createMultiple(ClientJur::classname());
@@ -133,6 +135,17 @@ class ClientController extends Controller
 						$modelClientContactPhone->load($data);
 						$modelsClientContactPhone[$indexContact][$indexPhone] = $modelClientContactPhone;
 						$valid = $modelClientContactPhone->validate();
+					}
+				}
+			}
+			if (isset($_POST['ClientContactMail'][0][0])) {
+				foreach ($_POST['ClientContactMail'] as $indexContact => $mails) {
+					foreach ($mails as $indexMail => $mail) {
+						$data['ClientContactMail'] = $mail;
+						$modelClientContactMail = new ClientContactMail;
+						$modelClientContactMail->load($data);
+						$modelsClientContactMail[$indexContact][$indexMail] = $modelClientContactMail;
+						$valid = $modelClientContactMail->validate();
 					}
 				}
 			}
@@ -177,6 +190,15 @@ class ClientController extends Controller
 									}
 								}
 							}
+							if (isset($modelsClientContactMail[$indexContact]) && is_array($modelsClientContactMail[$indexContact])) {
+								foreach ($modelsClientContactMail[$indexContact] as $indexMail => $modelClientContactMail) {
+									$modelClientContactMail->contact_id = $modelClientContact->id;
+									if (! ($flag = $modelClientContactMail->save(false))) {
+										$transaction->rollBack();
+										break;
+									}
+								}
+							}
 						}
 					}
 
@@ -197,6 +219,7 @@ class ClientController extends Controller
 			'modelsClientMail' => (empty($modelsClientMail)) ? [new ClientMail] : $modelsClientMail,
 			'modelsClientContact' => (empty($modelsClientContact)) ? [new ClientContact] : $modelsClientContact,
 			'modelsClientContactPhone' => (empty($modelsClientContactPhone)) ? [[new ClientContactPhone]] : $modelsClientContactPhone,
+			'modelsClientContactMail' => (empty($modelsClientContactMail)) ? [[new ClientContactMail]] : $modelsClientContactMail,
 		]);
 
 	}
@@ -221,18 +244,25 @@ class ClientController extends Controller
 		$modelsClientContact = $model->clientContacts;
 		$modelsClientContactPhone = [];
 		$oldPhones = [];
+		$modelsClientContactMail = [];
+		$oldMails = [];
 
 		if (!empty($modelsClientContact)) {
 			foreach ($modelsClientContact as $indexContact => $modelClientContact) {
 				$phones = $modelClientContact->clientContactPhones;
 				$modelsClientContactPhone[$indexContact] = $phones;
 				$oldPhones = ArrayHelper::merge(ArrayHelper::index($phones, 'id'), $oldPhones);
+
+				$mails = $modelClientContact->clientContactMails;
+				$modelsClientContactMail[$indexContact] = $mails;
+				$oldMails = ArrayHelper::merge(ArrayHelper::index($mails, 'id'), $oldMails);
 			}
 		}
         if ($model->load(Yii::$app->request->post())) {
 
 			//reset
 			$modelsClientContactPhone = [];
+			$modelsClientContactMail = [];
 
 			$oldIDsJur = ArrayHelper::map($modelsClientJur, 'id', 'id');
 			$oldIDsPhone = ArrayHelper::map($modelsClientPhone, 'id', 'id');
@@ -275,6 +305,23 @@ class ClientController extends Controller
 			$oldIDsClientContactPhone = ArrayHelper::getColumn($oldPhones, 'id');
 			$deletedIDsContactPhone = array_diff($oldIDsClientContactPhone, $phonesIDs);
 
+			$mailsIDs = [];
+			if (isset($_POST['ClientContactMail'][0][0])) {
+				foreach ($_POST['ClientContactMail'] as $indexContact => $mails) {
+					$mailsIDs = ArrayHelper::merge($mailsIDs, array_filter(ArrayHelper::getColumn($mails, 'id')));
+					foreach ($mails as $indexMail => $mail) {
+						$data['ClientContactMail'] = $mail;
+						$modelClientContactMail = (isset($mail['id']) && isset($oldMails[$mail['id']])) ? $oldMails[$mail['id']] : new ClientContactMail;
+						$modelClientContactMail->load($data);
+						$modelsClientContactMail[$indexContact][$indexMail] = $modelClientContactMail;
+						$valid = $modelClientContactMail->validate();
+					}
+				}
+			}
+
+			$oldIDsClientContactMail = ArrayHelper::getColumn($oldMails, 'id');
+			$deletedIDsContactMail = array_diff($oldIDsClientContactMail, $mailsIDs);
+
 			if ($valid) {
 				$transaction = \Yii::$app->db->beginTransaction();
 				try {
@@ -290,6 +337,9 @@ class ClientController extends Controller
 						}
 						if (!empty($deletedIDsContactPhone)) {
 							ClientContactPhone::deleteAll(['id' => $deletedIDsContactPhone]);
+						}
+						if (!empty($deletedIDsContactMail)) {
+							ClientContactMail::deleteAll(['id' => $deletedIDsContactMail]);
 						}
 						if (!empty($deletedIDsContact)) {
 							ClientContact::deleteAll(['id' => $deletedIDsContact]);
@@ -331,6 +381,16 @@ class ClientController extends Controller
 									}
 								}
 							}
+
+							if (isset($modelsClientContactMail[$indexContact]) && is_array($modelsClientContactMail[$indexContact])) {
+								foreach ($modelsClientContactMail[$indexContact] as $indexMail => $modelClientContactMail) {
+									$modelClientContactMail->contact_id = $modelClientContact->id;
+									if (! ($flag = $modelClientContactMail->save(false))) {
+										$transaction->rollBack();
+										break;
+									}
+								}
+							}
 						}
 					}
 
@@ -351,6 +411,7 @@ class ClientController extends Controller
 			'modelsClientMail' => (empty($modelsClientMail)) ? [new ClientMail] : $modelsClientMail,
 			'modelsClientContact' => (empty($modelsClientContact)) ? [new ClientContact] : $modelsClientContact,
 			'modelsClientContactPhone' => (empty($modelsClientContactPhone)) ? [[new ClientContactPhone]] : $modelsClientContactPhone,
+			'modelsClientContactMail' => (empty($modelsClientContactMail)) ? [[new ClientContactMail]] : $modelsClientContactMail,
 		]);
 
     }
@@ -373,10 +434,6 @@ class ClientController extends Controller
 		$modelsClientMail = $model->clientMails;
 		$modelsClientContact = $model->clientContacts;
 
-		foreach ($modelsClientContact as $modelClientContact) {
-
-		}
-
 		$transaction = \Yii::$app->db->beginTransaction();
 		foreach ($modelsClientJur as $modelClientJur) {
 			$modelClientJur->delete();
@@ -387,12 +444,17 @@ class ClientController extends Controller
 		foreach ($modelsClientMail as $modelClientMail) {
 			$modelClientMail->delete();
 		}
-
 		foreach ($modelsClientContact as $modelClientContact) {
 			$phones = $modelClientContact->clientContactPhones;
 			foreach ($phones as $modelClientContactPhone) {
 				$modelClientContactPhone->delete();
 			}
+
+			$mails = $modelClientContact->clientContactMails;
+			foreach ($mails as $modelClientContactMail) {
+				$modelClientContactMail->delete();
+			}
+
 			$modelClientContact->delete();
 		}
 		if (! $flagModel = $model->delete()) {
