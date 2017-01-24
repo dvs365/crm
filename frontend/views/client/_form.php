@@ -37,6 +37,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 		<?= $this->render('_form_client_contact', [
 			'form'	=> $form,
 			'modelsClientContact' => $modelsClientContact,
+			'modelsClientContactPhone' => $modelsClientContactPhone,
 			'model' => $model
 			]);
 		?>

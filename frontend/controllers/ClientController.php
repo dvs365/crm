@@ -8,6 +8,7 @@ use common\models\ClientJur;
 use common\models\ClientPhone;
 use common\models\ClientMail;
 use common\models\ClientContact;
+use common\models\ClientContactPhone;
 use app\models\ClientSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -104,6 +105,7 @@ class ClientController extends Controller
 		$modelsClientPhone = [new ClientPhone];
 		$modelsClientMail = [new ClientMail];
 		$modelsClientContact = [new ClientContact];
+		$modelsClientContactPhone = [[new ClientContactPhone]];
 
 		if ($model->load(Yii::$app->request->post())) {
 			$modelsClientJur = Model::createMultiple(ClientJur::classname());
@@ -123,6 +125,17 @@ class ClientController extends Controller
 			$valid = Model::validateMultiple($modelsClientPhone) && $valid;
 			$valid = Model::validateMultiple($modelsClientMail) && $valid;
 			$valid = Model::validateMultiple($modelsClientContact) && $valid;
+			if (isset($_POST['ClientContactPhone'][0][0])) {
+				foreach ($_POST['ClientContactPhone'] as $indexContact => $phones) {
+					foreach ($phones as $indexPhone => $phone) {
+						$data['ClientContactPhone'] = $phone;
+						$modelClientContactPhone = new ClientContactPhone;
+						$modelClientContactPhone->load($data);
+						$modelsClientContactPhone[$indexContact][$indexPhone] = $modelClientContactPhone;
+						$valid = $modelClientContactPhone->validate();
+					}
+				}
+			}
 
 			if ($valid) {
 				$transaction = \Yii::$app->db->beginTransaction();
@@ -149,14 +162,21 @@ class ClientController extends Controller
 								break;
 							}
 						}
-						foreach ($modelsClientContact as $modelClientContact) {
+						foreach ($modelsClientContact as $indexContact => $modelClientContact) {
 							$modelClientContact->client_id = $model->id;
 							if (! ($flag = $modelClientContact->save(false))) {
 								$transaction->rollBack();
 								break;
 							}
-
-
+							if (isset($modelsClientContactPhone[$indexContact]) && is_array($modelsClientContactPhone[$indexContact])) {
+								foreach ($modelsClientContactPhone[$indexContact] as $indexPhone => $modelClientContactPhone) {
+									$modelClientContactPhone->contact_id = $modelClientContact->id;
+									if (! ($flag = $modelClientContactPhone->save(false))) {
+										$transaction->rollBack();
+										break;
+									}
+								}
+							}
 						}
 					}
 
@@ -176,6 +196,7 @@ class ClientController extends Controller
 			'modelsClientPhone' => (empty($modelsClientPhone)) ? [new ClientPhone] : $modelsClientPhone,
 			'modelsClientMail' => (empty($modelsClientMail)) ? [new ClientMail] : $modelsClientMail,
 			'modelsClientContact' => (empty($modelsClientContact)) ? [new ClientContact] : $modelsClientContact,
+			'modelsClientContactPhone' => (empty($modelsClientContactPhone)) ? [[new ClientContactPhone]] : $modelsClientContactPhone,
 		]);
 
 	}
@@ -198,8 +219,20 @@ class ClientController extends Controller
 		$modelsClientPhone = $model->clientPhones;
 		$modelsClientMail = $model->clientMails;
 		$modelsClientContact = $model->clientContacts;
+		$modelsClientContactPhone = [];
+		$oldPhones = [];
 
+		if (!empty($modelsClientContact)) {
+			foreach ($modelsClientContact as $indexContact => $modelClientContact) {
+				$phones = $modelClientContact->clientContactPhones;
+				$modelsClientContactPhone[$indexContact] = $phones;
+				$oldPhones = ArrayHelper::merge(ArrayHelper::index($phones, 'id'), $oldPhones);
+			}
+		}
         if ($model->load(Yii::$app->request->post())) {
+
+			//reset
+			$modelsClientContactPhone = [];
 
 			$oldIDsJur = ArrayHelper::map($modelsClientJur, 'id', 'id');
 			$oldIDsPhone = ArrayHelper::map($modelsClientPhone, 'id', 'id');
@@ -208,7 +241,7 @@ class ClientController extends Controller
 			$modelsClientJur = Model::createMultiple(ClientJur::classname(), $modelsClientJur);
 			$modelsClientPhone = Model::createMultiple(ClientPhone::classname(), $modelsClientPhone);
 			$modelsClientMail = Model::createMultiple(ClientMail::classname(), $modelsClientMail);
-			$modelsClientContact = Model::createMultiple(ClientContact::classname(), $modelsContact);
+			$modelsClientContact = Model::createMultiple(ClientContact::classname(), $modelsClientContact);
 			Model::loadMultiple($modelsClientJur, Yii::$app->request->post());
 			Model::loadMultiple($modelsClientPhone, Yii::$app->request->post());
 			Model::loadMultiple($modelsClientMail, Yii::$app->request->post());
@@ -225,6 +258,23 @@ class ClientController extends Controller
 			$valid = Model::validateMultiple($modelsClientMail) && $valid;
 			$valid = Model::validateMultiple($modelsClientContact) && $valid;
 
+			$phonesIDs = [];
+			if (isset($_POST['ClientContactPhone'][0][0])) {
+				foreach ($_POST['ClientContactPhone'] as $indexContact => $phones) {
+					$phonesIDs = ArrayHelper::merge($phonesIDs, array_filter(ArrayHelper::getColumn($phones, 'id')));
+					foreach ($phones as $indexPhone => $phone) {
+						$data['ClientContactPhone'] = $phone;
+						$modelClientContactPhone = (isset($phone['id']) && isset($oldPhones[$phone['id']])) ? $oldPhones[$phone['id']] : new ClientContactPhone;
+						$modelClientContactPhone->load($data);
+						$modelsClientContactPhone[$indexContact][$indexPhone] = $modelClientContactPhone;
+						$valid = $modelClientContactPhone->validate();
+					}
+				}
+			}
+
+			$oldIDsClientContactPhone = ArrayHelper::getColumn($oldPhones, 'id');
+			$deletedIDsContactPhone = array_diff($oldIDsClientContactPhone, $phonesIDs);
+
 			if ($valid) {
 				$transaction = \Yii::$app->db->beginTransaction();
 				try {
@@ -237,6 +287,9 @@ class ClientController extends Controller
 						}
 						if (!empty($deletedIDsMail)) {
 							ClientMail::deleteAll(['id' => $deletedIDsMail]);
+						}
+						if (!empty($deletedIDsContactPhone)) {
+							ClientContactPhone::deleteAll(['id' => $deletedIDsContactPhone]);
 						}
 						if (!empty($deletedIDsContact)) {
 							ClientContact::deleteAll(['id' => $deletedIDsContact]);
@@ -262,14 +315,25 @@ class ClientController extends Controller
 								break;
 							}
 						}
-						foreach ($modelsClientContact as $modelClientContact) {
+						foreach ($modelsClientContact as $indexContact => $modelClientContact) {
 							$modelClientContact->client_id = $model->id;
 							if (! ($flag = $modelClientContact->save(false))) {
 								$transaction->rollBack();
 								break;
 							}
+
+							if (isset($modelsClientContactPhone[$indexContact]) && is_array($modelsClientContactPhone[$indexContact])) {
+								foreach ($modelsClientContactPhone[$indexContact] as $indexPhone => $modelClientContactPhone) {
+									$modelClientContactPhone->contact_id = $modelClientContact->id;
+									if (! ($flag = $modelClientContactPhone->save(false))) {
+										$transaction->rollBack();
+										break;
+									}
+								}
+							}
 						}
 					}
+
 					if ($flag) {
 						$transaction->commit();
 						return $this->redirect(['view', 'id' => $model->id]);
@@ -286,6 +350,7 @@ class ClientController extends Controller
 			'modelsClientPhone' => (empty($modelsClientPhone)) ? [new ClientPhone] : $modelsClientPhone,
 			'modelsClientMail' => (empty($modelsClientMail)) ? [new ClientMail] : $modelsClientMail,
 			'modelsClientContact' => (empty($modelsClientContact)) ? [new ClientContact] : $modelsClientContact,
+			'modelsClientContactPhone' => (empty($modelsClientContactPhone)) ? [[new ClientContactPhone]] : $modelsClientContactPhone,
 		]);
 
     }
@@ -302,10 +367,16 @@ class ClientController extends Controller
 		if (! \Yii::$app->user->can('deleteClient', ['client' => $model])) {
 			throw new ForbiddenHttpException('Нет разрешения на удаление клиента"'.$model->name.'"');
 		}
+
 		$modelsClientJur = $model->clientJurs;
 		$modelsClientPhone = $model->clientPhones;
 		$modelsClientMail = $model->clientMails;
 		$modelsClientContact = $model->clientContacts;
+
+		foreach ($modelsClientContact as $modelClientContact) {
+
+		}
+
 		$transaction = \Yii::$app->db->beginTransaction();
 		foreach ($modelsClientJur as $modelClientJur) {
 			$modelClientJur->delete();
@@ -316,7 +387,12 @@ class ClientController extends Controller
 		foreach ($modelsClientMail as $modelClientMail) {
 			$modelClientMail->delete();
 		}
+
 		foreach ($modelsClientContact as $modelClientContact) {
+			$phones = $modelClientContact->clientContactPhones;
+			foreach ($phones as $modelClientContactPhone) {
+				$modelClientContactPhone->delete();
+			}
 			$modelClientContact->delete();
 		}
 		if (! $flagModel = $model->delete()) {
@@ -324,6 +400,7 @@ class ClientController extends Controller
 			$transaction->rollBack();
 		} else {
 			$transaction->commit();
+			Yii::$app->session->setFlash('success', 'Record <strong>"'.$model->name.'" </strong> deleted successfully.');
 		}
 		return $this->redirect(['index']);
     }

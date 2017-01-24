@@ -33,9 +33,10 @@ use wbraganca\dynamicform\DynamicFormWidget;
 				echo Html::activeHiddenInput($modelClientJur, "[{$index}]id");
 			}
 			?>
-			<?= $form->field($modelClientJur, "[{$index}]name", ['options' => ['class' => 'client_field'], 'template' => "{error}{input}<a del-jur class=\"remove-item\" title=\"Удалить\"><span del>-</span></a>"])->textInput(['maxlength' => true, 'class' => '', 'title' => 'Юр. лицо', 'placeholder' => 'Полное название юр. лица']) ?>
+			<?= $form->field($modelClientJur, "[{$index}]name", ['options' => ['class' => 'client_field'], 'template' => "{error}{input}"])->textInput(['maxlength' => true, 'class' => '', 'title' => 'Юр. лицо', 'placeholder' => 'Полное название юр. лица']) ?>
+			<a class="remove-item" title="Удалить"><span del></span></a>
 		</div>
 	<?php endforeach; ?>
 </div>
-<a add-jur class="add-item" title="Добавить"><span add>&#10011</span></a>
+<a add-jur class="add-item" title="Добавить"><span add></span></a>
 <?php DynamicFormWidget::end(); ?>

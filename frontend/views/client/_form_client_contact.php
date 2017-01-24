@@ -28,23 +28,27 @@ use wbraganca\dynamicform\DynamicFormWidget;
 ?>
 <div tit>Контактные лица:</div>
 <div class="container-items_contact">
-	<?php foreach ($modelsClientContact as $index => $modelClientContact): ?>
+	<?php foreach ($modelsClientContact as $indexContact => $modelClientContact): ?>
 		<div class="item_contact">
 			<div num>
 				<?php
 				//necessary for update action.
 				if (! $modelClientContact->isNewRecord) {
-					echo Html::activeHiddenInput($modelClientContact, "[{$index}]id");
+					echo Html::activeHiddenInput($modelClientContact, "[{$indexContact}]id");
 				}
 				?>
-				<?= $form->field($modelClientContact, "[{$index}]name", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'title' => 'ФИО', 'placeholder' => 'ФИО']) ?>
-				<?= $form->field($modelClientContact, "[{$index}]main", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->checkbox(['title' => 'Основное контактное лицо'], false)?>
-				<?= $form->field($modelClientContact, "[{$index}]position", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'title' => 'Должность', 'placeholder' => 'Должность']) ?>
+				<?= $form->field($modelClientContact, "[{$indexContact}]name", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'title' => 'ФИО', 'placeholder' => 'ФИО']) ?>
+				<?= $form->field($modelClientContact, "[{$indexContact}]main", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->checkbox(['title' => 'Основное контактное лицо'], false)?>
+				<?= $form->field($modelClientContact, "[{$indexContact}]position", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'title' => 'Должность', 'placeholder' => 'Должность']) ?>
+				<?= $this->render('_form_client_contact_phone', [
+					'form'	=> $form,
+					'indexContact' => $indexContact,
+					'modelsClientContactPhone' => $modelsClientContactPhone[$indexContact],
+				])?>
 			</div>
 			<p add-contact><a class="remove-item_contact" title="Удалить" cust-add>Удалить контактное лицо</a></p>
 		</div>
 	<?php endforeach; ?>
 </div>
 <p add-contact><a class="add-item_contact" title="Добавить" cust-add>Добавить контактное лицо</a></p>
-
 <?php DynamicFormWidget::end(); ?>

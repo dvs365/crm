@@ -59,4 +59,12 @@ class ClientContact extends \yii\db\ActiveRecord
 	{
 		return $this->hasOne(Client::className(), ['id' => 'client_id']);
 	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getClientContactPhones()
+	{
+		return $this->hasMany(ClientContactPhone::className(), ['contact_id' => 'id']);
+	}
 }

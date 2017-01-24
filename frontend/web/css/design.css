@@ -1475,9 +1475,17 @@ input[type=submit]:hover, input[type=button]:hover {
 
 /* Правки
 -----------------------------------------------------------------------------*/
-div.container-items, div.container-items_client_phone, div.container-items_client_mail, div.container-items_contact, div.item, div.item_client_phone, div.item, div.item_client_mail, div.item, div.item_contact, div.client_field{
+div.container-items, div.container-items_client_phone, div.container-items_client_mail, div.container-items_contact, div.container-items_client_contact_phone,
+div.item, div.item_client_phone, div.item_client_mail, div.item_contact, div.item_client_contact_phone,
+div.client_field{
 	width: 800px;
 	display: inline;
+}
+[add]:before {
+    content: '\271B';
+}
+[del]:before {
+    content: '\2212';
 }
 div.help-block {
 	width: 800px;
