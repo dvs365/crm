@@ -18,6 +18,15 @@ class ManagerRule extends Rule
      */
     public function execute($user, $item, $params)
     {
-        return isset($params['client']) ? $params['client']->user_id == $user : false;
+        if (isset($params['client'])) {
+			if ($params['client']->user_id == $user) {
+				return true;
+			}
+			if ($params['client']->user_add_id == $user) {
+				return true;
+			}
+		}
+		return false;
+		//return isset($params['client']) ? $params['client']->user_id == $user : false;
     }
 }

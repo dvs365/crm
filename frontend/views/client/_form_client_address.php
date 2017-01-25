@@ -46,7 +46,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 					<?= $form->field($modelClientAddress, "[{$indexAddress}]street", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'title' => 'Улица', 'placeholder' => 'Улица']) ?>
 					<?= $form->field($modelClientAddress, "[{$indexAddress}]home", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'title' => 'Дом/корпус/офис', 'placeholder' => 'Дом/корпус/офис']) ?>
 					<?= $form->field($modelClientAddress, "[{$indexAddress}]comment", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'title' => 'Комментарий', 'placeholder' => 'Комментарий']) ?>
-					<?= $form->field($modelClientAddress, "[{$indexAddress}]note", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'note' => '', 'title' => 'Заметка суперпользователя', 'placeholder' => 'Заметка суперпользователя']) ?>
+					<?= (Yii::$app->user->can('moder')) ? $form->field($modelClientAddress, "[{$indexAddress}]note", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'note' => '', 'title' => 'Заметка суперпользователя', 'placeholder' => 'Заметка суперпользователя']) : '' ?>
 					<p class="expand-link"><?= Html::a('Отобразить на карте', 'javascript:void(0);', ['cust-add' => ''])?></p>
 					<div class="expand-block">ЯНДЕК-КАРТА!!! УРА!!!!!</div>
 				</div>

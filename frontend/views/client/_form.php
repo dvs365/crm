@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use wbraganca\dynamicform\DynamicFormWidget;
 
@@ -15,7 +16,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 		<div cust-inf-block com-inf>
 			<div tit>Информация об организации</div>
 			<?= $form->field($model, 'name', ['options' => ['class' => 'client_field'], 'template' => "{error}{input}"])->textInput(['class' => '', 'title' => 'Условное название', 'placeholder' => 'Условное название']) ?>
-			<?= Html::a('<span>&#9875</span><span bird>&#10004</span>','#', ['title' => 'Якорный клиент', 'class' => 'add-main']).'<-checkbox может?'?>
+			<?= $form->field($model, "anchor", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->checkbox(['title' => 'Якорный клиент', 'class' => 'add-anchor'], false)?>
 			<?= $this->render('_form_clientjur', [
 				'form'	=> $form,
 				'modelsClientJur' => $modelsClientJur,
@@ -52,10 +53,16 @@ use wbraganca\dynamicform\DynamicFormWidget;
 			]);
 			?>
 		</div>
-		<div cust-inf-block dop-inf>
-
-		</div>
-		<div bot-fixed clearfix><div><?= Html::submitInput('Сохранить')?><?= Html::buttonInput('Отменить', ['onclick' => "javascript:location.href='".Yii::$app->request->referrer."'",'fl-right' => ''])?></div>
+		<? if (Yii::$app->user->can('moder')) {?>
+			<div cust-inf-block dop-inf>
+				<p>Назначить менеджера</p>
+				<? $items = ArrayHelper::map($modelsUser, 'id', 'username')?>
+				<?= $form->field($model, 'user_id', ['options' => ['class' => 'client_field'], 'template' => "{error}{input}"])->dropDownList($items, ['class' =>'', 'prompt' => ''])->label(false)?>
+				<p>Дополнительный просмотр</p>
+				<?= $form->field($model, 'user_add_id', ['options' => ['class' => 'client_field'], 'template' => "{input}"])->dropDownList($items, ['class' => '', 'prompt' => 'Никому'])->label(false)?>
+			</div>
+		<?}?>
+	<div bot-fixed clearfix><div><?= Html::submitInput('Сохранить')?><?= Html::buttonInput('Отменить', ['onclick' => "javascript:location.href='".Yii::$app->request->referrer."'",'fl-right' => ''])?></div>
 	<?php ActiveForm::end(); ?>
 
 </div>

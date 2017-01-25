@@ -35,7 +35,10 @@ class Client extends \yii\db\ActiveRecord
 		return [
 			[['user_id', 'name'], 'required'],
 			[['user_id'], 'integer'],
+			[['user_add_id'], 'integer'],
+			['user_add_id', 'default', 'value' => '0'],
 			[['name'], 'string', 'max' => 255],
+			[['anchor'], 'string'],
 			[['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
 		];
 	}
@@ -47,8 +50,10 @@ class Client extends \yii\db\ActiveRecord
 	{
 		return [
 			'id' => 'ID',
-			'user_id' => 'User ID',
+			'user_id' => 'Менеджер',
+			'user_add_id' => 'Дополнительный просмотр User ID',
 			'name' => 'Условное название',
+			'anchor' => 'Якорный клиент',
 		];
 	}
 

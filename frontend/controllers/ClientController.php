@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use common\models\User;
 use common\models\Client;
 use common\models\ClientJur;
 use common\models\ClientPhone;
@@ -234,6 +235,7 @@ class ClientController extends Controller
 			'modelsClientContactPhone' => (empty($modelsClientContactPhone)) ? [[new ClientContactPhone]] : $modelsClientContactPhone,
 			'modelsClientContactMail' => (empty($modelsClientContactMail)) ? [[new ClientContactMail]] : $modelsClientContactMail,
 			'modelsClientAddress' => (empty($modelsClientAddress)) ? [new ClientAddress] : $modelsClientAddress,
+			'modelsUser' =>  User::find()->all(),
 		]);
 
 	}
@@ -443,6 +445,7 @@ class ClientController extends Controller
 			'modelsClientContactPhone' => (empty($modelsClientContactPhone)) ? [[new ClientContactPhone]] : $modelsClientContactPhone,
 			'modelsClientContactMail' => (empty($modelsClientContactMail)) ? [[new ClientContactMail]] : $modelsClientContactMail,
 			'modelsClientAddress' => (empty($modelsClientAddress)) ? [new ClientAddress] : $modelsClientAddress,
+			'modelsUser' =>  User::find()->all(),
 		]);
 
     }
