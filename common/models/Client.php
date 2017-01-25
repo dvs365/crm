@@ -91,4 +91,12 @@ class Client extends \yii\db\ActiveRecord
 	{
 		return $this->hasMany(ClientPhone::className(), ['client_id' => 'id']);
 	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getClientAddresses()
+	{
+		return $this->hasMany(ClientAddress::className(), ['client_id' => 'id']);
+	}
 }

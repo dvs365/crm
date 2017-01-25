@@ -43,6 +43,18 @@ use wbraganca\dynamicform\DynamicFormWidget;
 			]);
 		?>
 		</div>
+		<div cust-inf-block adress-inf>
+			<div tit>Адреса:</div>
+			<?= $this->render('_form_client_address', [
+				'form'	=> $form,
+				'modelsClientAddress' => $modelsClientAddress,
+				'model' => $model
+			]);
+			?>
+		</div>
+		<div cust-inf-block dop-inf>
+
+		</div>
 		<div bot-fixed clearfix><div><?= Html::submitInput('Сохранить')?><?= Html::buttonInput('Отменить', ['onclick' => "javascript:location.href='".Yii::$app->request->referrer."'",'fl-right' => ''])?></div>
 	<?php ActiveForm::end(); ?>
 

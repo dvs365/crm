@@ -36,10 +36,10 @@ use wbraganca\dynamicform\DynamicFormWidget;
 				?>
 				<?= $form->field($modelClientContactMail, "[{$indexContact}][{$indexMail}]address", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'E-mail' => '', 'title' => 'E-mail', 'placeholder' => 'E-mail']) ?>
 				<?= $form->field($modelClientContactMail, "[{$indexContact}][{$indexMail}]comment", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'mail-comment' => '', 'title' => 'Комментарий', 'placeholder' => 'Комментарий']) ?>
-				<a class="remove-item_client_contact_mail" title="Удалить"><span del></span></a>
+				<?= Html::a('<span del></span>', '#', ['class' => 'remove-item_client_contact_mail', 'title' => 'Удалить'])?>
 			</u>
 		</div>
 	<?php endforeach; ?>
 </div>
-<a add-mail1 class="add-item_client_contact_mail" title="Добавить"><span add></span></a>
+<?= Html::a('<span add></span>', '#', ['class' => 'add-item_client_contact_mail', 'title' => 'Добавить'])?>
 <?php DynamicFormWidget::end(); ?>

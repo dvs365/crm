@@ -40,10 +40,10 @@ use wbraganca\dynamicform\DynamicFormWidget;
 				<?= $form->field($modelClientContactPhone, "[{$indexContact}][{$indexPhone}]city", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'city' => '', 'title' => 'Код города/оператора', 'placeholder' => '919']) ?>
 				<?= $form->field($modelClientContactPhone, "[{$indexContact}][{$indexPhone}]number", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'number' => '', 'title' => 'Номер', 'placeholder' => '456-45-45']) ?>
 				<?= $form->field($modelClientContactPhone, "[{$indexContact}][{$indexPhone}]comment", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'phone-comment' => '', 'title' => 'Комментарий', 'placeholder' => 'Комментарий']) ?>
-				<a class="remove-item_client_contact_phone" title="Удалить"><span del></span></a>
+				<?= Html::a('<span del></span>', '#', ['class' => 'remove-item_client_contact_phone', 'title' => 'Удалить'])?>
 			</u>
 		</div>
 	<?php endforeach; ?>
 </div>
-<a add-phone1 class="add-item_client_contact_phone" title="Добавить"><span add></span></a>
+<?= Html::a('<span add></span>', '#', ['class' => 'add-item_client_contact_phone', 'title' => 'Добавить'])?>
 <?php DynamicFormWidget::end(); ?>

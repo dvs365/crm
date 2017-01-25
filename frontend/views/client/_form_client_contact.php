@@ -51,9 +51,9 @@ use wbraganca\dynamicform\DynamicFormWidget;
 					'modelsClientContactMail' => $modelsClientContactMail[$indexContact],
 				])?>
 			</div>
-			<p add-contact><a class="remove-item_contact" title="Удалить" cust-add>Удалить контактное лицо</a></p>
+			<p add-contact><?= Html::a('Удалить контактное лицо', '#', ['class' => 'remove-item_contact', 'title' => 'Удалить', 'cust-add' => ''])?></p>
 		</div>
 	<?php endforeach; ?>
 </div>
-<p add-contact><a class="add-item_contact" title="Добавить" cust-add>Добавить контактное лицо</a></p>
+<p add-contact><?= Html::a('Добавить контактное лицо', '#', ['class' => 'add-item_contact', 'title' => 'Добавить', 'cust-add' => ''])?></p>
 <?php DynamicFormWidget::end(); ?>

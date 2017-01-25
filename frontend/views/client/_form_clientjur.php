@@ -34,9 +34,9 @@ use wbraganca\dynamicform\DynamicFormWidget;
 			}
 			?>
 			<?= $form->field($modelClientJur, "[{$index}]name", ['options' => ['class' => 'client_field'], 'template' => "{error}{input}"])->textInput(['maxlength' => true, 'class' => '', 'title' => 'Юр. лицо', 'placeholder' => 'Полное название юр. лица']) ?>
-			<a class="remove-item" title="Удалить"><span del></span></a>
+			<?= Html::a('<span del></span>', '#', ['class' => 'remove-item', 'title' => 'Удалить'])?>
 		</div>
 	<?php endforeach; ?>
 </div>
-<a add-jur class="add-item" title="Добавить"><span add></span></a>
+<?= Html::a('<span add></span>', '#', ['class' => 'add-item', 'title' => 'Добавить'])?>
 <?php DynamicFormWidget::end(); ?>
