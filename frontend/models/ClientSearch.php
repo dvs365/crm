@@ -12,68 +12,86 @@ use common\models\Client;
  */
 class ClientSearch extends Client
 {
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['id', 'user'], 'integer'],
-            [['name'], 'safe'],
-        ];
-    }
 
-    /**
-     * @inheritdoc
-     */
-    public function scenarios()
-    {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
-    }
+	public $clientSearch;
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
-    public function search($params)
-    {
-        $query = Client::find();
+	/**
+	 * @inheritdoc
+	 */
+	public function rules()
+	{
+		return [
+			[['id', 'user_id', 'user_add_id'], 'integer'],
+			[['name', 'anchor', 'clientSearch'], 'safe'],
+		];
+	}
 
-        // add conditions that should always apply here
+	/**
+	 * @inheritdoc
+	 */
+	public function scenarios()
+	{
+		// bypass scenarios() implementation in the parent class
+		return Model::scenarios();
+	}
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
+	/**
+	 * Creates data provider instance with search query applied
+	 *
+	 * @param array $params
+	 *
+	 * @return ActiveDataProvider
+	 */
+	public function search($params)
+	{
+		$query = Client::find();
 
-        $this->load($params);
+		// add conditions that should always apply here
 
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
-        }
+		$dataProvider = new ActiveDataProvider([
+			'query' => $query,
+		]);
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'user' => $this->user,
-        ]);
+		/**
+		 * настройка параметров сортировки
+		 * Важно: должна быть выполнена раньше $this->load($params)
+		 * statement below
+		 */
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+		/*Если нужна сортировка*/
+/*
+		$dataProvider->setSort([
+			'attributes' => [
+				'id',
+				'name',
+			]
+		]);
+*/
+		if (! ($this->load($params) && $this->validate())) {
+		/**
+		 * Жадная загрузка данных моделей для работы сортировки
+		 */
+//			$query->joinWith(['clientJurs']);
+			return $dataProvider;
+		}
+/*
+		$this->addCondition($query, 'id');
+		$this->addCondition($query, 'name');
+		$this->addCondition($query, 'user_id');
+*/
 
-        return $dataProvider;
-    }
-    
-	public function attributeLabels()
-    {
-        return [
-			'id' => Yii::t('app', 'ID клиента'),
-            'user' => Yii::t('app', 'ID пользователя'),
-            'name' => Yii::t('app', 'Название'),
-        ];
-    }	
+		$query->joinWith('clientJurs')->joinWith('clientPhones')->joinWith('clientMails')->joinWith('clientContacts');
+		$query->joinWith('clientContactPhones')->joinWith('clientContactMails');
+		$query->where([
+			'or',
+			'client_jur.name LIKE "%' . $this->clientSearch . '%"',
+			'client_phone.phone LIKE "%' . $this->clientSearch. '%"',
+			'client_mail.address LIKE "%' . $this->clientSearch. '%"',
+			'client_contact.name LIKE "%' . $this->clientSearch. '%"',
+			'client_contact_phone.phone LIKE "%' . $this->clientSearch. '%"',
+			'client_contact_mail.address LIKE "%' . $this->clientSearch. '%"'
+		]);
+
+		return $dataProvider;
+	}
 }

@@ -67,7 +67,6 @@ class ClientController extends Controller
     {
         $searchModel = new ClientSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -170,6 +169,7 @@ class ClientController extends Controller
 						}
 						foreach ($modelsClientPhone as $modelClientPhone) {
 							$modelClientPhone->client_id = $model->id;
+							$modelClientPhone->phone = preg_replace("/[^0-9]/", '', $modelClientPhone->country.$modelClientPhone->city.$modelClientPhone->number);
 							if (! ($flag = $modelClientPhone->save(false))) {
 								$transaction->rollBack();
 								break;
@@ -191,6 +191,7 @@ class ClientController extends Controller
 							if (isset($modelsClientContactPhone[$indexContact]) && is_array($modelsClientContactPhone[$indexContact])) {
 								foreach ($modelsClientContactPhone[$indexContact] as $indexPhone => $modelClientContactPhone) {
 									$modelClientContactPhone->contact_id = $modelClientContact->id;
+									$modelClientContactPhone->phone = preg_replace("/[^0-9]/", '', $modelClientContactPhone->country.$modelClientContactPhone->city.$modelClientContactPhone->number);
 									if (! ($flag = $modelClientContactPhone->save(false))) {
 										$transaction->rollBack();
 										break;
@@ -378,6 +379,7 @@ class ClientController extends Controller
 						}
 						foreach ($modelsClientPhone as $modelClientPhone) {
 							$modelClientPhone->client_id = $model->id;
+							$modelClientPhone->phone = preg_replace("/[^0-9]/", '', $modelClientPhone->country.$modelClientPhone->city.$modelClientPhone->number);
 							if (! ($flag = $modelClientPhone->save(false))) {
 								$transaction->rollBack();
 								break;
@@ -400,6 +402,7 @@ class ClientController extends Controller
 							if (isset($modelsClientContactPhone[$indexContact]) && is_array($modelsClientContactPhone[$indexContact])) {
 								foreach ($modelsClientContactPhone[$indexContact] as $indexPhone => $modelClientContactPhone) {
 									$modelClientContactPhone->contact_id = $modelClientContact->id;
+									$modelClientContactPhone->phone = preg_replace("/[^0-9]/", '', $modelClientContactPhone->country.$modelClientContactPhone->city.$modelClientContactPhone->number);
 									if (! ($flag = $modelClientContactPhone->save(false))) {
 										$transaction->rollBack();
 										break;

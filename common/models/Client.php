@@ -54,6 +54,7 @@ class Client extends \yii\db\ActiveRecord
 			'user_add_id' => 'Дополнительный просмотр User ID',
 			'name' => 'Условное название',
 			'anchor' => 'Якорный клиент',
+			'clientSearch' => 'Общий поиск'
 		];
 	}
 
@@ -71,6 +72,24 @@ class Client extends \yii\db\ActiveRecord
 	public function getClientContacts()
 	{
 		return $this->hasMany(ClientContact::className(), ['client_id' => 'id']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getClientContactPhones()
+	{
+		return $this->hasMany(ClientContactPhone::className(), ['contact_id' => 'id'])
+			->via('clientContacts');
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getClientContactMails()
+	{
+		return $this->hasMany(ClientContactMail::className(), ['contact_id' => 'id'])
+			->via('clientContacts');
 	}
 
 	/**
