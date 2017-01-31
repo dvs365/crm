@@ -70,6 +70,7 @@ class ClientController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+			'modelsUser' =>  User::find()->all(),
         ]);
     }
 

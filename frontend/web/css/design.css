@@ -201,7 +201,7 @@ body {
 [navig] li:first-child a, [cust-dop-menu-horizontal] li:first-child a {
     border-left: solid 1px rgb(220,220,220);
 }
-[navig] a[cur], [cust-dop-menu-horizontal] a[cur] {
+[navig] li.cur a, [cust-dop-menu-horizontal] a[cur] {
     background: none;
     border-bottom-color: rgb(255,255,255);
     padding-top: 12px;
@@ -275,7 +275,7 @@ body {
     border-bottom: solid 1px rgb(220,220,220);
     border-bottom-right-radius: 0px;
 }
-[cust-dop-menu] a[cur] {
+[cust-dop-menu] li.cur a {
     background: none;
     border-left: none;
     padding-top: 12px;
@@ -1477,7 +1477,7 @@ input[type=submit]:hover, input[type=button]:hover {
 -----------------------------------------------------------------------------*/
 div.container-items, div.container-items_client_phone, div.container-items_client_mail, div.container-items_contact, div.container-items_client_contact_phone, div.container-items_client_contact_mail,
 div.item, div.item_client_phone, div.item_client_mail, div.item_contact, div.item_client_contact_phone, div.item_client_contact_mail,
-div.client_field{
+div.client_field, div.field-search{
 	width: 800px;
 	display: inline;
 }

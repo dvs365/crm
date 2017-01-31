@@ -89,9 +89,11 @@ class ClientSearch extends Client
 			'client_mail.address LIKE "%' . $this->clientSearch. '%"',
 			'client_contact.name LIKE "%' . $this->clientSearch. '%"',
 			'client_contact_phone.phone LIKE "%' . $this->clientSearch. '%"',
-			'client_contact_mail.address LIKE "%' . $this->clientSearch. '%"'
+			'client_contact_mail.address LIKE "%' . $this->clientSearch. '%"',
 		]);
-
+		if ($this->user_id) {
+			$query->AndWhere('client.user_id = ' . $this->user_id);
+		}
 		return $dataProvider;
 	}
 }

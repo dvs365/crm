@@ -56,7 +56,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 		<? if (Yii::$app->user->can('moder')) {?>
 			<div cust-inf-block dop-inf>
 				<p>Назначить менеджера</p>
-				<? $items = ArrayHelper::map($modelsUser, 'id', 'username')?>
+				<? $items = ArrayHelper::map($modelsUser, 'id', 'fullFio')?>
 				<?= $form->field($model, 'user_id', ['options' => ['class' => 'client_field'], 'template' => "{error}{input}"])->dropDownList($items, ['class' =>'', 'prompt' => ''])->label(false)?>
 				<p>Дополнительный просмотр</p>
 				<?= $form->field($model, 'user_add_id', ['options' => ['class' => 'client_field'], 'template' => "{input}"])->dropDownList($items, ['class' => '', 'prompt' => 'Никому'])->label(false)?>

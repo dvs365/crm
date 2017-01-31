@@ -1,5 +1,6 @@
 <?php
 
+use yii\widgets\Menu;
 use yii\helpers\Html;
 use yii\widgets\ListView;
 
@@ -10,19 +11,46 @@ use yii\widgets\ListView;
 $this->title = 'Клиенты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="client-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Создать клиента', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <?= ListView::widget([
-        'dataProvider' => $dataProvider,
-        'itemOptions' => ['class' => 'item'],
-        'itemView' => function ($model, $key, $index, $widget) {
-            return Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
-        },
-    ]) ?>
+<div workarea>
+	<div colswr="1">
+		<div colcont clearfix>
+			<div dop-menu>
+				<?= Menu::widget([
+					'items' => [
+						['label' => 'Все', 'url' => ['/client/index']],
+						['label' => 'Создать', 'url' => ['/client/create']],
+						['label' => 'Свободные', 'url' => ['/client/free']],
+						['label' => 'Потенциальные', 'url' => ['/client/possible']],
+						['label' => 'Рабочие', 'url' => ['/client/worker']],
+						['label' => 'Отказные', 'url' => ['/client/reject']],
+						['label' => 'Статистика', 'url' => ['/client/statistic']],
+					],
+					'activeCssClass' => 'cur',
+					'options' => [
+						'cust-dop-menu' => '',
+					]
+				])?>
+			</div>
+			<div filters>
+				<?php echo $this->render('_search', [
+					'model' => $searchModel,
+					'modelsUser' => $modelsUser,
+				]); ?>
+			</div>
+			<div cards>
+			<?= ListView::widget([
+				'dataProvider' => $dataProvider,
+				'itemOptions' => ['smallcard' => ''],
+				'itemView' => function ($model, $key, $index, $widget) {
+					$template = '<span size20 lnk>' . Html::encode($model->name) . '</span><br />';
+					$template .= '<span size14 gray>' . Html::encode($model->name) . '</span><br />';
+					$template .= '<span size14>Менеджер: ' . Html::encode($model->user->name1.' '.mb_substr($model->user->name2, 0, 1, 'utf-8').'. '.mb_substr($model->user->name3, 0, 1, 'utf-8')). '.</span><br />';
+					$template .= '<span size14>Статус: ' . Html::encode($model->name) . '</span>';
+					$template .= '<span size14>' . Html::encode($model->name) . '</span>';
+					return Html::a($template, ['view', 'id' => $model->id]);
+				},
+			]) ?>
+			</div>
+		</div>
+	</div>
 </div>

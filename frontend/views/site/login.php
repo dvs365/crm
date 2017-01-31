@@ -14,9 +14,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <div login centering>
 		<?php $form = ActiveForm::begin(); ?>
 
-			<?= $form->field($model, 'username', ['template' => '<div row>{input}</div>'])->textInput(['class' => '', 'placeholder' => 'Пользователь', 'set' => 'focus']) ?>
+			<?= $form->field($model, 'username', ['options' => ['class' => '', 'row' => ''], 'template' => '{input}'])->textInput(['class' => '', 'placeholder' => 'Пользователь', 'set' => 'focus']) ?>
 
-			<?= $form->field($model, 'password', ['template' => '<div row>{input}</div>'])->passwordInput(['class' => '', 'placeholder' => 'Пароль']) ?>
+			<?= $form->field($model, 'password', ['options' => ['class' => '', 'row' => ''], 'template' => '{input}'])->passwordInput(['class' => '', 'placeholder' => 'Пароль']) ?>
 
 			<?= '<div row>'.Html::submitInput('Войти').'</div>'?>
 

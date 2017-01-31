@@ -49,7 +49,7 @@ return [
 	'modules' => [
 		'debug' =>[
 			'class' => 'yii\debug\Module',
-			'allowedIPs' => ['188.235.139.59'],
+			'allowedIPs' => ['*'],
 		]
 	],
     'params' => $params,

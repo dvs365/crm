@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -8,26 +9,17 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="client-search">
-
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
+		'options' => [
+			'search-form' => ''
+		]
     ]); ?>
-
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'user') ?>
-
-    <?= $form->field($model, 'name') ?>
-
-	<?= $form->field($model, 'clientSearch') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Поиск', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Сброс', ['class' => 'btn btn-default']) ?>
-    </div>
-
+	<div search-field>
+		<?= $form->field($model, 'clientSearch', ['options' => ['class' => ''], 'template' => "{input}"])->textInput(['id' => 'search', 'class' => '']) ?>
+		<? $items = ArrayHelper::map($modelsUser, 'id', 'fullFio')?>
+		<?= (Yii::$app->user->can('moder')) ? $form->field($model, 'user_id', ['options' => ['class' => 'client_field'], 'template' => "{input}"])->dropDownList($items, ['class' => '', 'id' =>'manager', 'prompt' => ''])->label(false) : ''?>
+		<?= Html::submitInput('Найти')?>
+	</div>
     <?php ActiveForm::end(); ?>
-
-</div>

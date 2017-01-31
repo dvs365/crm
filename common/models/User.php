@@ -23,6 +23,8 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+	public $fio;
+
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
 
@@ -51,10 +53,23 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['fio', 'safe', 'on' => 'search'],
+        	['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
     }
+
+	public function attributeLabels()
+	{
+		return [
+			'id' => 'ID',
+			'name1' => 'Фамилия',
+			'name2' => 'Имя',
+			'name3' => 'Отчество',
+			'fio'	=> 'ФИО',
+		];
+	}
+
 
     /**
      * @inheritdoc
@@ -186,4 +201,8 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+    public function getFullFio() {
+		return $this->name1 . ' ' .$this->name2 . ' ' .$this->name3;
+	}
 }
