@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\Menu;
 
 ?>
-<? if (!Yii::$app->user->isGuest && !Yii::$app->user->can('create')) {?>
+<? if (!Yii::$app->user->isGuest) {?>
 <div allwr>
 	<div headerwr clearfix>
 		<div user>
@@ -13,13 +13,16 @@ use yii\widgets\Menu;
 			<?= Html::a('Справка', '#')?>
 			<?= Html::a('Выход', ['/site/logout'], ['data-method' => 'post'])?>
 		</div>
+		<? $checkController = function ($route) {
+			return $route === $this->context->getUniqueId();
+		}?>
 		<?= Menu::widget([
 			'items' => [
 				['label' => 'Сводка', 'url' => ['site/press']],
 				['label' => 'Продажи', 'url' => ['site/sale']],
 				['label' => 'Дела', 'url' => ['site/business']],
 				['label' => 'Почта', 'url' => ['site/mail']],
-				['label' => 'Клиенты', 'url' => ['client/index']],
+				['label' => 'Клиенты', 'url' => ['client/index'], 'active' => $checkController('client')],
 				['label' => 'Функции', 'url' => ['site/function'], 'visible' => Yii::$app->user->can('moder')],
 				['label' => 'Регистрация', 'url' => ['site/signup'], 'visible' => Yii::$app->user->can('moder')],
 			],

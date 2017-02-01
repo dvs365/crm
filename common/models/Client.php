@@ -123,4 +123,36 @@ class Client extends \yii\db\ActiveRecord
 	{
 		return $this->hasMany(ClientAddress::className(), ['client_id' => 'id']);
 	}
+
+	private function pluralize ($count, $text) {
+		switch($text)  {
+			case 'year' :
+				return ($count == 1) ? 'год' : $count.' '.'года';
+			case 'month' :
+				return ($count == 1) ? 'месяц' : $count.' '.'месяца';
+			case 'week' :
+				return ($count == 1) ? 'неделю' : $count.' '.'недели';
+			case 'day' :
+				return ($count == 1) ? 'вчера' : (($count < 5) ? $count . 'дня назад' : 'дней назад');
+			case 'hour' :
+				return 'сегодня';
+			case 'minute' :
+				return 'сегодня';
+			case 'second' :
+				return 'сегодня';
+		}
+	}
+
+	public function getAgoTime()
+	{
+		$datetime1 = new \DateTime($this->update);
+		$interval = date_create('now')->diff($datetime1);
+		if ( $v = $interval->y >= 1) return $this->pluralize( $interval->y, 'year') . ' назад';
+		if ( $v = $interval->m >= 1) return $this->pluralize( $interval->m, 'month') . ' назад';
+		if ( $v = $interval->d >= 7  && $v = $interval->m < 1) return $this->pluralize( (int)($interval->d/7), 'week') . ' назад';
+		if ( $v = $interval->d >= 1  && $v = $interval->d < 7) return $this->pluralize( $interval->d, 'day');
+		if ( $v = $interval->h >= 1) return $this->pluralize( $interval->h, 'hour');
+		if ( $v = $interval->i >= 1) return $this->pluralize( $interval->i, 'minute');
+		return $this->pluralize( $interval->s, 'second');
+	}
 }

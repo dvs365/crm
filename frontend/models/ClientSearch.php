@@ -59,14 +59,11 @@ class ClientSearch extends Client
 		 */
 
 		/*Если нужна сортировка*/
-/*
+
 		$dataProvider->setSort([
-			'attributes' => [
-				'id',
-				'name',
-			]
+			'defaultOrder' => ['update' => SORT_DESC],
 		]);
-*/
+
 		if (! ($this->load($params) && $this->validate())) {
 		/**
 		 * Жадная загрузка данных моделей для работы сортировки

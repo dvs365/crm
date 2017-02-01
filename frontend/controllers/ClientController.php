@@ -36,7 +36,7 @@ class ClientController extends Controller
         return [
 			'access' => [
 				'class' => AccessControl::className(),
-				'only' => ['index', 'create'],
+				'only' => ['index', 'create', 'view'],
 				'rules' => [
 					[
 						'actions' => ['index'],
@@ -47,6 +47,11 @@ class ClientController extends Controller
 						'actions' => ['create'],
 						'allow' => true,
 						'roles' => ['createClient'],
+					],
+					[
+						'actions' => ['view'],
+						'allow' => true,
+						'roles' => ['@'],
 					],
 				],
 			],
@@ -82,17 +87,19 @@ class ClientController extends Controller
     public function actionView($id)
     {
 		$model = $this->findModel($id);
-		if (! \Yii::$app->user->can('updateClient', ['client' => $model])) {
+/*		if (! \Yii::$app->user->can('updateClient', ['client' => $model])) {
 			throw new ForbiddenHttpException('Нет разрешения на просмотр клиента"'.$model->name.'"');
 		}
+		$model->update = date('Y-m-d H:i:s');
+		$model->save(false);
 		$modelsClientJur = $model->clientJurs;
 		$modelsClientPhone = $model->clientPhones;
-		$modelsClientMail = $model->clientMails;
+		$modelsClientMail = $model->clientMails;*/
         return $this->render('view', [
             'model' => $model,
-			'modelsClientJur' => $modelsClientJur,
+/*			'modelsClientJur' => $modelsClientJur,
 			'modelsClientPhone' => $modelsClientPhone,
-			'modelsClientMail' => $modelsClientMail,
+			'modelsClientMail' => $modelsClientMail,*/
         ]);
     }
 
