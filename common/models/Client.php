@@ -54,7 +54,7 @@ class Client extends \yii\db\ActiveRecord
 			'user_add_id' => 'Дополнительный просмотр User ID',
 			'name' => 'Условное название',
 			'anchor' => 'Якорный клиент',
-			'clientSearch' => 'Общий поиск'
+			'clientSearch' => 'Общий поиск',
 		];
 	}
 
@@ -127,15 +127,15 @@ class Client extends \yii\db\ActiveRecord
 	private function pluralize ($count, $text) {
 		switch($text)  {
 			case 'year' :
-				return ($count == 1) ? 'год' : $count.' '.'года';
+				return ($count == 1) ? 'год' : $count . ' ' . 'года';
 			case 'month' :
-				return ($count == 1) ? 'месяц' : $count.' '.'месяца';
+				return ($count == 1) ? 'месяц' : $count . ' ' . 'месяца';
 			case 'week' :
-				return ($count == 1) ? 'неделю' : $count.' '.'недели';
+				return ($count == 1) ? 'неделю' : $count . ' ' . 'недели';
 			case 'day' :
-				return ($count == 1) ? 'вчера' : (($count < 5) ? $count . 'дня назад' : 'дней назад');
+				return ($count == 1) ? 'вчера' : (($count < 5) ? $count . ' ' . 'дня назад' : 'дней назад');
 			case 'hour' :
-				return 'сегодня';
+				return ($count < (int)date('H', time())) ? 'сегодня' : 'вчера';
 			case 'minute' :
 				return 'сегодня';
 			case 'second' :

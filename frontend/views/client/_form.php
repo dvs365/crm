@@ -20,17 +20,17 @@ use wbraganca\dynamicform\DynamicFormWidget;
 			<?= $this->render('_form_clientjur', [
 				'form'	=> $form,
 				'modelsClientJur' => $modelsClientJur,
-				'model' => $model
+				'model' => $model,
 			]).
 			$this->render('_form_client_phone', [
 				'form'	=> $form,
 				'modelsClientPhone' => $modelsClientPhone,
-				'model' => $model
+				'model' => $model,
 			]).
 			$this->render('_form_client_mail', [
 				'form'	=> $form,
 				'modelsClientMail' => $modelsClientMail,
-				'model' => $model
+				'model' => $model,
 			]);
 			?>
 		</div>
@@ -40,7 +40,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 			'modelsClientContact' => $modelsClientContact,
 			'modelsClientContactPhone' => $modelsClientContactPhone,
 			'modelsClientContactMail' => $modelsClientContactMail,
-			'model' => $model
+			'model' => $model,
 			]);
 		?>
 		</div>
@@ -49,7 +49,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 			<?= $this->render('_form_client_address', [
 				'form'	=> $form,
 				'modelsClientAddress' => $modelsClientAddress,
-				'model' => $model
+				'model' => $model,
 			]);
 			?>
 		</div>

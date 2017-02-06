@@ -81,6 +81,7 @@ class ClientSearch extends Client
 		$query->joinWith('clientContactPhones')->joinWith('clientContactMails');
 		$query->where([
 			'or',
+			'client.name LIKE "%' . $this->clientSearch . '%"',
 			'client_jur.name LIKE "%' . $this->clientSearch . '%"',
 			'client_phone.phone LIKE "%' . $this->clientSearch. '%"',
 			'client_mail.address LIKE "%' . $this->clientSearch. '%"',
@@ -91,6 +92,10 @@ class ClientSearch extends Client
 		if ($this->user_id) {
 			$query->AndWhere('client.user_id = ' . $this->user_id);
 		}
+		if ($this->anchor) {
+			$query->AndWhere('client.anchor = \'' . $this->anchor.'\'');
+		}
+		$query->groupBy(['id']);
 		return $dataProvider;
 	}
 }

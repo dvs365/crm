@@ -21,5 +21,6 @@ use yii\widgets\ActiveForm;
 		<? $items = ArrayHelper::map($modelsUser, 'id', 'fullFio')?>
 		<?= (Yii::$app->user->can('moder')) ? $form->field($model, 'user_id', ['options' => ['class' => 'client_field'], 'template' => "{input}"])->dropDownList($items, ['class' => '', 'id' =>'manager', 'prompt' => ''])->label(false) : ''?>
 		<?= Html::submitInput('Найти')?>
+		<?= $form->field($model, 'anchor', ['options' => ['class' => 'client_field'], 'template' => "{input}"])->checkbox(['title' => 'Основное контактное лицо'], false)?>
 	</div>
     <?php ActiveForm::end(); ?>

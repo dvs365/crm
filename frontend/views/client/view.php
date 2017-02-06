@@ -12,7 +12,7 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Clients', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div workarea>
+<div workarea xmlns="http://www.w3.org/1999/html">
     <?= Menu::widget([
         'items' => [
             ['label' => 'Все', 'url' => ['/client/index']],
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'cust-dop-menu-horizontal' => '',
         ]
     ])?>
-    <h1><?= Html::encode($this->title) ?> <span>&#9875</span></h1>
+    <h1><?= Html::encode($this->title) ?><?= ($model->anchor) ? '<span>&#9875</span>' : ''?></h1>
     <div cust-content>
         <div col1>
             <div cust-inf-block>
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p><span size14>Юр. лицо:</span><br />
                         <? foreach ($model->clientJurs as $indexClientJur => $clientJur) {
                             if (!$clientJur->name) continue;
-                            echo ($indexClientJur) ? '<br /><span size14 gray>'.$clientJur->name.'</span>' : '<span size14>'.$clientJur->name.'</span>';
+                            echo ($indexClientJur) ? '<br /><span size14 gray>'.Html::encode($clientJur->name) . '</span>' : '<span size14>' . Html::encode($clientJur->name) . '</span>';
                         }?>
                     </p>
                     <?}?>
@@ -52,8 +52,252 @@ $this->params['breadcrumbs'][] = $this->title;
                             <br /><span gray><?= $model->clientContacts[1]->name?> <u comment><?= $model->clientContacts[1]->position?></u></span>
                         <?}?>
                     </p>
+					<? foreach ($model->clientAddresses as $clientAddress) {?>
+						<p><?= Html::encode($clientAddress->city . ', ' . $clientAddress->region . ', ' . $clientAddress->country)?></p>
+					<?}?>
                 </div>
             </div>
+			<div cust-inf-block actions>
+				<?= Html::a('<div tit>Действия</div>', '#')?>
+				<div korpus>
+					<input type="radio" name="odin" checked="checked" id="vkl1"/>
+					<label for="vkl1">Звонок</label>
+					<input type="radio" name="odin" id="vkl2"/>
+					<label for="vkl2">Письмо</label>
+					<div call-mail-wr>
+						<form>
+							<div call-mail-forms>
+								<p><input name="date" type="text" id="datepicker" value="" /></p>
+								<input class="to-save" type="text" title="Результат звонка" placeholder="Результат звонка (коротко)" />
+								<textarea class="to-save" title="Дополнительные комментарии" placeholder="Дополнительные комментарии"></textarea>
+								<input type="submit" value="Сохранить" />
+							</div>
+						</form>
+						<table>
+							<tr>
+								<td>09.10.16</td>
+								<td><?= Html::a('Результат звонка', '#')?></td>
+							</tr>
+							<tr>
+								<td>05.10.16</td>
+								<td><?= Html::a('Результат звонка', '#')?></td>
+							</tr>
+							<tr>
+								<td>02.10.16</td>
+								<td><?= Html::a('Результат звонка Результат звонка Результат звонка', '#')?></td>
+							</tr>
+						</table>
+					</div>
+					<div call-mail-wr>
+						<form>
+							<div call-mail-forms>
+								<select name="kontakt" id="kontakt" onChange="the_kontakt(this); document.user.submit(); return false;">
+									<option value="0">Иванов Иван Иванович /основное к. лицо/</option>
+									<option value="0">Козырев Дмитрий Николаевич</option>
+									<option value="0">Дмитрюк Валерий Сергеевич</option>
+								</select>
+								<select name="mail" id="mail" onChange="the_mail(this); document.user.submit(); return false;">
+									<option value="0">ivanov@flexy.ru /мыло основного к. лица/</option>
+									<option value="0">buhgalter@mail.ru</option>
+									<option value="0">manager@mail.ru</option>
+								</select>
+								<input class="to-save" type="text" title="Отправить копию" placeholder="Отправить копию?" />
+								<textarea class="to-save" title="Сообщение" placeholder="Сообщение" /></textarea>
+								<input type="submit" value="Отправить" />
+							</div>
+						</form>
+						<table>
+							<tr>
+								<td>09.10.16</td>
+								<td><?= Html::a('Текст письма....', '#')?></td>
+							</tr>
+							<tr>
+								<td>05.10.16</td>
+								<td><?= Html::a('Текст письма....', '#')?></td>
+							</tr>
+							<tr>
+								<td>02.10.16</td>
+								<td><?= Html::a('Текст письма....', '#')?></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div cust-inf-block delivery>
+				<?= Html::a('<div tit>Доставка товара</div>', '#')?>
+				<table>
+					<tr>
+						<td>№ счета</td>
+						<td>№ накладной</td>
+						<td>Дата отгрузки</td>
+						<td>ТК</td>
+						<td>Статус</td>
+					</tr>
+					<tr>
+						<td>145</td>
+						<td>476/15</td>
+						<td>09.10.16</td>
+						<td>Байкал-сервис</td>
+						<td status>
+							<div state>
+								<input type="checkbox" class="checkbox" id="checkbox-1" />
+								<label for="checkbox-1"></label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>141</td>
+						<td>12/15</td>
+						<td>02.10.16</td>
+						<td>Деловые линии</td>
+						<td status>
+							<div state>
+								<input type="checkbox" class="checkbox" id="checkbox-2" />
+								<label for="checkbox-2"></label>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
         </div>
+		<div col2>
+			<div cust-inf-block doing>
+				<div tit><?= Html::a('Дела', '#')?><?= Html::a('<span add></span>', '#', ['title' => 'Добавить'])?></div>
+				<table>
+					<tr>
+						<td gray>07.10.16</td>
+						<td descript><a href="#">Описание</a></td>
+						<td red bold>Просрочено</td>
+					</tr>
+					<tr>
+						<td gray>09.10.16</td>
+						<td descript><a href="#">Описание</a></td>
+						<td orange>На сегодня</td>
+					</tr>
+					<tr>
+						<td gray>09.10.16</td>
+						<td descript><a href="#">Описание</a></td>
+						<td orange>На сегодня</td>
+					</tr>
+					<tr>
+						<td gray>03.10.16</td>
+						<td descript><a href="#">Описание</a></td>
+						<td green>Выполнено</td>
+					</tr>
+				</table>
+			</div>
+			<div cust-inf-block contract>
+				<div tit><?= Html::a('Договоры', '#')?><?= Html::a('<span add></span>', '#', ['title' => 'Добавить'])?></div>
+				<table>
+					<tr>
+						<td>№</td>
+						<td>Дата</td>
+						<td>Тип</td>
+						<td>Статус</td>
+					</tr>
+					<tr>
+						<td><a href="#">145</a></td>
+						<td>09.10.16</td>
+						<td>Предоплата</td>
+						<td status>
+							<div state>
+								<input type="checkbox" class="checkbox" id="checkbox-3" />
+								<label for="checkbox-3"></label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><a href="#">143</a></td>
+						<td>07.10.16</td>
+						<td>Отсрочка</td>
+						<td status>
+							<div state>
+								<input type="checkbox" class="checkbox" id="checkbox-4" />
+								<label for="checkbox-4"></label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><a href="#">140</a></td>
+						<td>04.10.16</td>
+						<td>Реализация</td>
+						<td status>
+							<div state>
+								<input type="checkbox" class="checkbox" id="checkbox-5" />
+								<label for="checkbox-5"></label>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div cust-inf-block invoice>
+				<?= Html::a('<div tit>Счета</div>', '#')?>
+				<table>
+					<tr>
+						<td>№</td>
+						<td>Дата</td>
+						<td>Сумма</td>
+						<td>Статус</td>
+					</tr>
+					<tr>
+						<td><a href="#">145</a></td>
+						<td>09.10.16</td>
+						<td>120 900</td>
+						<td status>
+							<div state>
+								<input type="checkbox" class="checkbox" id="checkbox-6" />
+								<label for="checkbox-6"></label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><a href="#">143</a></td>
+						<td>07.10.16</td>
+						<td>36 495</td>
+						<td status>
+							<div state>
+								<input type="checkbox" class="checkbox" id="checkbox-7" />
+								<label for="checkbox-7"></label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><a href="#">140</a></td>
+						<td>04.10.16</td>
+						<td>50 000</td>
+						<td status>
+							<div state>
+								<input type="checkbox" class="checkbox" id="checkbox-8" />
+								<label for="checkbox-8"></label>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div cust-inf-block booking>
+				<?= Html::a('<div tit>Заказы</div>', '#')?>
+				<p size14>Скидка: <span size18>10%</span></p>
+				<table>
+					<tr>
+						<td>Дата</td>
+						<td>Время</td>
+						<td>Сумма</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>09.10.16</td>
+						<td><a href="#">10:38</a></td>
+						<td>35 000</td>
+						<td><a href="#">Выставить счет</a></td>
+					</tr>
+					<tr>
+						<td>09.10.16</td>
+						<td><a href="#">16:04</a></td>
+						<td>120 900</td>
+						<td><a href="#">Выставить счет</a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
     </div>
 </div>
