@@ -37,6 +37,22 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+		'assetManager' => [
+			'bundles' => [
+				'yii\web\JqueryAsset' => [
+					'sourcePath' => null,
+					'js' => ['frontend/web/js/jquery-1.11.1.min.js'],
+				]
+			]
+		],
+		'formatter' => [
+			'dateFormat' => 'dd.MM.yyyy',
+			'timeFormat' => 'HH:mm',
+			'timeZone' => 'UTC',
+			'decimalSeparator' => ',',
+			'thousandSeparator' => ' ',
+			'currencyCode' => 'EUR',
+		],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,

@@ -162,7 +162,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 		<div col2>
 			<div cust-inf-block doing>
-				<div tit><?= Html::a('Дела', '#')?><?= Html::a('<span add></span>', '#', ['title' => 'Добавить'])?></div>
+				<div tit><?= Html::a('Дела', ['todo/index'])?><?= Html::a('<span add></span>', ['todo/create', 'client_id' => $model->id], ['title' => 'Добавить'])?></div>
 				<table>
 					<tr>
 						<td gray>07.10.16</td>

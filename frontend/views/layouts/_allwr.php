@@ -20,7 +20,7 @@ use yii\widgets\Menu;
 			'items' => [
 				['label' => 'Сводка', 'url' => ['site/press']],
 				['label' => 'Продажи', 'url' => ['site/sale']],
-				['label' => 'Дела', 'url' => ['site/business']],
+				['label' => 'Дела', 'url' => ['todo/index'], 'active' => $checkController('todo')],
 				['label' => 'Почта', 'url' => ['site/mail']],
 				['label' => 'Клиенты', 'url' => ['client/index'], 'active' => $checkController('client')],
 				['label' => 'Функции', 'url' => ['site/function'], 'visible' => Yii::$app->user->can('moder')],

@@ -1491,3 +1491,9 @@ div.help-block {
 	width: 800px;
 	margin: 15px 0 -5px;
 }
+div.has-error input, div.has-error input#date, div.has-error input#datestart, div.has-error select{
+    border: 1px solid red;
+}
+div.help-block {
+    color:red;
+}

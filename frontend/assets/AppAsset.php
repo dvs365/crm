@@ -14,9 +14,9 @@ class AppAsset extends AssetBundle
     public $css = [
 		'css/design.css',
 		'css/base.css',
+		//'css/jquery-ui.min.css',
     ];
     public $js = [
-    	//'js/jquery-1.11.1.min.js',
 		'js/base.js',
 		'js/jquery-ui.min.js',
     ];
@@ -25,4 +25,5 @@ class AppAsset extends AssetBundle
         //'yii\web\YiiAsset',
        // 'yii\bootstrap\BootstrapAsset',
     ];
+
 }
