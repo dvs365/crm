@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 				в<?= $form->field($model, 'time', ['options' => ['class' => 'client_field'], 'template' => "{input}"])->input('time') ?>
 				ИЛИ с <?= $form->field($model, 'date1', ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'id' => 'datestart']) ?>
 				по<?= $form->field($model, 'date2', ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'id' => 'dateend']) ?>
-				<?= $form->field($model, 'repeat', ['options' => ['class' => 'client_field'], 'template' => "{input}"])->dropDownList([ 'none' => 'не повторять', 'week' => 'каждую неделю', 'month' => 'каждый месяц', 'year' => 'каждый год', ]) ?>
+				<?= $form->field($model, 'repeat', ['options' => ['class' => 'client_field'], 'template' => "{input}"])->dropDownList([ 'none' => 'не повторять', 'day' => 'каждый день', 'week' => 'каждую неделю', 'month' => 'каждый месяц', 'year' => 'каждый год', ]) ?>
 			</div>
 		<p>
 			<?= $form->field($model, 'desc', ['options' => ['class' => 'client_field'], 'template' => "{error}{input}"])->textarea(['maxlength' => true, 'title' => 'Описание дела', 'placeholder' => 'Описание']) ?>

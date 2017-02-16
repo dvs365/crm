@@ -671,7 +671,7 @@ td[status] {
     width: 55px;
     text-align: center;
 }
-[period] a[cur] {
+[period] ul li.cur a {
     background: rgb(249,249,249);
     cursor: default;
     color: rgb(0,0,0);

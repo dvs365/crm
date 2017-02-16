@@ -11,6 +11,7 @@ use yii\widgets\DetailView;
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Clients', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+date_default_timezone_set('Europe/Samara');
 ?>
 <div workarea xmlns="http://www.w3.org/1999/html">
     <?= Menu::widget([
@@ -47,14 +48,37 @@ $this->params['breadcrumbs'][] = $this->title;
                         }?>
                     </p>
                     <?}?>
-                    <p><?= $model->clientContacts[0]->name?> <u comment><?= $model->clientContacts[0]->position?></u>
-                        <? if ($model->clientContacts[1]->name) {?>
-                            <br /><span gray><?= $model->clientContacts[1]->name?> <u comment><?= $model->clientContacts[1]->position?></u></span>
-                        <?}?>
-                    </p>
-					<? foreach ($model->clientAddresses as $clientAddress) {?>
-						<p><?= Html::encode($clientAddress->city . ', ' . $clientAddress->region . ', ' . $clientAddress->country)?></p>
+					<? if($model->clientContacts[0]->name) {
+						foreach ($model->clientContacts as $indexContact => $clientContact) {?>
+							<p><?= Html::encode($clientContact->name . ' ')?><u comment><?= Html::encode($clientContact->position)?></u>
+							<? foreach ($clientContact->clientContactPhones as $clientContactPhone) {?>
+									<?= '<br />' . Html::encode($clientContactPhone->country . ' ' . $clientContactPhone->city . ' ' . $clientContactPhone->number) . ' ' . '<u comment>' . Html::encode($clientContactPhone->comment) . '</u>'?>
+								<?}?>
+								<? foreach ($clientContact->clientContactMails as $clientContactMail) {?>
+									<?= '<br />' . Html::encode($clientContactMail->address) . ' ' . '<u comment>' . Html::encode($clientContactMail->comment) . '</u>'?>
+								<?}?>
+							</p>
+						<?}
+					}?>
+					<? if ($model->clientPhones[0]->phone || $model->clientMails[0]->address) {?>
+						<p>Контакты клиента:
+						<? if ($model->clientPhones[0]->phone) {
+							foreach ($model->clientPhones as $clientPhone) {?>
+								<?= '<br />' . Html::encode($clientPhone->country . ' ' . $clientPhone->city . ' ' . $clientPhone->number) . ' ' . '<u comment>' . Html::encode($clientPhone->comment) . '</u>'?>
+							<?}
+						}
+						if ($model->clientMails[0]->address) {
+							foreach ($model->clientMails as $clientMail) {?>
+								<?= '<br />' . Html::encode($clientMail->address) . ' <u comment>' . Html::encode($clientMail->comment) . '</u>'?>
+							<?}
+						}?>
+						</p>
 					<?}?>
+					<? if ($model->clientAddresses[0]->city && $model->clientAddresses[0]->region && $model->clientAddresses[0]->country) {
+						foreach ($model->clientAddresses as $clientAddress) {?>
+							<p><?= Html::encode($clientAddress->city . ', ' . $clientAddress->region . ', ' . $clientAddress->country)?></p>
+						<?}
+					}?>
                 </div>
             </div>
 			<div cust-inf-block actions>
@@ -164,26 +188,15 @@ $this->params['breadcrumbs'][] = $this->title;
 			<div cust-inf-block doing>
 				<div tit><?= Html::a('Дела', ['todo/index'])?><?= Html::a('<span add></span>', ['todo/create', 'client_id' => $model->id], ['title' => 'Добавить'])?></div>
 				<table>
-					<tr>
-						<td gray>07.10.16</td>
-						<td descript><a href="#">Описание</a></td>
-						<td red bold>Просрочено</td>
-					</tr>
-					<tr>
-						<td gray>09.10.16</td>
-						<td descript><a href="#">Описание</a></td>
-						<td orange>На сегодня</td>
-					</tr>
-					<tr>
-						<td gray>09.10.16</td>
-						<td descript><a href="#">Описание</a></td>
-						<td orange>На сегодня</td>
-					</tr>
-					<tr>
-						<td gray>03.10.16</td>
-						<td descript><a href="#">Описание</a></td>
-						<td green>Выполнено</td>
-					</tr>
+					<? if ($model->todos[0]) {
+						foreach ($model->todos as $todo) {?>
+							<tr>
+								<td gray><?= \DateTime::createFromFormat('Y-m-d H:i:s', $todo->time_to)->format('d.m.y')?></td>
+								<td descript><?= Html::a($todo->name, ['todo/update', 'id' => $todo->id])?></td>
+								<?= ($todo->time_to < date('Y-m-d H:i')) ? '<td red bold>Просроченo' : '<td orange>На сегодня'?></td>
+							</tr>
+						<?}
+					}?>
 				</table>
 			</div>
 			<div cust-inf-block contract>
