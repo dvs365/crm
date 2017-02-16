@@ -23,7 +23,7 @@ class TodoController extends Controller
 			'verbs' => [
 				'class' => VerbFilter::className(),
 				'actions' => [
-					'delete' => ['POST'],
+					'delete' => ['post', 'get'],
 				],
 			],
 		];

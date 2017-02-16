@@ -92,14 +92,8 @@ class ClientController extends Controller
 		}
 		$model->update = date('Y-m-d H:i:s');
 		$model->save(false);
-		$modelsClientJur = $model->clientJurs;
-		$modelsClientPhone = $model->clientPhones;
-		$modelsClientMail = $model->clientMails;
         return $this->render('view', [
             'model' => $model,
-			'modelsClientJur' => $modelsClientJur,
-			'modelsClientPhone' => $modelsClientPhone,
-			'modelsClientMail' => $modelsClientMail,
         ]);
     }
 

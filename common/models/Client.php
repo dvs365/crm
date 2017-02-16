@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+//use MongoDB\Driver\Query;
+use yii\db\Query;
 use Yii;
 
 /**
@@ -71,7 +73,7 @@ class Client extends \yii\db\ActiveRecord
 	 */
 	public function getClientContacts()
 	{
-		return $this->hasMany(ClientContact::className(), ['client_id' => 'id']);
+		return $this->hasMany(ClientContact::className(), ['client_id' => 'id'])->orderBy(['client_contact.main' => SORT_DESC]);
 	}
 
 	/**
@@ -124,16 +126,41 @@ class Client extends \yii\db\ActiveRecord
 		return $this->hasMany(ClientAddress::className(), ['client_id' => 'id']);
 	}
 
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getTodos()
+	{
+		$todoAll = (new Query())->select('id')->where(['<', 'time_from', date('Y-m-d H:i:00')]);
+		//$todoAll->andWhere(['=', 'status', '']);
+		$todoAll->from('todo');
+		$todoWeek = (new Query())->select('id')->where(['=', 'DAYOFWEEK(time_from)', date('w')+1]);
+		$todoWeek->andWhere(['=', 'repeat', 'week']);
+		$todoWeek->from('todo');
+		$todoMonth = (new Query())->select('id')->where(['=', 'DAYOFMONTH(time_from)', date('j')]);
+		$todoMonth->andWhere(['=', 'repeat', 'month']);
+		$todoMonth->from('todo');
+		$todoYear = (new Query())->select('id')->where(['=', 'DAYOFMONTH(time_from)', date('j')]);
+		$todoYear->andWhere(['=', 'MONTH(time_from)', date('n')]);
+		$todoYear->andWhere(['=', 'repeat', 'year']);
+		$todoYear->from('todo');
+		$query = $this->hasMany(Todo::className(), ['client_id' => 'id']);
+		$query->where(['id' => $todoAll]);
+		$query->andWhere(['OR',	['repeat' => 'none'], ['id' => $todoWeek], ['id' => $todoMonth], ['id' => $todoYear]]);
+		$query->orderBy(['todo.time_to' => SORT_ASC]);
+		return $query;
+	}
+
 	private function pluralize ($count, $text) {
 		switch($text)  {
 			case 'year' :
 				return ($count == 1) ? 'год' : $count . ' ' . 'года';
 			case 'month' :
-				return ($count == 1) ? 'месяц' : $count . ' ' . 'месяца';
+				return ($count == 1) ? 'месяц назад' : Yii::$app->formatter->asDate($this->update);
 			case 'week' :
 				return ($count == 1) ? 'неделю' : $count . ' ' . 'недели';
 			case 'day' :
-				return ($count == 1) ? 'вчера' : (($count < 5) ? $count . ' ' . 'дня назад' : 'дней назад');
+				return ($count == 1) ? 'вчера' : (($count < 5) ? $count . ' ' . 'дня назад' : $count . ' ' . 'дней назад');
 			case 'hour' :
 				return ($count < (int)date('H', time())) ? 'сегодня' : 'вчера';
 			case 'minute' :
@@ -148,11 +175,12 @@ class Client extends \yii\db\ActiveRecord
 		$datetime1 = new \DateTime($this->update);
 		$interval = date_create('now')->diff($datetime1);
 		if ( $v = $interval->y >= 1) return $this->pluralize( $interval->y, 'year') . ' назад';
-		if ( $v = $interval->m >= 1) return $this->pluralize( $interval->m, 'month') . ' назад';
+		if ( $v = $interval->m >= 1) return $this->pluralize( $interval->m, 'month');
 		if ( $v = $interval->d >= 7  && $v = $interval->m < 1) return $this->pluralize( (int)($interval->d/7), 'week') . ' назад';
 		if ( $v = $interval->d >= 1  && $v = $interval->d < 7) return $this->pluralize( $interval->d, 'day');
 		if ( $v = $interval->h >= 1) return $this->pluralize( $interval->h, 'hour');
 		if ( $v = $interval->i >= 1) return $this->pluralize( $interval->i, 'minute');
 		return $this->pluralize( $interval->s, 'second');
 	}
+
 }
