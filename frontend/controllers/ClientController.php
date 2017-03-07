@@ -20,7 +20,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Response;
-use yii\widgets\ActiveForm;
+//use yii\widgets\ActiveForm;
 use app\base\Model;
 
 /**

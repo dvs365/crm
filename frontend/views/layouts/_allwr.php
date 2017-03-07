@@ -11,7 +11,7 @@ use yii\widgets\Menu;
 			<div username><?= Yii::$app->user->identity->name1.' '.Yii::$app->user->identity->name2.' '.Yii::$app->user->identity->name3?><div long-text-hide></div></div>
 			<?= Html::a('Настройки', '#')?>
 			<?= Html::a('Справка', '#')?>
-			<?= Html::a('Выход', ['/site/logout'], ['data-method' => 'post'])?>
+			<?= Html::a('Выход', ['/site/logout'])?>
 		</div>
 		<? $checkController = function ($route) {
 			return $route === $this->context->getUniqueId();
