@@ -36,10 +36,10 @@ class ClientController extends Controller
         return [
 			'access' => [
 				'class' => AccessControl::className(),
-				'only' => ['index', 'create', 'view'],
+				'only' => ['index', 'create', 'update', 'view'],
 				'rules' => [
 					[
-						'actions' => ['index'],
+						'actions' => ['index','view', 'update', 'create'],
 						'allow' => true,
 						'roles' => ['@'],
 					],
@@ -47,11 +47,6 @@ class ClientController extends Controller
 						'actions' => ['create'],
 						'allow' => true,
 						'roles' => ['createClient'],
-					],
-					[
-						'actions' => ['view'],
-						'allow' => true,
-						'roles' => ['@'],
 					],
 				],
 			],

@@ -8,6 +8,7 @@ use frontend\models\TodoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * TodoController implements the CRUD actions for Todo model.
@@ -20,6 +21,17 @@ class TodoController extends Controller
 	public function behaviors()
 	{
 		return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'create', 'update', 'view', 'day', 'week'],
+                'rules' => [
+                    [
+                        'actions' => ['index','view', 'update', 'create', 'day', 'week'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
 			'verbs' => [
 				'class' => VerbFilter::className(),
 				'actions' => [
@@ -44,6 +56,99 @@ class TodoController extends Controller
 		]);
 	}
 
+    /**
+     * Lists all Todo models.
+     * @return mixed
+     */
+    public function actionDay()
+    {
+        $datetime = \Yii::$app->request->post('date') ? Yii::$app->request->post('date') : date('d.m.Y');
+        $date = \DateTime::createFromFormat('d.m.Y', $datetime);
+        $models = Todo::find()->where(
+            'todo.user_id = '.\Yii::$app->user->id
+        )->andWhere(
+            'time_from < \''.$date->format('Y-m-d 00:00:01').'\''
+        )->andWhere(['OR',
+            ['repeat' => 'none'],
+//			['AND', ['>', 'time_to', $date->format('Y-m-d 00:00:01')], ['=', 'repeat', 'dayly']],
+			['repeat' => 'dayly'],
+            ['AND', ['=', 'DAYOFWEEK(time_from)', $date->format('w')+1], ['=', 'repeat', 'weekly']],
+            ['AND', ['=', 'DAYOFMONTH(time_from)', $date->format('j')], ['=', 'repeat', 'monthly']],
+            ['AND', ['=', 'DAYOFMONTH(time_from)', $date->format('j')], ['=', 'MONTH(time_from)', $date->format('n')], ['=', 'repeat', 'yearly']],
+        ])->orderBy(['time_to' => SORT_ASC])->all();
+        return $this->render('day', [
+            'models' => $models,
+        ]);
+    }
+
+    /**
+     * Lists all Todo models.
+     * @return mixed
+     */
+    public function actionWeek()
+    {
+        $datetime = \Yii::$app->request->post('date') ? Yii::$app->request->post('date') : date('d.m.Y');
+        $date = \DateTime::createFromFormat('d.m.Y', $datetime);
+        for ($i = 1; $i <= 7; $i++) {
+            $models[$i] = Todo::find()->where(
+                'todo.user_id = '.\Yii::$app->user->id
+            )->andWhere(
+                'time_from < \''.$date->format('Y-m-d 00:00:01').'\''
+            )->andWhere(
+                'time_to > \''.$date->format('Y-m-d 00:00:01').'\''
+            )->andWhere(['OR',
+                ['repeat' => 'none'],
+                ['repeat' => 'dayly'],
+                ['AND', ['=', 'DAYOFWEEK(time_from)', $date->format('w')+1], ['=', 'repeat', 'weekly']],
+                ['AND', ['=', 'DAYOFMONTH(time_from)', $date->format('j')], ['=', 'repeat', 'monthly']],
+                ['AND', ['=', 'DAYOFMONTH(time_from)', $date->format('j')], ['=', 'MONTH(time_from)', $date->format('n')], ['=', 'repeat', 'yearly']],
+            ])->orderBy(['time_to' => SORT_ASC])->all();
+            $day[$i] = \DateTime::createFromFormat('d.m.Y', $date->format('d.m.Y'));
+            $week[$i] = $this->dayOfWeek($date->format('w'));
+            $date->add(new \DateInterval('P1D'));//Добавляем 1 день
+        }
+
+        return $this->render('week', [
+            'models' => $models,
+            'day' => $day,
+            'week' => $week,
+        ]);
+    }
+
+    public function actionMonth()
+	{
+		$datetime = \Yii::$app->request->post('date') ? Yii::$app->request->post('date') : date('d.m.Y');
+		$dateCur = \DateTime::createFromFormat('d.m.Y', $datetime);
+		$date = \DateTime::createFromFormat('d.m.Y', '01.'.$dateCur->format('m').'.'.$dateCur->format('Y'));
+		$month = $date->format('m');
+		$lastDay = $date->format('t');
+		for ($i = 1; $i <= $lastDay; $i++) {
+			$count = Todo::find()->where(
+				'todo.user_id = '.\Yii::$app->user->id
+			)->andWhere(
+				'time_from < \''.$date->format('Y-m-d 00:00:01').'\''
+			)->andWhere(
+				'time_to > \''.$date->format('Y-m-d 00:00:01').'\''
+			)->andWhere(['OR',
+				['repeat' => 'none'],
+				['repeat' => 'dayly'],
+				['AND', ['=', 'DAYOFWEEK(time_from)', $date->format('w')+1], ['=', 'repeat', 'weekly']],
+				['AND', ['=', 'DAYOFMONTH(time_from)', $date->format('j')], ['=', 'repeat', 'monthly']],
+				['AND', ['=', 'DAYOFMONTH(time_from)', $date->format('j')], ['=', 'MONTH(time_from)', $date->format('n')], ['=', 'repeat', 'yearly']],
+			])->count();
+			$monthArr[$month][$date->format('W')][$date->format('w')] = ['date' => \DateTime::createFromFormat('d.m.Y', $date->format('d.m.Y')), 'count' => $count];
+			$date->add(new \DateInterval('P1D'));//Добавляем 1 день
+			if ($month != $date->format('m') && !$flag) {
+				$month = $date->format('m');
+				$i = 0;
+				$lastDay = $date->format('t');
+				$flag = true;
+			}
+		}
+		return $this->render('month', [
+			'month' => $monthArr,
+		]);
+	}
 	/**
 	 * Displays a single Todo model.
 	 * @param integer $id
@@ -66,6 +171,7 @@ class TodoController extends Controller
 		$model = new Todo();
 		if ($model->load(Yii::$app->request->post())) {
 			$model->client_id = $client_id;
+			$model->user_id = \Yii::$app->user->id;
 			$model->time_from = $model->setTimeFrom();
 			$model->time_to = $model->setTimeTo();
 			if ($model->save()) return $this->redirect(['view', 'id' => $model->id]);
@@ -127,4 +233,10 @@ class TodoController extends Controller
 			throw new NotFoundHttpException('The requested page does not exist.');
 		}
 	}
+
+	private function dayOfWeek($week)
+    {
+        $dayOfWeek = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+        return $dayOfWeek[$week];
+    }
 }

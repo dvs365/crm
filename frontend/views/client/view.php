@@ -11,7 +11,6 @@ use yii\widgets\DetailView;
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Clients', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-date_default_timezone_set('Europe/Samara');
 ?>
 <div workarea xmlns="http://www.w3.org/1999/html">
     <?= Menu::widget([
@@ -29,7 +28,7 @@ date_default_timezone_set('Europe/Samara');
             'cust-dop-menu-horizontal' => '',
         ]
     ])?>
-    <h1><?= Html::encode($this->title) ?><?= ($model->anchor) ? '<span>&#9875</span>' : ''?></h1>
+    <h1><?= Html::encode($this->title)?><?= ($model->anchor) ? '<span>&#9875</span>' : ''?></h1>
     <div cust-content>
         <div col1>
             <div cust-inf-block>
