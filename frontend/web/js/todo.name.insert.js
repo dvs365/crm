@@ -30,10 +30,10 @@ $(function () {
         $('#current').addClass('cur');
     });
 
-    $('#flag').on('click', function () {
+    $('#client').on('click', function () {
         $('[missed]').hide();
         $('[current]').hide();
-        $('[flag]').show();
+        $('[client]').show();
         $('#missed').removeClass('cur');
         $('#current').removeClass('cur');
         $('#important').addClass('cur');

@@ -151,7 +151,8 @@ class Client extends \yii\db\ActiveRecord
 		return $query;
 	}
 
-	private function pluralize ($count, $text) {
+	private function pluralize ($count, $text)
+	{
 		switch($text)  {
 			case 'year' :
 				return ($count == 1) ? 'год' : $count . ' ' . 'года';
