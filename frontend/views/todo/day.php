@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 $datetime3 = min($datetime2, new DateTime(Yii::$app->request->post('date')));
                                 $interval = $datetime1->diff($datetime2);
                                 $current = $datetime3->diff($datetime1);
-                                }?>
+                            }?>
                             <tr <?= (($model->client->name) ? 'client ' : '') . (($model->time_to < $date->format('Y-m-d H:i')) ? 'missed' : 'current')?>>
                                 <td><input type="checkbox"></td>
                                 <td><span class="flag">&#127986; </span></td>

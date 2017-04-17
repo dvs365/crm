@@ -20,7 +20,6 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Response;
-//use yii\widgets\ActiveForm;
 use app\base\Model;
 
 /**
@@ -36,10 +35,10 @@ class ClientController extends Controller
         return [
 			'access' => [
 				'class' => AccessControl::className(),
-				'only' => ['index', 'create', 'update', 'view'],
+//				'only' => ['index', 'create', 'update', 'view'],
 				'rules' => [
 					[
-						'actions' => ['index','view', 'update', 'create'],
+//						'actions' => ['index','view', 'update', 'create'],
 						'allow' => true,
 						'roles' => ['@'],
 					],

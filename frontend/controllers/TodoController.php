@@ -7,6 +7,7 @@ use common\models\Todo;
 use frontend\models\TodoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
@@ -23,10 +24,10 @@ class TodoController extends Controller
 		return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index', 'create', 'update', 'view', 'day', 'week'],
+//              'only' => ['*'],
                 'rules' => [
                     [
-                        'actions' => ['index','view', 'update', 'create', 'day', 'week'],
+//                      'actions' => ['index','view', 'update', 'create', 'day', 'week'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
