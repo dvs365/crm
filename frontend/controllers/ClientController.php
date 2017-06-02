@@ -20,7 +20,6 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Response;
-use yii\widgets\ActiveForm;
 use app\base\Model;
 
 /**
@@ -36,10 +35,10 @@ class ClientController extends Controller
         return [
 			'access' => [
 				'class' => AccessControl::className(),
-				'only' => ['index', 'create', 'view'],
+//				'only' => ['index', 'create', 'update', 'view'],
 				'rules' => [
 					[
-						'actions' => ['index'],
+//						'actions' => ['index','view', 'update', 'create'],
 						'allow' => true,
 						'roles' => ['@'],
 					],
@@ -47,11 +46,6 @@ class ClientController extends Controller
 						'actions' => ['create'],
 						'allow' => true,
 						'roles' => ['createClient'],
-					],
-					[
-						'actions' => ['view'],
-						'allow' => true,
-						'roles' => ['@'],
 					],
 				],
 			],
@@ -78,6 +72,21 @@ class ClientController extends Controller
 			'modelsUser' =>  User::find()->all(),
         ]);
     }
+
+	/**
+	 * Lists all Client models.
+	 * @return mixed
+	 */
+	public function actionFree()
+	{
+		$searchModel = new ClientSearch();
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		return $this->render('index', [
+			'searchModel' => $searchModel,
+			'dataProvider' => $dataProvider,
+			'modelsUser' =>  User::find()->all(),
+		]);
+	}
 
     /**
      * Displays a single Client model.
@@ -254,7 +263,7 @@ class ClientController extends Controller
 		$model = $this->findModel($id);
 
 		if (! \Yii::$app->user->can('updateClient', ['client' => $model])) {
-			throw new ForbiddenHttpException('Нет разрешения на редактирование клиента"'.$model->name.'"');
+			throw new ForbiddenHttpException('Нет разрешения на редактирование клиента "'.$model->name.'"');
 		}
 
 		$modelsClientJur = $model->clientJurs;
@@ -454,6 +463,42 @@ class ClientController extends Controller
 		]);
 
     }
+
+
+	/**
+	 * work
+	 */
+
+	public function actionWork()
+	{
+		//$model = $this->findModel()->where();
+		return $this->render('work', [
+			'model' => $model,
+		]);
+	}
+
+	/**
+	 * reject
+	 */
+
+	public function actionReject()
+	{
+		//$model = $this->findModel()->where();
+		return $this->render('reject', [
+			'model' => $model,
+		]);
+	}
+
+	/**
+	 * remove to reject
+	 */
+	public function actionToReject() {
+		$model = $this->findModel($id);
+
+		if (! \Yii::$app->user->can('updateClient', ['client' => $model])) {
+			throw new ForbiddenHttpException('Нет разрешения на редактирование клиента"'.$model->name.'"');
+		}
+	}
 
     /**
      * Deletes an existing Client model.

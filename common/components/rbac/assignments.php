@@ -9,4 +9,7 @@ return [
     5 => [
         'manager',
     ],
+    8 => [
+        'manager',
+    ],
 ];

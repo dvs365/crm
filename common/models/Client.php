@@ -151,7 +151,8 @@ class Client extends \yii\db\ActiveRecord
 		return $query;
 	}
 
-	private function pluralize ($count, $text) {
+	private function pluralize ($count, $text)
+	{
 		switch($text)  {
 			case 'year' :
 				return ($count == 1) ? 'год' : $count . ' ' . 'года';
@@ -160,7 +161,7 @@ class Client extends \yii\db\ActiveRecord
 			case 'week' :
 				return ($count == 1) ? 'неделю' : $count . ' ' . 'недели';
 			case 'day' :
-				return ($count == 1) ? 'вчера' : (($count < 5) ? $count . ' ' . 'дня назад' : $count . ' ' . 'дней назад');
+				return ($count == 1) ? 'позавчера' : (($count < 5) ? $count . ' ' . 'дня назад' : $count . ' ' . 'дней назад');
 			case 'hour' :
 				return ($count < (int)date('H', time())) ? 'сегодня' : 'вчера';
 			case 'minute' :

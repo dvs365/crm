@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					'items' => [
 						['label' => 'Все', 'url' => ['/client/index']],
 						['label' => 'Создать', 'url' => ['/client/create']],
-						['label' => 'Свободные', 'url' => ['/client/free']],
+						['label' => 'Свободные', 'url' => ['client/free', 'ClientSearch' => ['user_id' => '8']]],
 						['label' => 'Потенциальные', 'url' => ['/client/possible']],
 						['label' => 'Рабочие', 'url' => ['/client/worker']],
 						['label' => 'Отказные', 'url' => ['/client/reject']],

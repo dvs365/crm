@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Europe/Samara');
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
     require(__DIR__ . '/../../common/config/params-local.php'),
@@ -61,6 +62,10 @@ return [
             ],
         ],
         */
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+            
+        ],
     ],
 	'modules' => [
 		'debug' =>[

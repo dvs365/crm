@@ -44,8 +44,12 @@ class ClientSearch extends Client
 	 */
 	public function search($params)
 	{
-		$query = Client::find();
-
+		if(Yii::$app->user->can('manager')) {
+			$query = Client::find()->where(['user_id' => Yii::$app->user->id]);
+		}
+		if(Yii::$app->user->can('moder')) {
+			$query = Client::find();
+		}
 		// add conditions that should always apply here
 
 		$dataProvider = new ActiveDataProvider([
@@ -76,6 +80,10 @@ class ClientSearch extends Client
 		$this->addCondition($query, 'name');
 		$this->addCondition($query, 'user_id');
 */
+
+//		if(Yii::$app->user->can('manager')) {
+//			$this->user_id = Yii::$app->user->id;
+//		}
 
 		$query->joinWith('clientJurs')->joinWith('clientPhones')->joinWith('clientMails')->joinWith('clientContacts');
 		$query->joinWith('clientContactPhones')->joinWith('clientContactMails');
