@@ -6,7 +6,7 @@
  * Date: 08.06.17
  * Time: 10:19
  */
-namespace yii\db\Migration;
+use yii\db\Migration;
 
 class m170608_create_junction_table_for_user_and_client_tables extends Migration
 {
