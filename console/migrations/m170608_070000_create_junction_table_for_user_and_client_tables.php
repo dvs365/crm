@@ -8,7 +8,7 @@
  */
 use yii\db\Migration;
 
-class m170608_create_junction_table_for_user_and_client_tables extends Migration
+class m170608_070000_create_junction_table_for_user_and_client_tables extends Migration
 {
 	/**
 	 * @inheritdoc
