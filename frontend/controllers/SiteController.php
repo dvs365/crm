@@ -4,10 +4,12 @@ namespace frontend\controllers;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use common\models\User;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -18,6 +20,8 @@ use frontend\models\ContactForm;
  */
 class SiteController extends Controller
 {
+
+    public $test1 = '2222';
     /**
      * @inheritdoc
      */
@@ -26,10 +30,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup', 'index', 'delete'],
+                'only' => ['logout', 'signup', 'set', 'index', 'delete'],
                 'rules' => [
-                    [	//регистрация только для admin(гостя=?)
-                        'actions' => ['logout', 'index'],
+                    [	//выход, главная, настройки только для зарегистрированного пользователя
+                        'actions' => ['logout', 'index', 'set'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],				
@@ -48,7 +52,6 @@ class SiteController extends Controller
             ],
         ];
     }
-
     /**
      * @inheritdoc
      */
@@ -162,6 +165,22 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionUpdate($id)
+	{
+		if ( \Yii::$app->user->id != $id) {
+			throw new ForbiddenHttpException('Нет разрешения на редактирование пользователя');
+		}
+
+		$model = $this->findModel($id);
+
+		if ($model->load(Yii::$app->request->post())) {
+
+		}
+		return $this->render('update', [
+			'model' => $model,
+		]);
+	}
+
     /**
      * Requests password reset.
      *
@@ -210,4 +229,21 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+	/**
+	 * Finds the Client model based on its primary key value.
+	 * If the model is not found, a 404 HTTP exception will be thrown.
+	 * @param integer $id
+	 * @return Client the loaded model
+	 * @throws NotFoundHttpException if the model cannot be found
+	 */
+	protected function findModel($id)
+	{
+		if (($model = User::findOne($id)) !== null) {
+			return $model;
+		} else {
+			throw new ForbiddenHttpException('Такой пользователь не существует');
+		}
+	}
+
 }

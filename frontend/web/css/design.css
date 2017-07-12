@@ -117,8 +117,7 @@ body {
 /* Base add-ons
 -----------------------------------------------------------------------------*/
 [ecount] {
-    margin-top: -48px;
-    margin-right: 5px;
+    margin-top: -16px;
     display: inline-block;
     background: rgb(220,220,220);
     height: 22px;

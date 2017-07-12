@@ -16,6 +16,7 @@ use yii\filters\AccessControl;
  */
 class TodoController extends Controller
 {
+    public $test = '111';
 	/**
 	 * @inheritdoc
 	 */

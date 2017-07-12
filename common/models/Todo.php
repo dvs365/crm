@@ -4,6 +4,7 @@ namespace common\models;
 
 use yii\db\Query;
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "todo".
@@ -15,7 +16,7 @@ use Yii;
  * @property string $time_to
  * @property string $repeat
  */
-class Todo extends \yii\db\ActiveRecord
+class Todo extends ActiveRecord
 {
     public $date;
     public $time;
@@ -61,12 +62,12 @@ class Todo extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'client_id' => 'Client ID',
-            'name' => 'Название дела',
+            'client_id' => 'ID клиента',
+            'name' => 'Название',
             'desc' => 'Описание',
             'time_from' => 'Начать',
             'time_to' => 'Закончить',
-            'repeat' => 'Repeat',
+            'repeat' => 'Повторять',
             'user_id' => 'ID пользователя',
         ];
     }

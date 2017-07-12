@@ -12,5 +12,8 @@ return [
 			'assignmentFile' => '@common/components/rbac/assignments.php',
 			'ruleFile' => '@common/components/rbac/rules.php',
 		],
+        'count' => [
+            'class' => 'common\components\Count',
+        ],
     ],
 ];

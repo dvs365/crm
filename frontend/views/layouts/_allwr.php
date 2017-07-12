@@ -9,7 +9,7 @@ use yii\widgets\Menu;
 	<div headerwr clearfix>
 		<div user>
 			<div username><?= Yii::$app->user->identity->name1.' '.Yii::$app->user->identity->name2.' '.Yii::$app->user->identity->name3?><div long-text-hide></div></div>
-			<?= Html::a('Настройки', '#')?>
+			<?= Html::a('Настройки', ['site/update', 'id' => Yii::$app->user->id])?>
 			<?= Html::a('Справка', '#')?>
 			<?= Html::a('Выход', ['site/logout'])?>
 		</div>
@@ -17,10 +17,11 @@ use yii\widgets\Menu;
 			return $route === $this->context->getUniqueId();
 		}?>
 		<?= Menu::widget([
+		    'encodeLabels' => false,
 			'items' => [
 				['label' => 'Сводка', 'url' => ['site/press']],
 				['label' => 'Продажи', 'url' => ['site/sale']],
-				['label' => 'Дела', 'url' => ['todo/day'], 'active' => $checkController('todo')],
+				['label' => 'Дела<span ecount>'.Yii::$app->count->todo().'</span>', 'url' => ['todo/day'], 'active' => $checkController('todo')],
 				['label' => 'Почта', 'url' => ['site/mail']],
 				['label' => 'Клиенты', 'url' => ['client/index'], 'active' => $checkController('client')],
 				['label' => 'Функции', 'url' => ['site/function'], 'visible' => Yii::$app->user->can('moder')],
