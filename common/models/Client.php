@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-//use MongoDB\Driver\Query;
 use yii\db\Query;
 use Yii;
 
@@ -21,6 +20,64 @@ use Yii;
  */
 class Client extends \yii\db\ActiveRecord
 {
+    public static function backup(int $id)
+    {
+        $model = Client::findOne($id);
+        $modelCopy = ClientCopy::create($model->id, $model->user_id, $model->user_add_id, $model->name, $model->anchor, $model->update);
+        $transaction = \Yii::$app->db->beginTransaction();
+        try {
+            if ($modelCopy->save(false)) {
+                foreach ($model->clientJurs as $modelClientJur) {
+                    $clientJurCopies = ClientJurCopy::create($modelClientJur->id, $modelClientJur->client_id, $modelClientJur->name);
+                    if (!$clientJurCopies->save(false)) {
+                        $transaction->rollBack();
+                    }
+                }
+                foreach ($model->clientPhones as $modelClientPhone) {
+                    $clientPhoneCopies = ClientPhoneCopy::create($modelClientPhone->id, $modelClientPhone->client_id, $modelClientPhone->phone, $modelClientPhone->country, $modelClientPhone->city, $modelClientPhone->number, $modelClientPhone->comment);
+                    if (!$clientPhoneCopies->save(false)) {
+                        $transaction->rollBack();
+                    }
+                }
+                foreach ($model->clientMails as $modelClientMail) {
+                    $clientMailCopies = ClientMailCopy::create($modelClientMail->id, $modelClientMail->client_id, $modelClientMail->address, $modelClientMail->comment);
+                    if (!$clientMailCopies->save(false)) {
+                        $transaction->rollBack();
+                    }
+                }
+                foreach ($model->clientContacts as $modelClientContact) {
+                    $clientContactCopies = ClientContactCopy::create($modelClientContact->id, $modelClientContact->client_id, $modelClientContact->name, $modelClientContact->main, $modelClientContact->position);
+                    if (!$clientContactCopies->save(false)) {
+                        $transaction->rollBack();
+                    }
+                    foreach ($modelClientContact->clientContactPhones as $mClientContactPhone) {
+                        $clientContactPhoneCopies = ClientContactPhoneCopy::create($mClientContactPhone->id, $mClientContactPhone->contact_id, $mClientContactPhone->phone, $mClientContactPhone->country, $mClientContactPhone->city, $mClientContactPhone->number, $mClientContactPhone->comment);
+                        if (!$clientContactPhoneCopies->save(false)) {
+                            $transaction->rollBack();
+                        }
+                    }
+                    foreach ($modelClientContact->clientContactMails as $mClientContactMail) {
+                        $clientContactMailCopies = ClientContactMailCopy::create($mClientContactMail->id, $mClientContactMail->contact_id, $mClientContactMail->address, $mClientContactMail->comment);
+                        if (!$clientContactMailCopies->save(false)) {
+                            $transaction->rollBack();
+                        }
+                    }
+                }
+                foreach ($model->clientAddresses as $mClientAddress) {
+                    $clientAddressCopies = ClientAddressCopy::create($mClientAddress->id, $mClientAddress->client_id, $mClientAddress->country, $mClientAddress->region, $mClientAddress->city, $mClientAddress->street, $mClientAddress->home, $mClientAddress->comment, $mClientAddress->note);
+                    if (!$clientAddressCopies->save(false)) {
+                        $transaction->rollBack();
+                    }
+                }
+            }
+            $transaction->commit();
+            return true;
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            return false;
+        }
+    }
+
 	/**
 	 * @inheritdoc
 	 */

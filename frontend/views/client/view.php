@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div col1>
             <div cust-inf-block>
                 <div class="expand-link-com-inf" tit inf>Общая информация <span up>&#9652</span><span down>&#9662</span></div>
-                <div class="expand-block-com-inf"><?= Html::a('Редастировать', ['update', 'id' => $model->id], ['cust-edit' => '', 'size14' => ''])?>
+                <div class="expand-block-com-inf"><?= Html::a('Редактировать', ['update', 'id' => $model->id], ['cust-edit' => '', 'size14' => ''])?>
                     <span expand-link-movetorefused cust-edit size14>Перенести в отказные</span>
                     <form expand-block-movetorefused>
                         <textarea title="Причина переноса" placeholder="Укажите причину переноса"></textarea>
