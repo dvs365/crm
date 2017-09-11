@@ -2,15 +2,24 @@
 
 namespace frontend\controllers;
 
+use Yii;
+use common\models\User;
 use common\models\Client;
 use common\models\ClientCopy;
+use app\models\ClientSearch;
 
 class FunctionController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        $this->backupClientRest();
-        return $this->render('index');
+        //$this->backupClientRest();
+        $searchModel = new ClientSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'modelsUser' =>  User::find()->all(),
+        ]);
     }
 
     public function actionRecopy(int $id)

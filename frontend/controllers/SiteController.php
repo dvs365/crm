@@ -10,10 +10,10 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 use common\models\User;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
-use frontend\models\ContactForm;
+use frontend\forms\PasswordResetRequestForm;
+use frontend\forms\ResetPasswordForm;
+use frontend\forms\SignupForm;
+use frontend\forms\ContactForm;
 
 /**
  * Site controller
@@ -173,8 +173,8 @@ class SiteController extends Controller
 
 		$model = $this->findModel($id);
 
-		if ($model->load(Yii::$app->request->post())) {
-
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->goHome();
 		}
 		return $this->render('update', [
 			'model' => $model,

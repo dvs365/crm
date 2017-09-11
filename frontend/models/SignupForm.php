@@ -68,12 +68,12 @@ class SignupForm extends Model
             $user->setPassword($this->password);
             $user->generateAuthKey();
 			$user->save(false);
-			
+
             // the following three lines were added:
             $auth = Yii::$app->authManager;
             $authorRole = $auth->getRole('manager');
-            $auth->assign($authorRole, $user->getId());			
-			
+            $auth->assign($authorRole, $user->getId());
+
             return $user;
         }
 
