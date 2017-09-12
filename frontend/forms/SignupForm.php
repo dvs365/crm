@@ -51,35 +51,6 @@ class SignupForm extends Model
         ];
     }
 
-    /**
-     * Signs user up.
-     *
-     * @return User|null the saved model or null if saving fails
-     */
-    public function signup()
-    {
-        if ($this->validate()) {
-            $user = new User();
-            $user->username = $this->username;
-			$user->name1 = $this->name1;
-			$user->name2 = $this->name2;
-			$user->name3 = $this->name3;
-            $user->email = $this->email;
-            $user->setPassword($this->password);
-            $user->generateAuthKey();
-			$user->save(false);
-
-            // the following three lines were added:
-            $auth = Yii::$app->authManager;
-            $authorRole = $auth->getRole('manager');
-            $auth->assign($authorRole, $user->getId());
-
-            return $user;
-        }
-
-        return null;
-    }
-
     public function attributeLabels()
     {
         return [

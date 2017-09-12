@@ -12,6 +12,9 @@ use yii\web\IdentityInterface;
  *
  * @property integer $id
  * @property string $username
+ * @property string $name1
+ * @property string $name2
+ * @property string $name3
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
@@ -27,6 +30,19 @@ class User extends ActiveRecord implements IdentityInterface
 
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+
+    public static function create(string $username, string $name1, string $name2, string $name3, string $email, string $password): self
+    {
+            $user = new static();
+            $user->username = $username;
+			$user->name1 = $name1;
+			$user->name2 = $name2;
+			$user->name3 = $name3;
+            $user->email = $email;
+            $user->setPassword($password);
+            $user->generateAuthKey();
+            return $user;
+    }
 
 
     /**
