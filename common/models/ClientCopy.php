@@ -40,67 +40,9 @@ class ClientCopy extends \yii\db\ActiveRecord
         return $clientCopy;
     }
 
-    public static function isset(int $id): bool
+    public static function isCreated(int $id): bool
     {
-        return ClientCopy::findOne($id) !== null;
-    }
-
-    public static function return(int $id)
-    {
-        $model = ClientCopy::findOne($id);
-        $modelCopy = Client::create($model->id, $model->user_id, $model->user_add_id, $model->name, $model->anchor, $model->update);
-        $transaction = \Yii::$app->db->beginTransaction();
-        try {
-            if ($modelCopy->save(false)) {
-                foreach ($model->clientJurs as $modelClientJur) {
-                    $clientJurCopies = ClientJur::create($modelClientJur->id, $modelClientJur->client_id, $modelClientJur->name);
-                    if (!$clientJurCopies->save(false)) {
-                        $transaction->rollBack();
-                    }
-                }
-                foreach ($model->clientPhones as $modelClientPhone) {
-                    $clientPhoneCopies = ClientPhone::create($modelClientPhone->id, $modelClientPhone->client_id, $modelClientPhone->phone, $modelClientPhone->country, $modelClientPhone->city, $modelClientPhone->number, $modelClientPhone->comment);
-                    if (!$clientPhoneCopies->save(false)) {
-                        $transaction->rollBack();
-                    }
-                }
-                foreach ($model->clientMails as $modelClientMail) {
-                    $clientMailCopies = ClientMail::create($modelClientMail->id, $modelClientMail->client_id, $modelClientMail->address, $modelClientMail->comment);
-                    if (!$clientMailCopies->save(false)) {
-                        $transaction->rollBack();
-                    }
-                }
-                foreach ($model->clientContacts as $modelClientContact) {
-                    $clientContactCopies = ClientContact::create($modelClientContact->id, $modelClientContact->client_id, $modelClientContact->name, $modelClientContact->main, $modelClientContact->position);
-                    if (!$clientContactCopies->save(false)) {
-                        $transaction->rollBack();
-                    }
-                    foreach ($modelClientContact->clientContactPhones as $mClientContactPhone) {
-                        $clientContactPhoneCopies = ClientContactPhone::create($mClientContactPhone->id, $mClientContactPhone->contact_id, $mClientContactPhone->phone, $mClientContactPhone->country, $mClientContactPhone->city, $mClientContactPhone->number, $mClientContactPhone->comment);
-                        if (!$clientContactPhoneCopies->save(false)) {
-                            $transaction->rollBack();
-                        }
-                    }
-                    foreach ($modelClientContact->clientContactMails as $mClientContactMail) {
-                        $clientContactMailCopies = ClientContactMail::create($mClientContactMail->id, $mClientContactMail->contact_id, $mClientContactMail->address, $mClientContactMail->comment);
-                        if (!$clientContactMailCopies->save(false)) {
-                            $transaction->rollBack();
-                        }
-                    }
-                }
-                foreach ($model->clientAddresses as $mClientAddress) {
-                    $clientAddressCopies = ClientAddress::create($mClientAddress->id, $mClientAddress->client_id, $mClientAddress->country, $mClientAddress->region, $mClientAddress->city, $mClientAddress->street, $mClientAddress->home, $mClientAddress->comment, $mClientAddress->note);
-                    if (!$clientAddressCopies->save(false)) {
-                        $transaction->rollBack();
-                    }
-                }
-            }
-            $transaction->commit();
-            return true;
-        } catch (Exception $e) {
-            $transaction->rollBack();
-            return false;
-        }
+        return ClientCopy::find()->where(['id' => $id])->exists();
     }
 
     /**

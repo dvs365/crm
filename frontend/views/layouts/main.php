@@ -24,13 +24,13 @@ AppAsset::register($this);
 
 <div wrapper>
     <?= $this->render('_allwr', ['content' => $content]) ?>
-
-        <?/*= Breadcrumbs::widget([
+    <?//= Alert::widget() ?>
+    <?/*= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ])*/ ?>
-        <?= Alert::widget() ?>
+
     <? if (Yii::$app->user->isGuest) {?>
-    <?= $content?>
+        <?= $content?>
     <?}?>
 </div>
 <?php $this->endBody() ?>

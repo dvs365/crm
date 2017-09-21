@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         $template .= '<span size14 gray>Последнее открытие: ' . Html::encode($model->agoTime) . '</span><br />';
                         $template .= '<span size14>Менеджер: ' . Html::encode($model->user->name1.' '.mb_substr($model->user->name2, 0, 1, 'utf-8').'. '.mb_substr($model->user->name3, 0, 1, 'utf-8')). '.</span><br />';
                         $template .= '<span size14>Статус:</span>';
-                        $template .= '<span size14>' . Html::encode($model->name) . '</span>';
+                        $template .= '<span size14>' . Html::encode(Yii::$app->session->getFlash('error')) . '</span>';
                         return Html::a($template, ['client/view', 'id' => $model->id]);
                     },
                 ]) ?>

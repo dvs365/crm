@@ -11,7 +11,10 @@ return [
 	'language'=>'ru-RU',
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['debug'],
+    'bootstrap' => [
+        'log',
+        'common\bootstrap\SetUp',
+    ],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
