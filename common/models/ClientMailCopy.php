@@ -55,7 +55,7 @@ class ClientMailCopy extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'client_id' => 'Client ID',
-            'address' => 'Address',
+            'address' => 'E-mail клиента',
             'comment' => 'Comment',
         ];
     }

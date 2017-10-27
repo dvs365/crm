@@ -63,7 +63,7 @@ class ClientPhoneCopy extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'client_id' => 'Client ID',
-            'phone' => 'Phone',
+            'phone' => 'Телефон',
             'country' => 'Country',
             'city' => 'City',
             'number' => 'Number',

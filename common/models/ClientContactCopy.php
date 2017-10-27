@@ -85,8 +85,24 @@ class ClientContactCopy extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getClientContactMailCopiesID()
+    {
+        return $this->hasMany(ClientContactMailCopy::className(), ['contact_id' => 'id'])->indexBy('id');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getClientContactPhoneCopies()
     {
         return $this->hasMany(ClientContactPhoneCopy::className(), ['contact_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClientContactPhoneCopiesID()
+    {
+        return $this->hasMany(ClientContactPhoneCopy::className(), ['contact_id' => 'id'])->indexBy('id');
     }
 }

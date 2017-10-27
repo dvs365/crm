@@ -48,7 +48,7 @@ class ClientPhone extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'client_id' => 'Client ID',
-            'phone' => 'Phone',
+            'phone' => 'Телефон',
             'country' => 'Страна',
             'city' => 'Город',
             'number' => 'Номер',

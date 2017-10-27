@@ -78,7 +78,7 @@ class ClientCopy extends \yii\db\ActiveRecord
             'id' => 'ID',
             'user_id' => 'User ID',
             'user_add_id' => 'User Add ID',
-            'name' => 'Name',
+            'name' => 'Условное название',
             'anchor' => 'Anchor',
             'update' => 'Update',
         ];
@@ -95,9 +95,25 @@ class ClientCopy extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getClientAddressCopiesID()
+    {
+        return $this->hasMany(ClientAddressCopy::className(), ['client_id' => 'id'])->indexBy('id');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getClientContactCopies()
     {
         return $this->hasMany(ClientContactCopy::className(), ['client_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClientContactCopiesID()
+    {
+        return $this->hasMany(ClientContactCopy::className(), ['client_id' => 'id'])->indexBy('id');
     }
 
     /**
@@ -119,6 +135,14 @@ class ClientCopy extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getClientJurCopiesID()
+    {
+        return $this->hasMany(ClientJurCopy::className(), ['client_id' => 'id'])->indexBy('id');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getClientMailCopies()
     {
         return $this->hasMany(ClientMailCopy::className(), ['client_id' => 'id']);
@@ -127,8 +151,24 @@ class ClientCopy extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getClientMailCopiesID()
+    {
+        return $this->hasMany(ClientMailCopy::className(), ['client_id' => 'id'])->indexBy('id');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getClientPhoneCopies()
     {
         return $this->hasMany(ClientPhoneCopy::className(), ['client_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClientPhoneCopiesID()
+    {
+        return $this->hasMany(ClientPhoneCopy::className(), ['client_id' => 'id'])->indexBy('id');
     }
 }

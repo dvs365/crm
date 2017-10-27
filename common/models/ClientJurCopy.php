@@ -53,7 +53,7 @@ class ClientJurCopy extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'client_id' => 'Client ID',
-            'name' => 'Name',
+            'name' => 'Полное название юр. лица',
         ];
     }
 

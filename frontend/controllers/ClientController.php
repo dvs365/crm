@@ -100,7 +100,7 @@ class ClientController extends Controller
 		if (! \Yii::$app->user->can('updateClient', ['client' => $model])) {
 			throw new ForbiddenHttpException('Нет разрешения на просмотр клиента"'.$model->name.'"');
 		}
-		$model->update = date('Y-m-d H:i:s');
+		//$model->update = date('Y-m-d H:i:s');
 		$model->save(false);
         return $this->render('view', [
             'model' => $model,
@@ -363,6 +363,7 @@ class ClientController extends Controller
 			if ($valid) {
 				$transaction = \Yii::$app->db->beginTransaction();
 				try {
+                    $model->update = date('Y-m-d H:i:s');
 					if ($flag = $model->save(false)) {
 						if (!empty($deletedIDsJur)) {
 							ClientJur::deleteAll(['id' => $deletedIDsJur]);

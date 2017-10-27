@@ -45,7 +45,7 @@ class ClientMail extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'client_id' => 'Client ID',
-            'address' => 'E-mail',
+            'address' => 'E-mail клиента',
             'comment' => 'Комментарий',
         ];
     }

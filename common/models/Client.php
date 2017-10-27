@@ -75,6 +75,14 @@ class Client extends \yii\db\ActiveRecord
 		return $this->hasMany(ClientContact::className(), ['client_id' => 'id'])->orderBy(['client_contact.main' => SORT_DESC]);
 	}
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClientContactsID()
+    {
+        return $this->hasMany(ClientContact::className(), ['client_id' => 'id'])->indexBy('id')->orderBy(['client_contact.main' => SORT_DESC]);
+    }
+
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
@@ -101,6 +109,14 @@ class Client extends \yii\db\ActiveRecord
 		return $this->hasMany(ClientJur::className(), ['client_id' => 'id']);
 	}
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClientJursID()
+    {
+        return $this->hasMany(ClientJur::className(), ['client_id' => 'id'])->indexBy('id');
+    }
+
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
@@ -108,6 +124,14 @@ class Client extends \yii\db\ActiveRecord
 	{
 		return $this->hasMany(ClientMail::className(), ['client_id' => 'id']);
 	}
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClientMailsID()
+    {
+        return $this->hasMany(ClientMail::className(), ['client_id' => 'id'])->indexBy('id');
+    }
 
 	/**
 	 * @return \yii\db\ActiveQuery
@@ -117,6 +141,14 @@ class Client extends \yii\db\ActiveRecord
 		return $this->hasMany(ClientPhone::className(), ['client_id' => 'id']);
 	}
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClientPhonesID()
+    {
+        return $this->hasMany(ClientPhone::className(), ['client_id' => 'id'])->indexBy('id');
+    }
+
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
@@ -124,6 +156,19 @@ class Client extends \yii\db\ActiveRecord
 	{
 		return $this->hasMany(ClientAddress::className(), ['client_id' => 'id']);
 	}
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClientAddressesID()
+    {
+        return $this->hasMany(ClientAddress::className(), ['client_id' => 'id'])->indexBy('id');
+    }
+
+    public function getClientCopy()
+    {
+        return $this->hasOne(ClientCopy::className(), ['id' => 'id']);
+    }
 
 	/**
 	 * @return \yii\db\ActiveQuery

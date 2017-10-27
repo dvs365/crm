@@ -46,7 +46,7 @@ class ClientContact extends \yii\db\ActiveRecord
 		return [
 			'id' => 'ID',
 			'client_id' => 'Client ID',
-			'name' => 'ФИО',
+			'name' => 'Контактное лицо',
 			'main' => 'Основное контактное лицо',
 			'position' => 'Должность',
 		];
@@ -68,6 +68,14 @@ class ClientContact extends \yii\db\ActiveRecord
 		return $this->hasMany(ClientContactPhone::className(), ['contact_id' => 'id']);
 	}
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClientContactPhonesID()
+    {
+        return $this->hasMany(ClientContactPhone::className(), ['contact_id' => 'id'])->indexBy('id');
+    }
+
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
@@ -75,4 +83,12 @@ class ClientContact extends \yii\db\ActiveRecord
 	{
 		return $this->hasMany(ClientContactMail::className(), ['contact_id' => 'id']);
 	}
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClientContactMailsID()
+    {
+        return $this->hasMany(ClientContactMail::className(), ['contact_id' => 'id'])->indexBy('id');
+    }
 }
