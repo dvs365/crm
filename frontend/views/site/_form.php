@@ -7,7 +7,7 @@ use yii\bootstrap\ActiveForm;
 <div class="row">
 	<div class="col-lg-5">
 		<?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-		<?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+		<?= $form->field($model, 'username') ?>
 		<?= $form->field($model, 'name1') ?>
 		<?= $form->field($model, 'name2') ?>
 		<?= $form->field($model, 'name3') ?>

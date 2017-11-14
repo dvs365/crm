@@ -16,6 +16,21 @@ use Yii;
 class ClientJur extends \yii\db\ActiveRecord
 {
     /**
+     *
+     */
+    public static function loadMultipleCopy(array $jurs, array $jursCopy): array
+    {
+        foreach ($jursCopy as $indexJur => $jurCopy) {
+            if (!isset($jurs[$indexJur])) {
+                $jurs[$indexJur] = new ClientJur;
+                $jurs[$indexJur]->id = $jurCopy->id;
+            }
+            $jurs[$indexJur]->client_id = $jurCopy->client_id;
+            $jurs[$indexJur]->name = $jurCopy->name;
+        }
+        return $jurs;
+    }
+    /**
      * @inheritdoc
      */
     public static function tableName()

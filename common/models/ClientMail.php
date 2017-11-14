@@ -17,6 +17,22 @@ use Yii;
 class ClientMail extends \yii\db\ActiveRecord
 {
     /**
+     *
+     */
+    public static function loadMultipleCopy(array $mails, array $mailsCopy): array
+    {
+        foreach ($mailsCopy as $indexMail => $mailCopy) {
+            if (!isset($mails[$indexMail])) {
+                $mails[$indexMail] = new ClientMail;
+                $mails[$indexMail]->id = $mailCopy->id;
+            }
+            $mails[$indexMail]->client_id = $mailCopy->client_id;
+            $mails[$indexMail]->address = $mailCopy->address;
+            $mails[$indexMail]->comment = $mailCopy->comment;
+        }
+        return $mails;
+    }
+    /**
      * @inheritdoc
      */
     public static function tableName()

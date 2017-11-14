@@ -4,11 +4,15 @@ use yii\widgets\Menu;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ListView;
+use frontend\assets\FunctionAsset;
+
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ClientEditSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+FunctionAsset::register($this);
 $this->title = 'Функции';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -53,25 +57,25 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <h3>Было:</h3>
                                 <? foreach ($change->jur as $kJur => $jur) {
                                     if (!$jur) {
-                                        echo '<p><span gray size14>'.Html::encode($mCopy[$id]->clientJurCopiesID[$kJur]->getAttributeLabel('name')).'</span><br />'
+                                        echo '<p><span gray size14>Полное название юр. лица</span><br />'
                                             .Html::encode($mCopy[$id]->clientJurCopiesID[$kJur]->name).'</p>';
                                     }
                                 }?>
                                 <? foreach ($change->mail as $kMail => $mail) {
                                     if (!$mail['address'] || !$mail['comment']) {
-                                        echo '<p><span gray size14>' . Html::encode($mCopy[$id]->clientMailCopiesID[$kMail]->getAttributeLabel('address')) . '</span><br />'
+                                        echo '<p><span gray size14>E-mail</span><br />'
                                             . Html::encode($mCopy[$id]->clientMailCopiesID[$kMail]->address . ' ' . $mCopy[$id]->clientMailCopiesID[$kMail]->comment) . '</p>';
                                     }
                                 }?>
                                 <? foreach ($change->phone as $kPhone => $phone) {
                                     if (!$phone['phone'] || !$phone['comment']) {
-                                        echo '<p><span gray size14>' . Html::encode($mCopy[$id]->clientPhoneCopiesID[$kPhone]->getAttributeLabel('phone')) . '</span><br />'
+                                        echo '<p><span gray size14>Телефон</span><br />'
                                             . Html::encode($mCopy[$id]->clientPhoneCopiesID[$kPhone]->country . ' ' . $mCopy[$id]->clientPhoneCopiesID[$kPhone]->city . ' ' . $mCopy[$id]->clientPhoneCopiesID[$kPhone]->number . ' ' . $mCopy[$id]->clientPhoneCopiesID[$kPhone]->comment) . '</p>';
                                     }
                                 }?>
                                 <? foreach ($change->contact as $kContact => $contact) {
                                     if (!$contact['name'] || !$contact['main'] || !$contact['position'] || !$contact['notedit']) {
-                                        echo '<p><span gray size14>' . Html::encode($mCopy[$id]->clientContactCopiesID[$kContact]->main ? $modelsClient[$id]->clientContactsID[$kContact]->getAttributeLabel('main') : $modelsClient[$id]->clientContactsID[$kContact]->getAttributeLabel('name')) . ':</span><br />'
+                                        echo '<p><span gray size14>Контактные лица</span><br />'
                                             . Html::encode($mCopy[$id]->clientContactCopiesID[$kContact]->name) . ': ' . $mCopy[$id]->clientContactCopiesID[$kContact]->position . '</p>';
                                         foreach ($mCopy[$id]->clientContactCopiesID[$kContact]->clientContactPhoneCopiesID as $kCPhone => $phone) {
                                             echo (!$contact['phone'][$kCPhone]['notedit']) ? '<p>' . Html::encode($phone['country'] . ' ' . $phone['city'] . ' ' . $phone['number'] . ' ' . $phone['comment']) . '</p>' : '';
@@ -83,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 }?>
                                 <? foreach ($change->address as $kAddress => $address) {
                                     if (!$address['notedit']) {
-                                        echo '<p><span gray size14>Адрес:</span><br />'
+                                        echo '<p><span gray size14>Адрес</span><br />'
                                             . Html::encode($mCopy[$id]->clientAddressCopiesID[$kAddress]->country
                                                 . ' ' . $mCopy[$id]->clientAddressCopiesID[$kAddress]->region
                                                 . ' ' . $mCopy[$id]->clientAddressCopiesID[$kAddress]->city
@@ -93,7 +97,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 . ' ' . $mCopy[$id]->clientAddressCopiesID[$kAddress]->note) . '</p>';
                                     }
                                 }?>
-                                <span input>Вернуть</span>
+                                <!--<a href="<?=Yii::$app->urlManager->createUrl(['function/recovery', 'id' => $id])?>">aaaa</a><br><br>-->
+                                <span class="recovery" input="<?=Yii::$app->urlManager->createUrl(['function/recovery', 'id' => $id])?>">Вернуть</span>
                             </a>
                         </div>
                         <div changes>
@@ -101,25 +106,25 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <h3>Стало:</h3>
                                 <? foreach ($change->jur as $kJur => $jur) {
                                     if (!$jur) {
-                                        echo '<p><span gray size14>' . Html::encode($modelsClient[$id]->clientJursID[$kJur]->getAttributeLabel('name')) . '</span><br />'
+                                        echo '<p><span gray size14>Полное название юр. лица</span><br />'
                                             . Html::encode($modelsClient[$id]->clientJursID[$kJur]->name) . '</p>';
                                     }
                                 }?>
                                 <? foreach ($change->mail as $kMail => $mail) {
                                     if (!$mail['address'] || !$mail['comment']) {
-                                        echo '<p><span gray size14>' . Html::encode($modelsClient[$id]->clientMailsID[$kMail]->getAttributeLabel('address')) . '</span><br />'
+                                        echo '<p><span gray size14>E-mail</span><br />'
                                             . Html::encode($modelsClient[$id]->clientMailsID[$kMail]->address . ' ' . $modelsClient[$id]->clientMailsID[$kMail]->comment) . '</p>';
                                     }
                                 }?>
                                 <? foreach ($change->phone as $kPhone => $phone) {
                                     if (!$phone['phone'] || !$phone['comment']) {
-                                        echo '<p><span gray size14>' . Html::encode($modelsClient[$id]->clientPhonesID[$kPhone]->getAttributeLabel('phone')) . '</span><br />'
+                                        echo '<p><span gray size14>Телефон</span><br />'
                                             . Html::encode($modelsClient[$id]->clientPhonesID[$kPhone]->country . ' ' . $modelsClient[$id]->clientPhonesID[$kPhone]->city . ' ' . $modelsClient[$id]->clientPhonesID[$kPhone]->number . ' ' . $modelsClient[$id]->clientPhonesID[$kPhone]->comment) . '</p>';
                                     }
                                 }?>
                                 <? foreach ($change->contact as $kContact => $contact) {
                                     if (!$contact['name'] || !$contact['main'] || !$contact['position'] || !$contact['notedit']) {
-                                        echo '<p><span gray size14>' . Html::encode(($modelsClient[$id]->clientContactsID[$kContact]->main) ? $modelsClient[$id]->clientContactsID[$kContact]->getAttributeLabel('main') : $modelsClient[$id]->clientContactsID[$kContact]->getAttributeLabel('name')) . ':</span><br />'
+                                        echo '<p><span gray size14>Контактные лица</span><br />'
                                             . Html::encode($modelsClient[$id]->clientContactsID[$kContact]->name) . ' ' . $modelsClient[$id]->clientContactsID[$kContact]->position . '</p>';
                                         foreach ($modelsClient[$id]->clientContactsID[$kContact]->clientContactPhonesID as $kCPhone => $phone) {
                                             echo (!$contact['phone'][$kCPhone]['notedit']) ? '<p>' . Html::encode($phone['country'] . ' ' . $phone['city'] . ' ' . $phone['number'] . ' ' . $phone['comment']) . '</p>' : '';
@@ -131,7 +136,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 }?>
                                 <? foreach ($change->address as $kAddress => $address) {
                                     if (!$address['notedit']) {
-                                        echo '<p><span gray size14>Адрес:</span><br />'
+                                        echo '<p><span gray size14>Адрес</span><br />'
                                             . Html::encode($modelsClient[$id]->clientAddressesID[$kAddress]->country
                                                 . ' ' . $modelsClient[$id]->clientAddressesID[$kAddress]->region
                                                 . ' ' . $modelsClient[$id]->clientAddressesID[$kAddress]->city

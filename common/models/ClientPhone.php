@@ -20,6 +20,25 @@ use Yii;
 class ClientPhone extends \yii\db\ActiveRecord
 {
     /**
+     *
+     */
+    public static function loadMultipleCopy(array $phones, array $phonesCopy): array
+    {
+        foreach ($phonesCopy as $indexPhone => $phoneCopy) {
+            if (!isset($phones[$indexPhone])) {
+                $phones[$indexPhone] = new ClientPhone;
+                $phones[$indexPhone]->id = $phoneCopy->id;
+            }
+            $phones[$indexPhone]->client_id = $phoneCopy->client_id;
+            $phones[$indexPhone]->phone = $phoneCopy->phone;
+            $phones[$indexPhone]->country = $phoneCopy->country;
+            $phones[$indexPhone]->city = $phoneCopy->city;
+            $phones[$indexPhone]->number = $phoneCopy->number;
+            $phones[$indexPhone]->comment = $phoneCopy->comment;
+        }
+        return $phones;
+    }
+    /**
      * @inheritdoc
      */
     public static function tableName()

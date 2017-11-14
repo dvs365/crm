@@ -20,6 +20,19 @@ use Yii;
  */
 class Client extends \yii\db\ActiveRecord
 {
+    /**
+     *
+     */
+    public static function loadMultipleCopy($client, $clientCopy)
+    {
+        $client->user_id = $clientCopy->user_id;
+        $client->user_add_id = $clientCopy->user_add_id;
+        $client->name = $clientCopy->name;
+        $client->anchor = $clientCopy->anchor;
+        $client->update = $clientCopy->update;
+        return $client;
+    }
+
 	/**
 	 * @inheritdoc
 	 */
@@ -92,6 +105,15 @@ class Client extends \yii\db\ActiveRecord
 			->via('clientContacts');
 	}
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClientContactPhonesID()
+    {
+        return $this->hasMany(ClientContactPhone::className(), ['contact_id' => 'id'])->indexBy('id')
+            ->via('clientContacts');
+    }
+
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
@@ -100,6 +122,15 @@ class Client extends \yii\db\ActiveRecord
 		return $this->hasMany(ClientContactMail::className(), ['contact_id' => 'id'])
 			->via('clientContacts');
 	}
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClientContactMailsID()
+    {
+        return $this->hasMany(ClientContactMail::className(), ['contact_id' => 'id'])->indexBy('id')
+            ->via('clientContacts');
+    }
 
 	/**
 	 * @return \yii\db\ActiveQuery

@@ -29,10 +29,13 @@ class FunctionController extends Controller
         $clientEditSearch = new ClientEditSearch;
         $clientCopy = ClientCopy::find()->indexBy('id')->all();
         //$modelsClient = Client::find()->indexBy('id')->where(['in', 'id', ClientCopy::find()->select('id')])->all();
-        $modelsClient = Client::find()->indexBy('id')
-            ->joinWith('clientCopy')
+
+        $modelsClient = Client::find()->select('client.id')->indexBy('id')
+            ->leftJoin('client_copy', Client::tableName() . '.`id` = ' . ClientCopy::tableName() .'.`id`')
             ->where(ClientCopy::tableName() . '.`update` <> ' . Client::tableName() . '.`update`')
             ->all();
+        //echo '<pre>'; print_r($modelsClient); echo '</pre>'; die('sss');
+
         foreach ($modelsClient as $keyClient => $modelClient) {
             $change = new \stdClass;
             $change->name = $modelClient->name === $clientCopy[$keyClient]->name;
@@ -83,11 +86,12 @@ class FunctionController extends Controller
             $changes[$keyClient] = $change;
         }
         $dataProvider = $clientEditSearch->search(Yii::$app->request->queryParams);
+
         return $this->render('index', [
             'searchModel' => $clientEditSearch,
             'dataProvider' => $dataProvider,
             'modelsUser' =>  User::find()->all(),
-            'changes' => $changes,
+            'changes' => $changes ?: [],
             'modelsClient' => $modelsClient,
             'mCopy' => $clientCopy,
         ]);
@@ -102,16 +106,17 @@ class FunctionController extends Controller
         }
     }
 
-    public function actionOriginal(int $id): bool
+    public function actionRecovery(int $id)
     {
         try {
             if ($model = Client::findOne($id)) {
-                $model->delete();
+                $this->clientCopyService->recovery($id);
                 return true;
             }
-            $this->clientCopyService->recovery($id);
         } catch (\Exception $e) {
+            echo $e->getMessage() . '<br>';
             Yii::$app->session->setFlash('error', $e->getMessage());
+            return false;
         }
     }
 

@@ -13,6 +13,7 @@ use common\models\ClientContactPhone;
 use common\models\ClientContactMail;
 use common\models\ClientAddress;
 use app\models\ClientSearch;
+use frontend\services\client\ClientCopyService;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
@@ -122,6 +123,7 @@ class ClientController extends Controller
 		$modelsClientContactPhone = [[new ClientContactPhone]];
         $modelsClientContactMail = [[new ClientContactMail]];
         $modelsClientAddress = [new ClientAddress];
+        $clientCopyService = new ClientCopyService;
 
         if ($model->load(Yii::$app->request->post())) {
             $modelsClientJur = Model::createMultiple(ClientJur::classname());
@@ -227,7 +229,9 @@ class ClientController extends Controller
 								break;
 							}
 						}
-
+                        if (! ($flag = $clientCopyService->backup($model->id))) {
+                            $transaction->rollBack();
+                        }
 					}
 
 					if ($flag) {
@@ -288,12 +292,13 @@ class ClientController extends Controller
                 $oldMails = ArrayHelper::merge(ArrayHelper::index($mails, 'id'), $oldMails);
             }
         }
-
+        //echo '<pre>'; print_r(Yii::$app->request->post()); echo '</pre>';
         if ($model->load(Yii::$app->request->post())) {
 
             //reset
 			$modelsClientContactPhone = [];
 			$modelsClientContactMail = [];
+
 			$oldIDsJur = ArrayHelper::map($modelsClientJur, 'id', 'id');
 			$oldIDsPhone = ArrayHelper::map($modelsClientPhone, 'id', 'id');
 			$oldIDsMail = ArrayHelper::map($modelsClientMail, 'id', 'id');

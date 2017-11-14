@@ -21,6 +21,27 @@ use Yii;
  */
 class ClientAddress extends \yii\db\ActiveRecord
 {
+    /**
+     *
+     */
+    public static function loadMultipleCopy(array $addresses, array $addressesCopy): array
+    {
+        foreach ($addressesCopy as $indexAddress => $addressCopy) {
+            if (!isset($addresses[$indexAddress])) {
+                $addresses[$indexAddress] = new ClientAddress;
+                $addresses[$indexAddress]->id = $addressCopy->id;
+            }
+            $addresses[$indexAddress]->client_id = $addressCopy->client_id;
+            $addresses[$indexAddress]->country = $addressCopy->country;
+            $addresses[$indexAddress]->region = $addressCopy->region;
+            $addresses[$indexAddress]->city = $addressCopy->city;
+            $addresses[$indexAddress]->street = $addressCopy->street;
+            $addresses[$indexAddress]->home = $addressCopy->home;
+            $addresses[$indexAddress]->comment = $addressCopy->comment;
+            $addresses[$indexAddress]->note = $addressCopy->note;
+        }
+        return $addresses;
+    }
 	/**
 	 * @inheritdoc
 	 */
