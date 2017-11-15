@@ -97,7 +97,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 . ' ' . $mCopy[$id]->clientAddressCopiesID[$kAddress]->note) . '</p>';
                                     }
                                 }?>
-                                <!--<a href="<?=Yii::$app->urlManager->createUrl(['function/recovery', 'id' => $id])?>">aaaa</a><br><br>-->
                                 <span class="recovery" input="<?=Yii::$app->urlManager->createUrl(['function/recovery', 'id' => $id])?>">Вернуть</span>
                             </a>
                         </div>
@@ -146,7 +145,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 . ' ' . $modelsClient[$id]->clientAddressesID[$kAddress]->note) . '</p>';
                                     }
                                 }?>
-                                <span input>Принять</span>
+                                <span class="copy" input="<?=Yii::$app->urlManager->createUrl(['function/copy', 'id' => $id])?>">Принять</span>
                             </a>
                         </div>
                         <p size14><span gray>Изменено:</span> 24.10.2016<br />
@@ -154,37 +153,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p><span size14 gray>Менеджер:</span> Кириллов Н. Н.</p>
                     </div>
                 <?}?>
-                <div smallcard function>
-                    <div check>
-                        <input type="checkbox" class="checkbox" id="checkbox-1" />
-                        <label for="checkbox-1"></label>
-                    </div>
-                    <p><a size20 href="#">Империя Сантехники</a>, Саратов<br />
-                        ООО "Роса"</p>
-                    <div changes>
-                        <a href="#">
-                            <h3>Было:</h3>
-                            <p><span gray size14>Основное контактное лицо:</span><br />
-                                Иванов Иван Иванович</p>
-                            <p><span gray size14>Основное контактное лицо, должность:</span><br />
-                                зам. директора</p>
-                            <span input>Вернуть</span>
-                        </a>
-                    </div>
-                    <div changes>
-                        <a href="#">
-                            <h3>Стало:</h3>
-                            <p><span gray size14>Основное контактное лицо:</span><br />
-                                Петров Петр Петрович</p>
-                            <p><span gray size14>Основное контактное лицо, должность:</span><br />
-                                Директор</p>
-                            <span input>Принять</span>
-                        </a>
-                    </div>
-                    <p size14><span gray>Изменено:</span> 24.10.2016<br />
-                        <span gray>Последнее открытие:</span> 4 дня назад</p>
-                    <p><span size14 gray>Менеджер:</span> Кириллов Н. Н.</p>
-                </div>
                 <div pages>
                     <p><a scroll href="#"><<</a><a scroll href="#"><</a><a cur href="#">1</a><a href="#">2</a><a href="#">3</a><span>...</span><a href="#">9</a><a href="#">10</a><a scroll href="#">></a><a scroll href="#">>></a></p>
                 </div>

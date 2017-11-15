@@ -3,7 +3,6 @@
 namespace frontend\services\client;
 
 use common\models\Client;
-use frontend\controllers\ClientController;
 use common\models\ClientAddress;
 use common\models\ClientContact;
 use common\models\ClientCopy;
@@ -26,12 +25,7 @@ Class ClientCopyService
     {
         $model = Client::findOne($id);
         $modelOldCopy = ClientCopy::findOne($id);
-
         $transaction = \Yii::$app->db->beginTransaction();
-
-        if ($modelOldCopy && !$modelOldCopy->delete()) {
-            throw new \RuntimeException('Delete error in table ' . ClientCopy::tableName() . '.');
-        }
 
         $modelCopy = ClientCopy::create(
             $model->id,
@@ -41,106 +35,110 @@ Class ClientCopyService
             $model->anchor,
             $model->update
         );
-
-        if ($flag = $modelCopy->save(false)) {
-            foreach ($model->clientJurs as $modelClientJur) {
-                $clientJurCopies = ClientJurCopy::create(
-                    $modelClientJur->id,
-                    $modelClientJur->client_id,
-                    $modelClientJur->name
-                );
-                if (! ($flag = $clientJurCopies->save(false))) {
-                    throw new \RuntimeException('Save error in table ' . ClientJurCopy::tableName() . '.');
-                    $transaction->rollBack();
-                    break;
-                }
+        try {
+            if (isset($modelOldCopy)) {
+                $modelOldCopy->delete();
             }
-            foreach ($model->clientPhones as $modelClientPhone) {
-                $clientPhoneCopies = ClientPhoneCopy::create(
-                    $modelClientPhone->id,
-                    $modelClientPhone->client_id,
-                    $modelClientPhone->phone,
-                    $modelClientPhone->country,
-                    $modelClientPhone->city,
-                    $modelClientPhone->number,
-                    $modelClientPhone->comment
-                );
-                if (! ($flag = $clientPhoneCopies->save(false))) {
-                    throw new \RuntimeException('Save error in table ' . ClientPhoneCopy::tableName() . '.');
-                    $transaction->rollBack();
-                    break;
-                }
-            }
-            foreach ($model->clientMails as $modelClientMail) {
-                $clientMailCopies = ClientMailCopy::create(
-                    $modelClientMail->id,
-                    $modelClientMail->client_id,
-                    $modelClientMail->address,
-                    $modelClientMail->comment
-                );
-                if (! ($flag = $clientMailCopies->save(false))) {
-                    throw new \RuntimeException('Save error in table ' . ClientMailCopy::tableName() . '.');
-                    $transaction->rollBack();
-                    break;
-                }
-            }
-            foreach ($model->clientContacts as $modelClientContact) {
-                $clientContactCopies = ClientContactCopy::create(
-                    $modelClientContact->id,
-                    $modelClientContact->client_id,
-                    $modelClientContact->name,
-                    $modelClientContact->main,
-                    $modelClientContact->position
-                );
-                if (! ($flag = $clientContactCopies->save(false))) {
-                    throw new \RuntimeException('Save error in table ' . ClientContactCopy::tableName() . '.');
-                    $transaction->rollBack();
-                    break;
-                }
-                foreach ($modelClientContact->clientContactPhones as $mClientContactPhone) {
-                    $clientContactPhoneCopies = ClientContactPhoneCopy::create(
-                        $mClientContactPhone->id,
-                        $mClientContactPhone->contact_id,
-                        $mClientContactPhone->phone,
-                        $mClientContactPhone->country,
-                        $mClientContactPhone->city,
-                        $mClientContactPhone->number,
-                        $mClientContactPhone->comment
+            if ($flag = $modelCopy->save(false)) {
+                foreach ($model->clientJurs as $modelClientJur) {
+                    $clientJurCopies = ClientJurCopy::create(
+                        $modelClientJur->id,
+                        $modelClientJur->client_id,
+                        $modelClientJur->name
                     );
-                    if (! ($flag = $clientContactPhoneCopies->save(false))) {
-                        throw new \RuntimeException('Save error in table ' . ClientContactPhoneCopy::tableName() . '.');
+                    if (! ($flag = $clientJurCopies->save(false))) {
+                        throw new \RuntimeException('Save error in table ' . ClientJurCopy::tableName() . '.');
                         $transaction->rollBack();
                         break;
                     }
                 }
-                foreach ($modelClientContact->clientContactMails as $mClientContactMail) {
-                    $clientContactMailCopies = ClientContactMailCopy::create(
-                        $mClientContactMail->id,
-                        $mClientContactMail->contact_id,
-                        $mClientContactMail->address,
-                        $mClientContactMail->comment
+                foreach ($model->clientPhones as $modelClientPhone) {
+                    $clientPhoneCopies = ClientPhoneCopy::create(
+                        $modelClientPhone->id,
+                        $modelClientPhone->client_id,
+                        $modelClientPhone->phone,
+                        $modelClientPhone->country,
+                        $modelClientPhone->city,
+                        $modelClientPhone->number,
+                        $modelClientPhone->comment
                     );
-                    if (! ($flag = $clientContactMailCopies->save(false))) {
-                        throw new \RuntimeException('Save error in table ' . ClientContactMailCopy::tableName() . '.');
+                    if (! ($flag = $clientPhoneCopies->save(false))) {
+                        throw new \RuntimeException('Save error in table ' . ClientPhoneCopy::tableName() . '.');
+                        $transaction->rollBack();
+                        break;
+                    }
+                }
+                foreach ($model->clientMails as $modelClientMail) {
+                    $clientMailCopies = ClientMailCopy::create(
+                        $modelClientMail->id,
+                        $modelClientMail->client_id,
+                        $modelClientMail->address,
+                        $modelClientMail->comment
+                    );
+                    if (! ($flag = $clientMailCopies->save(false))) {
+                        throw new \RuntimeException('Save error in table ' . ClientMailCopy::tableName() . '.');
+                        $transaction->rollBack();
+                        break;
+                    }
+                }
+                foreach ($model->clientContacts as $modelClientContact) {
+                    $clientContactCopies = ClientContactCopy::create(
+                        $modelClientContact->id,
+                        $modelClientContact->client_id,
+                        $modelClientContact->name,
+                        $modelClientContact->main,
+                        $modelClientContact->position
+                    );
+                    if (! ($flag = $clientContactCopies->save(false))) {
+                        throw new \RuntimeException('Save error in table ' . ClientContactCopy::tableName() . '.');
+                        $transaction->rollBack();
+                        break;
+                    }
+                    foreach ($modelClientContact->clientContactPhones as $mClientContactPhone) {
+                        $clientContactPhoneCopies = ClientContactPhoneCopy::create(
+                            $mClientContactPhone->id,
+                            $mClientContactPhone->contact_id,
+                            $mClientContactPhone->phone,
+                            $mClientContactPhone->country,
+                            $mClientContactPhone->city,
+                            $mClientContactPhone->number,
+                            $mClientContactPhone->comment
+                        );
+                        if (! ($flag = $clientContactPhoneCopies->save(false))) {
+                            throw new \RuntimeException('Save error in table ' . ClientContactPhoneCopy::tableName() . '.');
+                            $transaction->rollBack();
+                            break;
+                        }
+                    }
+                    foreach ($modelClientContact->clientContactMails as $mClientContactMail) {
+                        $clientContactMailCopies = ClientContactMailCopy::create(
+                            $mClientContactMail->id,
+                            $mClientContactMail->contact_id,
+                            $mClientContactMail->address,
+                            $mClientContactMail->comment
+                        );
+                        if (! ($flag = $clientContactMailCopies->save(false))) {
+                            throw new \RuntimeException('Save error in table ' . ClientContactMailCopy::tableName() . '.');
+                            $transaction->rollBack();
+                            break;
+                        }
+                    }
+                }
+                foreach ($model->clientAddresses as $mClientAddress) {
+                    $clientAddressCopies = ClientAddressCopy::create($mClientAddress->id, $mClientAddress->client_id, $mClientAddress->country, $mClientAddress->region, $mClientAddress->city, $mClientAddress->street, $mClientAddress->home, $mClientAddress->comment, $mClientAddress->note);
+                    if (! ($flag = $clientAddressCopies->save(false))) {
+                        throw new \RuntimeException('Save error in table ' . ClientAddressCopy::tableName() . '.');
                         $transaction->rollBack();
                         break;
                     }
                 }
             }
-            foreach ($model->clientAddresses as $mClientAddress) {
-                $clientAddressCopies = ClientAddressCopy::create($mClientAddress->id, $mClientAddress->client_id, $mClientAddress->country, $mClientAddress->region, $mClientAddress->city, $mClientAddress->street, $mClientAddress->home, $mClientAddress->comment, $mClientAddress->note);
-                if (! ($flag = $clientAddressCopies->save(false))) {
-                    throw new \RuntimeException('Save error in table ' . ClientAddressCopy::tableName() . '.');
-                    $transaction->rollBack();
-                    break;
-                }
+            if ($flag) {
+                $transaction->commit();
             }
+        } catch (Exception $e) {
+            $transaction->rollBack();
         }
-        if ($flag) {
-            $transaction->commit();
-            return true;
-        }
-        return false;
     }
 
     public static function recovery(int $id)

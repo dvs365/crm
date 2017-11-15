@@ -28,13 +28,11 @@ class FunctionController extends Controller
     {
         $clientEditSearch = new ClientEditSearch;
         $clientCopy = ClientCopy::find()->indexBy('id')->all();
-        //$modelsClient = Client::find()->indexBy('id')->where(['in', 'id', ClientCopy::find()->select('id')])->all();
 
         $modelsClient = Client::find()->select('client.id')->indexBy('id')
             ->leftJoin('client_copy', Client::tableName() . '.`id` = ' . ClientCopy::tableName() .'.`id`')
             ->where(ClientCopy::tableName() . '.`update` <> ' . Client::tableName() . '.`update`')
             ->all();
-        //echo '<pre>'; print_r($modelsClient); echo '</pre>'; die('sss');
 
         foreach ($modelsClient as $keyClient => $modelClient) {
             $change = new \stdClass;
@@ -100,21 +98,26 @@ class FunctionController extends Controller
     public function actionCopy(int $id)
     {
         try {
-            $this->clientCopyService->backup($id);
+            if (Client::findOne($id)) {
+                $this->clientCopyService->backup($id);
+                return true;
+            }
         } catch (\Exception $e) {
             Yii::$app->session->setFlash('error', $e->getMessage());
+            echo $e->getMessage();
+            return false;
         }
     }
 
     public function actionRecovery(int $id)
     {
         try {
-            if ($model = Client::findOne($id)) {
+            if ($model = ClientCopy::findOne($id)) {
                 $this->clientCopyService->recovery($id);
                 return true;
             }
         } catch (\Exception $e) {
-            echo $e->getMessage() . '<br>';
+            echo $e->getMessage();
             Yii::$app->session->setFlash('error', $e->getMessage());
             return false;
         }
