@@ -1,7 +1,6 @@
 <?php
 namespace frontend\forms;
 
-use common\models\User;
 use yii\base\Model;
 use Yii;
 

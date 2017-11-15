@@ -107,8 +107,32 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            ['username', 'filter', 'filter' => 'trim'],
+            ['username', 'required'],
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Этот логин уже занят.'],
+            ['username', 'string', 'min' => 2, 'max' => 255],
+
+            ['name1', 'filter', 'filter' => 'trim'],
+            ['name1', 'required'],
+            ['name1', 'string', 'min' => 2, 'max' => 255],
+
+            ['name2', 'filter', 'filter' => 'trim'],
+            ['name2', 'required'],
+            ['name2', 'string', 'min' => 2, 'max' => 255],
+
+            ['name3', 'filter', 'filter' => 'trim'],
+            ['name3', 'required'],
+            ['name3', 'string', 'min' => 2, 'max' => 255],
+
+            ['email', 'filter', 'filter' => 'trim'],
+            ['email', 'required'],
+            ['email', 'email'],
+            ['email', 'string', 'max' => 255],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Этот e-mail уже занят.'],
+
             ['fio', 'safe', 'on' => 'search'],
-        	['status', 'default', 'value' => self::STATUS_ACTIVE],
+
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_WAIT]],
         ];
     }

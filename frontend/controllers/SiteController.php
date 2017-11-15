@@ -210,10 +210,11 @@ class SiteController extends Controller
 			throw new ForbiddenHttpException('Нет разрешения на редактирование пользователя');
 		}
 
-		$model = $this->findModel($id);
-
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->goHome();
+		$model = User::findOne($id);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate() && $model->save(false)) {
+                return $this->goHome();
+            }
 		}
 		return $this->render('update', [
 			'model' => $model,
