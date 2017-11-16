@@ -1028,14 +1028,17 @@ td[status] {
 [function] [changes] a:hover [input] {
     background: rgb(220,20,60);
 }
-[pages] {
+ul.pagination {
     margin: 20px 0 80px 0;
 }
-[pages] a, [pages] span {
+ul.pagination li a, ul.pagination li span{
     margin-right: 25px;
     font-size: 20px;
 }
-[pages] a[scroll] {
+ul.pagination li{
+    display: inline;
+}
+ul.pagination li.first a, ul.pagination li.prev a, ul.pagination li.next a, ul.pagination li.last a, ul.pagination li span{
     color: rgb(255,255,255);
     background: rgb(192,192,192);
     display: inline-block;
@@ -1044,7 +1047,7 @@ td[status] {
     width: 20px;
     text-align: center;
 }
-[pages] a[cur] {
+ul.pagination li.active a{
     color: rgb(128,128,128);
     cursor: default;
     font-weight: bold;

@@ -40,6 +40,13 @@ $this->params['breadcrumbs'][] = $this->title;
 			<div cards>
 			<?= ListView::widget([
 				'dataProvider' => $dataProvider,
+                'pager' => [
+                    'firstPageLabel' => '<<',
+                    'lastPageLabel' => '>>',
+                    'prevPageLabel' => '<',
+                    'nextPageLabel' => '>',
+                    'maxButtonCount' => 3,
+                ],
 				'itemOptions' => ['smallcard' => ''],
 				'itemView' => function ($model, $key, $index, $widget) {
 					$template = '<span size20 lnk>' . Html::encode($model->name) . '</span><br />';
