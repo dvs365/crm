@@ -40,6 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			<div cards>
 			<?= ListView::widget([
 				'dataProvider' => $dataProvider,
+                'summary' => '',
                 'pager' => [
                     'firstPageLabel' => '<<',
                     'lastPageLabel' => '>>',

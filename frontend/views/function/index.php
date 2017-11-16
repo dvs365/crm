@@ -3,7 +3,8 @@
 use yii\widgets\Menu;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
-use yii\widgets\ListView;
+use yii\widgets\LinkPager;
+
 use frontend\assets\FunctionAsset;
 
 
@@ -153,9 +154,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p><span size14 gray>Менеджер:</span> Кириллов Н. Н.</p>
                     </div>
                 <?}?>
-                <div pages>
-                    <p><a scroll href="#"><<</a><a scroll href="#"><</a><a cur href="#">1</a><a href="#">2</a><a href="#">3</a><span>...</span><a href="#">9</a><a href="#">10</a><a scroll href="#">></a><a scroll href="#">>></a></p>
-                </div>
+
+                <?
+                echo LinkPager::widget([
+                        'pagination' => $pages,
+                ])?>
             </div>
             <div bot-fixed clearfix func-footer><div><input type="submit" value="Вернуть выбранное" /> <input fl-right type="submit" value="Принять выбранное" /></div></div>
         </div>

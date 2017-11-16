@@ -9,6 +9,7 @@ use common\models\User;
 use common\models\Client;
 use common\models\ClientCopy;
 use app\models\ClientEditSearch;
+use yii\data\Pagination;
 
 class FunctionController extends Controller
 {
@@ -29,10 +30,13 @@ class FunctionController extends Controller
         $clientEditSearch = new ClientEditSearch;
         $clientCopy = ClientCopy::find()->indexBy('id')->all();
 
-        $modelsClient = Client::find()->select('client.id')->indexBy('id')
+        $queryClient = Client::find()->select('client.id')->indexBy('id')
             ->leftJoin('client_copy', Client::tableName() . '.`id` = ' . ClientCopy::tableName() .'.`id`')
-            ->where(ClientCopy::tableName() . '.`update` <> ' . Client::tableName() . '.`update`')
-            ->all();
+            ->where(ClientCopy::tableName() . '.`update` <> ' . Client::tableName() . '.`update`');
+        $countClients = clone $queryClient;
+        $pages = new Pagination(['totalCount' => $countClients->count(), 'pageSize' => 1]);
+        $pages->pageSizeParam = false;
+        $modelsClient = $queryClient->offset($pages->offset)->limit($pages->limit)->all();
 
         foreach ($modelsClient as $keyClient => $modelClient) {
             $change = new \stdClass;
@@ -83,15 +87,16 @@ class FunctionController extends Controller
             }
             $changes[$keyClient] = $change;
         }
-        $dataProvider = $clientEditSearch->search(Yii::$app->request->queryParams);
+        //$dataProvider = $clientEditSearch->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $clientEditSearch,
-            'dataProvider' => $dataProvider,
+            //'dataProvider' => $dataProvider,
             'modelsUser' =>  User::find()->all(),
             'changes' => $changes ?: [],
             'modelsClient' => $modelsClient,
             'mCopy' => $clientCopy,
+            'pages' => $pages,
         ]);
     }
 

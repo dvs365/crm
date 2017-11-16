@@ -229,9 +229,7 @@ class ClientController extends Controller
 								break;
 							}
 						}
-                        if (! ($flag = $clientCopyService->backup($model->id))) {
-                            $transaction->rollBack();
-                        }
+                        $clientCopyService->backup($model->id);
 					}
 
 					if ($flag) {
