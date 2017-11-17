@@ -30,11 +30,11 @@ class FunctionController extends Controller
         $clientEditSearch = new ClientEditSearch;
         $clientCopy = ClientCopy::find()->indexBy('id')->all();
 
-        $queryClient = Client::find()->select('client.id')->indexBy('id')
+        $queryClient = Client::find()->select('client.*')->indexBy('id')
             ->leftJoin('client_copy', Client::tableName() . '.`id` = ' . ClientCopy::tableName() .'.`id`')
-            ->where(ClientCopy::tableName() . '.`update` <> ' . Client::tableName() . '.`update`');
+            ->where(ClientCopy::tableName() . '.`updated_at` <> ' . Client::tableName() . '.`updated_at`');
         $countClients = clone $queryClient;
-        $pages = new Pagination(['totalCount' => $countClients->count(), 'pageSize' => 1]);
+        $pages = new Pagination(['totalCount' => $countClients->count(), 'pageSize' => 10]);
         $pages->pageSizeParam = false;
         $modelsClient = $queryClient->offset($pages->offset)->limit($pages->limit)->all();
 

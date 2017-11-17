@@ -33,7 +33,8 @@ Class ClientCopyService
             $model->user_add_id,
             $model->name,
             $model->anchor,
-            $model->update
+            $model->showed_at,
+            $model->updated_at
         );
         try {
             if (isset($modelOldCopy)) {
@@ -154,7 +155,6 @@ Class ClientCopyService
         $phones = $client->clientPhonesID;
         $mails = $client->clientMailsID;
         $contacts = $client->clientContactsID;
-        //echo '<pre>'; print_r($contacts); echo '</pre>'; die('www');
         $addresses = $client->clientAddressesID;
         $modelsClientContactPhone = [];
         $oldPhones = [];
@@ -174,7 +174,6 @@ Class ClientCopyService
         }
 
         if ($client = Client::loadMultipleCopy($client, $clientCopy)) {
-            //reset
 
             $oldIDsJur = ArrayHelper::map($jurs, 'id', 'id');
             $oldIDsPhone = ArrayHelper::map($phones, 'id', 'id');

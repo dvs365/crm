@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <input type="checkbox" class="checkbox" id="checkbox-<?= Html::encode($id)?>" />
                             <label for="checkbox-<?= Html::encode($id)?>"></label>
                         </div>
-                        <p><?= Html::a($modelsClient[$id]->name, ['client/view', 'id' => $id], ['size20' => ''])?>, Саратов<br />ООО "Роса"</p>
+                        <p><?= Html::a($modelsClient[$id]->name, ['client/view', 'id' => $id], ['size20' => ''])?>, <?=($modelsClient[$id]->clientAddresses[0]->city) ?: '' ?><br /><?=($modelsClient[$id]->clientJurs[0]->name) ?: ''?></p>
                         <div changes>
                             <a href="#">
                                 <h3>Было:</h3>
@@ -150,8 +150,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             </a>
                         </div>
                         <p size14><span gray>Изменено:</span> 24.10.2016<br />
-                            <span gray>Последнее открытие:</span> 4 дня назад</p>
-                        <p><span size14 gray>Менеджер:</span> Кириллов Н. Н.</p>
+                            <span gray>Последнее открытие:</span> <?=Html::encode($modelsClient[$id]->agoTime)?></p>
+                        <p><span size14 gray>Менеджер:</span> <?=$modelsClient[$id]->user->name1?></p>
                     </div>
                 <?}?>
 

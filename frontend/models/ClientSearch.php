@@ -69,7 +69,7 @@ class ClientSearch extends Client
 		/*Если нужна сортировка*/
 
 		$dataProvider->setSort([
-			'defaultOrder' => ['update' => SORT_DESC],
+			'defaultOrder' => ['updated_at' => SORT_DESC],
 		]);
 
 		if (! ($this->load($params) && $this->validate())) {
