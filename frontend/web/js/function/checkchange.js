@@ -49,4 +49,8 @@ $(function() {
                 }
             });
     });
+    $("#checkbox-all").change(function() {
+        var checkboxes = $(this).closest('form[cards]').find(':checkbox');
+        checkboxes.prop('checked', $(this).is(':checked'));
+    });
 });

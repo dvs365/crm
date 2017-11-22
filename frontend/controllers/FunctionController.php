@@ -128,6 +128,21 @@ class FunctionController extends Controller
         }
     }
 
+    public function actionChoose() {
+        $ids = Yii::$app->request->post('ClientCopy')['id'];
+        foreach ($ids as $id => $checked) {
+            if ($checked) {
+                if (Yii::$app->request->post('recovery')) {
+                    $this->clientCopyService->recovery($id);
+                }
+                if (Yii::$app->request->post('backup')) {
+                    $this->clientCopyService->backup($id);
+                }
+            }
+        }
+        return $this->redirect(['function/index']);
+    }
+
     public function backupClientRest()
     {
         $modelsID = Client::find()->select('id')->where(['not in', 'id', ClientCopy::find()->select('id')])->all();

@@ -1,5 +1,6 @@
 <?php
 
+use yii\bootstrap\ActiveForm;
 use yii\widgets\Menu;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
@@ -41,17 +42,21 @@ $this->params['breadcrumbs'][] = $this->title;
                     'changes' => $changes,
                 ]); ?>
             </div>
-            <div cards>
+            <?php $form = ActiveForm::begin(['action' => ['function/choose'], 'id' => 'contact-form', 'options' => ['cards' => '']]); ?>
                 <div check-all>
                     <input type="checkbox" class="checkbox" id="checkbox-all" />
                     <label for="checkbox-all">Выбрать все</label>
                 </div>
                 <? foreach ($changes as $id => $change) {?>
                     <div smallcard function>
-                        <div check>
-                            <input type="checkbox" class="checkbox" id="checkbox-<?= Html::encode($id)?>" />
-                            <label for="checkbox-<?= Html::encode($id)?>"></label>
-                        </div>
+                        <?= $form->field($mCopy[$id], 'id[' . $id . ']', ['options' => ['tag' => false]])->checkbox(
+                                [
+                                    'template' => '<div check>{input}<label for="{label}"></label></div>',
+                                    'label' => 'checkbox-' . Html::encode($id),
+                                    'id' => 'checkbox-' . Html::encode($id),
+                                    'class' => 'checkbox',
+                                    'value' => '1',
+                                ]) ?>
                         <p><?= Html::a($modelsClient[$id]->name, ['client/view', 'id' => $id], ['size20' => ''])?>, <?=($modelsClient[$id]->clientAddresses[0]->city) ?: '' ?><br /><?=($modelsClient[$id]->clientJurs[0]->name) ?: ''?></p>
                         <div changes>
                             <a href="#">
@@ -159,8 +164,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 echo LinkPager::widget([
                         'pagination' => $pages,
                 ])?>
-            </div>
-            <div bot-fixed clearfix func-footer><div><input type="submit" value="Вернуть выбранное" /> <input fl-right type="submit" value="Принять выбранное" /></div></div>
+                <div bot-fixed clearfix func-footer><div><?= Html::submitInput('Вернуть выбранное', ['name' => 'recovery'])?><?= Html::submitInput('Принять выбранное', ['name' => 'backup', 'fl-right' => ''])?></div></div>
+            <?php ActiveForm::end();?>
         </div>
     </div>
 </div>
