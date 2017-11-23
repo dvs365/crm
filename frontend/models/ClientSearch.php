@@ -91,16 +91,18 @@ class ClientSearch extends Client
 
 		$query->joinWith('clientJurs')->joinWith('clientPhones')->joinWith('clientMails')->joinWith('clientContacts');
 		$query->joinWith('clientContactPhones')->joinWith('clientContactMails');
-		$query->where([
-			'or',
-			'client.name LIKE "%' . $this->clientSearch . '%"',
-			'client_jur.name LIKE "%' . $this->clientSearch . '%"',
-			'client_phone.phone LIKE "%' . $this->clientSearch. '%"',
-			'client_mail.address LIKE "%' . $this->clientSearch. '%"',
-			'client_contact.name LIKE "%' . $this->clientSearch. '%"',
-			'client_contact_phone.phone LIKE "%' . $this->clientSearch. '%"',
-			'client_contact_mail.address LIKE "%' . $this->clientSearch. '%"',
-		]);
+		if ($this->clientSearch) {
+            $query->where([
+                'or',
+                'client.name LIKE "%' . $this->clientSearch . '%"',
+                'client_jur.name LIKE "%' . $this->clientSearch . '%"',
+                'client_phone.phone LIKE "%' . $this->clientSearch. '%"',
+                'client_mail.address LIKE "%' . $this->clientSearch. '%"',
+                'client_contact.name LIKE "%' . $this->clientSearch. '%"',
+                'client_contact_phone.phone LIKE "%' . $this->clientSearch. '%"',
+                'client_contact_mail.address LIKE "%' . $this->clientSearch. '%"',
+            ]);
+        }
 		if ($this->user_id) {
 			$query->AndWhere('client.user_id = ' . $this->user_id);
 		}
