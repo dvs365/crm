@@ -53,8 +53,19 @@ class ClientContactPhone extends \yii\db\ActiveRecord
 	{
 		return [
 			[['contact_id'], 'integer'],
-			[['phone', 'country', 'city', 'number', 'comment'], 'string', 'max' => 255],
-			['phone', 'default', 'value' => ''],
+            ['phone', 'default', 'value' => ''],
+            [['comment'], 'string', 'max' => 255],
+            ['country', 'match', 'pattern' => '/\+[7]$/'],
+            ['city', 'match', 'pattern' => '/^[0-9]{3}$/'],
+            ['number', 'match', 'pattern' => '/^[0-9]{3}-[0-9]{2}-[0-9]{2}$/'],
+            [['country', 'city', 'number'], 'required', 'when' => function ($model) {
+                return !empty($model->country) || !empty($model->city) || !empty($model->number) || !empty($model->comment);
+            }, 'whenClient' => "function (attribute, value) {
+                    return $('.item_client_contact_phone input[country]').val() != '' 
+                    || $('.item_client_contact_phone input[city]').val() != '' 
+                    || $('.item_client_contact_phone input[number]').val() != '' 
+                    || $('.item_client_contact_phone input[phone-comment]').val() != '';
+            }"],
 			[['contact_id'], 'exist', 'skipOnError' => true, 'targetClass' => ClientContact::className(), 'targetAttribute' => ['contact_id' => 'id']],
 		];
 	}
