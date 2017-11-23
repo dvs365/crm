@@ -233,7 +233,7 @@ class Client extends \yii\db\ActiveRecord
 			case 'year' :
 				return ($count == 1) ? 'год' : $count . ' ' . 'года';
 			case 'month' :
-				return ($count == 1) ? 'месяц назад' : Yii::$app->formatter->asDate($this->updated_at);
+				return ($count == 1) ? 'месяц назад' : Yii::$app->formatter->asDate($this->showed_at);
 			case 'week' :
 				return ($count == 1) ? 'неделю' : $count . ' ' . 'недели';
 			case 'day' :
@@ -249,7 +249,7 @@ class Client extends \yii\db\ActiveRecord
 
 	public function getAgoTime()
 	{
-		$datetime1 = new \DateTime($this->updated_at);
+		$datetime1 = new \DateTime($this->showed_at);
 		$interval = date_create('now')->diff($datetime1);
 		if ( $v = $interval->y >= 1) return $this->pluralize( $interval->y, 'year') . ' назад';
 		if ( $v = $interval->m >= 1) return $this->pluralize( $interval->m, 'month');

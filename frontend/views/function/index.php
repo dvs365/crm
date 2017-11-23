@@ -154,8 +154,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <span class="copy" input="<?=Yii::$app->urlManager->createUrl(['function/copy', 'id' => $id])?>">Принять</span>
                             </a>
                         </div>
-                        <p size14><span gray>Изменено:</span> 24.10.2016<br />
-                            <span gray>Последнее открытие:</span> <?=Html::encode($modelsClient[$id]->agoTime)?></p>
+                        <p size14><span gray>Изменено:</span> <?= Html::encode(\DateTime::createFromFormat('Y-m-d H:i:s', $modelsClient[$id]->updated_at)->format('d.m.Y'))?><br />
+                            <span gray>Последнее открытие:</span> <?= Html::encode(\DateTime::createFromFormat('Y-m-d H:i:s', $modelsClient[$id]->showed_at)->format('d.m.Y'))?></p>
                         <p><span size14 gray>Менеджер:</span> <?=$modelsClient[$id]->user->name1?></p>
                     </div>
                 <?}?>
