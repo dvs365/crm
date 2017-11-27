@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 ?>
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => [$this->context->action->id],
         'method' => 'get',
 		'options' => [
 			'search-form' => ''

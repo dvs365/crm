@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						['label' => 'Все', 'url' => ['/client/index']],
 						['label' => 'Создать', 'url' => ['/client/create']],
 						['label' => 'Свободные', 'url' => ['client/free']],
-						['label' => 'Потенциальные', 'url' => ['/client/possible']],
+						['label' => 'Потенциальные', 'url' => ['/client/target']],
 						['label' => 'Рабочие', 'url' => ['/client/worker']],
 						['label' => 'Отказные', 'url' => ['/client/reject']],
 						['label' => 'Статистика', 'url' => ['/client/statistic'], 'visible' => Yii::$app->user->can('moder')],

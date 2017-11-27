@@ -90,6 +90,22 @@ class ClientController extends Controller
 		]);
 	}
 
+
+    /**
+     * Lists Client models.
+     * @return mixed
+     */
+    public function actionTarget()
+    {
+        $searchModel = new ClientSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andWhere(['status' => 'target']);
+        return $this->render('target', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'modelsUser' =>  User::find()->all(),
+        ]);
+    }
     /**
      * Displays a single Client model.
      * @param integer $id

@@ -91,17 +91,26 @@ class ClientSearch extends Client
 
 		$query->joinWith('clientJurs')->joinWith('clientPhones')->joinWith('clientMails')->joinWith('clientContacts');
 		$query->joinWith('clientContactPhones')->joinWith('clientContactMails');
-		if ($this->clientSearch) {
-            $query->where([
-                'or',
-                'client.name LIKE "%' . $this->clientSearch . '%"',
-                'client_jur.name LIKE "%' . $this->clientSearch . '%"',
-                'client_phone.phone LIKE "%' . $this->clientSearch. '%"',
-                'client_mail.address LIKE "%' . $this->clientSearch. '%"',
-                'client_contact.name LIKE "%' . $this->clientSearch. '%"',
-                'client_contact_phone.phone LIKE "%' . $this->clientSearch. '%"',
-                'client_contact_mail.address LIKE "%' . $this->clientSearch. '%"',
-            ]);
+		if ($this->clientSearch && mb_strlen($this->clientSearch) > 3) {
+		    $searchPhone = str_replace([' ', '-'], '', $this->clientSearch);
+            if (is_numeric($searchPhone)) {
+                $query->where([
+                    'or',
+                    'client_phone.phone LIKE "%' . $searchPhone. '%"',
+                    'client_contact_phone.phone LIKE "%' . $searchPhone. '%"',
+                ]);
+            } else {
+                $query->where([
+                    'or',
+                    'client.name LIKE "%' . $this->clientSearch . '%"',
+                    'client_jur.name LIKE "%' . $this->clientSearch . '%"',
+                    'client_mail.address LIKE "%' . $this->clientSearch. '%"',
+                    'client_contact.name LIKE "%' . $this->clientSearch. '%"',
+                    'client_phone.comment LIKE "%' . $this->clientSearch. '%"',
+                    'client_contact_phone.comment LIKE "%' . $this->clientSearch. '%"',
+                    'client_contact_mail.address LIKE "%' . $this->clientSearch. '%"',
+                ]);
+            }
         }
 		if ($this->user_id) {
 			$query->AndWhere('client.user_id = ' . $this->user_id);
