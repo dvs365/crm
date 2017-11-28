@@ -81,8 +81,8 @@ class ClientController extends Controller
 	public function actionFree()
 	{
 		$searchModel = new ClientSearch();
-		Yii::$app->request->queryParams = ['ClientSearch' => ['user_id' => '8']];
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andWhere(['user_id' => null]);
 		return $this->render('index', [
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
