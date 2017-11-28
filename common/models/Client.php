@@ -27,6 +27,34 @@ class Client extends \yii\db\ActiveRecord
     const STATUS_REJECT = 30;
 
     /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'client';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['name'], 'required'],
+            [['user_id'], 'integer'],
+            [['user_add_id'], 'integer'],
+            ['user_add_id', 'default', 'value' => '0'],
+            [['name'], 'string', 'max' => 255],
+            [['anchor'], 'string'],
+
+            ['status', 'default', 'value' => self::STATUS_FREE],
+            ['status', 'in', 'range' => [self::STATUS_FREE, self::STATUS_REJECT]],
+
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+        ];
+    }
+
+    /**
      *
      */
     public static function loadMultipleCopy($client, $clientCopy)
@@ -41,33 +69,21 @@ class Client extends \yii\db\ActiveRecord
         return $client;
     }
 
-	/**
-	 * @inheritdoc
-	 */
-	public static function tableName()
-	{
-		return 'client';
-	}
+    public function getClientStatus() {
+        if ($this->status == self::STATUS_FREE) {
+                return 'свободный';
+        }
+        if ($this->status == self::STATUS_TARGET) {
+            return 'потенциальный';
+        }
+        if ($this->status == self::STATUS_LOAD) {
+            return 'рабочий';
+        }
+        if ($this->status == self::STATUS_REJECT) {
+            return 'отказной';
+        }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function rules()
-	{
-		return [
-            [['name'], 'required'],
-            [['user_id'], 'integer'],
-            [['user_add_id'], 'integer'],
-            ['user_add_id', 'default', 'value' => '0'],
-            [['name'], 'string', 'max' => 255],
-            [['anchor'], 'string'],
-
-            ['status', 'default', 'value' => self::STATUS_FREE],
-            ['status', 'in', 'range' => [self::STATUS_FREE, self::STATUS_REJECT]],
-
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
-		];
-	}
+    }
 
 	/**
 	 * @inheritdoc

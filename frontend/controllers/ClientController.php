@@ -100,7 +100,7 @@ class ClientController extends Controller
         $searchModel = new ClientSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->query->andWhere(['status' => '10']);
-        return $this->render('target', [
+        return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'modelsUser' =>  User::find()->all(),
