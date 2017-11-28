@@ -82,7 +82,7 @@ class ClientController extends Controller
 	{
 		$searchModel = new ClientSearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andWhere(['user_id' => null]);
+        $dataProvider->query->andWhere(['status' => '0']);
 		return $this->render('index', [
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
@@ -99,7 +99,7 @@ class ClientController extends Controller
     {
         $searchModel = new ClientSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andWhere(['status' => 'target']);
+        $dataProvider->query->andWhere(['status' => '10']);
         return $this->render('target', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -153,7 +153,8 @@ class ClientController extends Controller
             Model::loadMultiple($modelsClientContact, Yii::$app->request->post());
             Model::loadMultiple($modelsClientAddress, Yii::$app->request->post());
 
-            $model->user_id = ($model->user_id) ? $model->user_id : Yii::$app->user->id;
+            $model->user_id = ($model->user_id) ?: Yii::$app->user->id;
+            $model->status = empty($model->user_id)? Client::STATUS_FREE : Client::STATUS_TARGET;
 
             // validate all models
 			$valid = $model->validate();
@@ -199,7 +200,8 @@ class ClientController extends Controller
 						}
 						foreach ($modelsClientPhone as $modelClientPhone) {
 							$modelClientPhone->client_id = $model->id;
-							$modelClientPhone->phone = preg_replace("/[^0-9]/", '', $modelClientPhone->country.$modelClientPhone->city.$modelClientPhone->number);
+                            $phoneCFull = $modelClientPhone->country.$modelClientPhone->city.$modelClientPhone->number;
+							$modelClientPhone->phone = preg_replace("/[^0-9]/", '', $phoneCFull) ?: null;
 							if (! ($flag = $modelClientPhone->save(false))) {
 								$transaction->rollBack();
 								break;
@@ -221,7 +223,8 @@ class ClientController extends Controller
 							if (isset($modelsClientContactPhone[$indexContact]) && is_array($modelsClientContactPhone[$indexContact])) {
 								foreach ($modelsClientContactPhone[$indexContact] as $indexPhone => $modelClientContactPhone) {
 									$modelClientContactPhone->contact_id = $modelClientContact->id;
-									$modelClientContactPhone->phone = preg_replace("/[^0-9]/", '', $modelClientContactPhone->country.$modelClientContactPhone->city.$modelClientContactPhone->number);
+									$phoneFull = $modelClientContactPhone->country.$modelClientContactPhone->city.$modelClientContactPhone->number;
+									$modelClientContactPhone->phone = preg_replace("/[^0-9]/", '', $phoneFull) ?: null;
 									if (! ($flag = $modelClientContactPhone->save(false))) {
 										$transaction->rollBack();
 										break;
@@ -337,6 +340,10 @@ class ClientController extends Controller
 			$deletedIDsContact = array_diff($oldIDsContact, array_filter(ArrayHelper::map($modelsClientContact, 'id', 'id')));
 			$deletedIDsAddress = array_diff($oldIDsAddress, array_filter(ArrayHelper::map($modelsClientAddress, 'id', 'id')));
 
+            if (empty($model->user_id) && $model->status == Client::STATUS_TARGET) {
+                $model->status = Client::STATUS_FREE;
+            }
+
 			//validate all models
 			$valid = $model->validate();
 			$valid = Model::validateMultiple($modelsClientJur) && $valid;
@@ -414,7 +421,8 @@ class ClientController extends Controller
 						}
 						foreach ($modelsClientPhone as $modelClientPhone) {
 							$modelClientPhone->client_id = $model->id;
-							$modelClientPhone->phone = preg_replace("/[^0-9]/", '', $modelClientPhone->country.$modelClientPhone->city.$modelClientPhone->number);
+							$phoneFull = $modelClientPhone->country.$modelClientPhone->city.$modelClientPhone->number;
+							$modelClientPhone->phone = preg_replace("/[^0-9]/", '', $phoneFull) ?: null;
 							if (! ($flag = $modelClientPhone->save(false))) {
 								$transaction->rollBack();
 								break;
@@ -437,7 +445,8 @@ class ClientController extends Controller
 							if (isset($modelsClientContactPhone[$indexContact]) && is_array($modelsClientContactPhone[$indexContact])) {
 								foreach ($modelsClientContactPhone[$indexContact] as $indexPhone => $modelClientContactPhone) {
 									$modelClientContactPhone->contact_id = $modelClientContact->id;
-									$modelClientContactPhone->phone = preg_replace("/[^0-9]/", '', $modelClientContactPhone->country.$modelClientContactPhone->city.$modelClientContactPhone->number);
+                                    $phoneCFull = $modelClientContactPhone->country.$modelClientContactPhone->city.$modelClientContactPhone->number;
+									$modelClientContactPhone->phone = preg_replace("/[^0-9]/", '', $phoneCFull) ?: null;
 									if (! ($flag = $modelClientContactPhone->save(false))) {
 										$transaction->rollBack();
 										break;

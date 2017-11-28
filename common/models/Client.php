@@ -20,6 +20,12 @@ use Yii;
  */
 class Client extends \yii\db\ActiveRecord
 {
+
+    const STATUS_FREE = 0;
+    const STATUS_TARGET = 10;
+    const STATUS_LOAD = 20;
+    const STATUS_REJECT = 30;
+
     /**
      *
      */
@@ -31,6 +37,7 @@ class Client extends \yii\db\ActiveRecord
         $client->anchor = $clientCopy->anchor;
         $client->updated_at = $clientCopy->updated_at;
         $client->showed_at = $clientCopy->showed_at;
+        $client->status = $clientCopy->status;
         return $client;
     }
 
@@ -48,13 +55,17 @@ class Client extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['name'], 'required'],
-			[['user_id'], 'integer'],
-			[['user_add_id'], 'integer'],
-			['user_add_id', 'default', 'value' => '0'],
-			[['name'], 'string', 'max' => 255],
-			[['anchor'], 'string'],
-			[['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['name'], 'required'],
+            [['user_id'], 'integer'],
+            [['user_add_id'], 'integer'],
+            ['user_add_id', 'default', 'value' => '0'],
+            [['name'], 'string', 'max' => 255],
+            [['anchor'], 'string'],
+
+            ['status', 'default', 'value' => self::STATUS_FREE],
+            ['status', 'in', 'range' => [self::STATUS_FREE, self::STATUS_REJECT]],
+
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
 		];
 	}
 

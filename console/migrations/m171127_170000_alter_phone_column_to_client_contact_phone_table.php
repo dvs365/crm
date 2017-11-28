@@ -10,7 +10,6 @@ class m171127_170000_alter_phone_column_to_client_contact_phone_table extends Mi
 
     public function up()
     {
-        //$this->update('client_phone', ['phone' => NULL], 'phone = ""');
         $this->alterColumn('client_contact_phone', 'phone', $this->string(255)->null()->unique());
     }
 
@@ -19,7 +18,6 @@ class m171127_170000_alter_phone_column_to_client_contact_phone_table extends Mi
      */
     public function down()
     {
-        //$this->update('client_contact_phone', 'phone', 'phone = NULL', ['NULL' => '']);
-        $this->alterColumn('client_phone', 'phone', $this->string(255)->notNull());
+        $this->alterColumn('client_contact_phone', 'phone', $this->string(255)->notNull());
     }
 }

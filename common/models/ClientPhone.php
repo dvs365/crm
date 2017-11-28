@@ -53,7 +53,8 @@ class ClientPhone extends \yii\db\ActiveRecord
     {
         return [
             [['id', 'client_id'], 'integer'],
-			['phone', 'default', 'value' => ''],
+			['phone', 'default', 'value' => null],
+            [['phone'], 'unique'],
             [['comment'], 'string', 'max' => '255'],
             ['country', 'match', 'pattern' => '/\+[7]$/'],
             ['city', 'match', 'pattern' => '/^[0-9]{3}$/'],
