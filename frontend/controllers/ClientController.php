@@ -106,6 +106,36 @@ class ClientController extends Controller
             'modelsUser' =>  User::find()->all(),
         ]);
     }
+
+    /**
+     * work
+     */
+    public function actionLoad()
+    {
+        $searchModel = new ClientSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andWhere(['status' => '20']);
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'modelsUser' =>  User::find()->all(),
+        ]);
+    }
+    /**
+     * reject
+     */
+
+    public function actionReject()
+    {
+        $searchModel = new ClientSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andWhere(['status' => '30']);
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'modelsUser' =>  User::find()->all(),
+        ]);
+    }
     /**
      * Displays a single Client model.
      * @param integer $id
@@ -500,26 +530,6 @@ class ClientController extends Controller
 	/**
 	 * work
 	 */
-
-	public function actionWork()
-	{
-		//$model = $this->findModel()->where();
-		return $this->render('work', [
-			'model' => $model,
-		]);
-	}
-
-	/**
-	 * reject
-	 */
-
-	public function actionReject()
-	{
-		//$model = $this->findModel()->where();.
-		return $this->render('reject', [
-			'model' => $model,
-		]);
-	}
 
 	/**
 	 * remove to reject
