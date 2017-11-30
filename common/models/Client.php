@@ -99,6 +99,10 @@ class Client extends \yii\db\ActiveRecord
         return $this->status == Client::STATUS_REJECT;
     }
 
+    public function getIsFree() {
+        return $this->status == Client::STATUS_FREE;
+    }
+
 	/**
 	 * @inheritdoc
 	 */

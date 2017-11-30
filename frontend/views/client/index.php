@@ -54,9 +54,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     $template = '<span size20 lnk>' . Html::encode($model->name) . '</span>';
                     $template .= (!empty($model->clientAddresses[0]->city) ? ', ' . Html::encode(implode(', ', array_unique(ArrayHelper::map($model->clientAddresses, 'id', 'city')))) : '') . '<br />';
                     $template .= !empty($model->clientJurs[0]->name) ? Html::encode(implode(', ', ArrayHelper::map($model->clientJurs, 'id', 'name'))) . '<br />' : '';
-                    $template .= '<span size14 gray>Последнее открытие: ' . Html::encode($model->agoTime) . '</span><br />';
-                    $template .= ($model->user->name1)? '<span size14>Менеджер: ' . Html::encode($model->user->name1.' '.mb_substr($model->user->name2, 0, 1, 'utf-8').'. '.mb_substr($model->user->name3, 0, 1, 'utf-8').'.') . '</span><br />' : '';
-                    $template .= '<span size14>Статус:</span> <span size14 ' . $model->statusColor . '>' . $model->statusLabel . '</span>';
+                    $templateAdd = '<span size14 gray>Последнее открытие: ' . Html::encode($model->agoTime) . '</span><br />';
+                    $templateAdd .= ($model->user->name1)? '<span size14>Менеджер: ' . Html::encode($model->user->name1.' '.mb_substr($model->user->name2, 0, 1, 'utf-8').'. '.mb_substr($model->user->name3, 0, 1, 'utf-8').'.') . '</span><br />' : '';
+                    $templateAdd .= '<span size14>Статус:</span> <span size14 ' . $model->statusColor . '>' . $model->statusLabel . '</span>';
+                    $template .= $model->isFree ? '' : $templateAdd;
                     return $model->isReject ? '<div class="reject">' . $template . '</div>' : Html::a($template, ['view', 'id' => $model->id]);
 				},
 			]) ?>
