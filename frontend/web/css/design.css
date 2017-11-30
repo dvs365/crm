@@ -325,6 +325,10 @@ body {
     padding: 10px 20px;
     margin: 0 0 0 -20px;
 }
+[smallcard] div.reject {
+    padding: 10px 20px;
+    margin: 0 0 0 -20px;
+}
 [smallcard] a:hover, [smallcard] a:active {
     background: rgb(245,245,245);
 }

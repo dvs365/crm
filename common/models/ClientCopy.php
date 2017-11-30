@@ -28,7 +28,7 @@ class ClientCopy extends \yii\db\ActiveRecord
     /**
      *
      */
-    public static function create(int $id, int $userID, int $userAddID, string $name, string $anchor, string $show, string $update): self
+    public static function create(int $id, int $userID = null, int $userAddID, string $name, string $anchor, string $show, string $update): self
     {
         $clientCopy = new ClientCopy;
         $clientCopy->id = $id;

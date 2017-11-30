@@ -69,20 +69,34 @@ class Client extends \yii\db\ActiveRecord
         return $client;
     }
 
-    public function getClientStatus() {
-        if ($this->status == self::STATUS_FREE) {
-                return 'свободный';
-        }
-        if ($this->status == self::STATUS_TARGET) {
-            return 'потенциальный';
-        }
-        if ($this->status == self::STATUS_LOAD) {
-            return 'рабочий';
-        }
-        if ($this->status == self::STATUS_REJECT) {
-            return 'отказной';
-        }
+    function getStatusesLabel() {
+        return [
+            self::STATUS_TARGET => 'потенциальные',
+            self::STATUS_LOAD => 'рабочие',
+            self::STATUS_REJECT => 'отказные'
+        ];
+    }
 
+    function getStatusLabel() {
+        $statuses = $this->getStatusesLabel();
+        return isset($statuses[$this->status]) ? $statuses[$this->status] : '';
+    }
+
+    function  getStatusesColor() {
+        return [
+            self::STATUS_TARGET => 'orange',
+            self::STATUS_LOAD => 'green',
+            self::STATUS_REJECT => 'silver'
+        ];
+    }
+
+    function getStatusColor() {
+        $statuses = $this->getStatusesColor();
+        return isset($statuses[$this->status]) ? $statuses[$this->status] : '';
+    }
+
+    public function getIsReject() {
+        return $this->status == Client::STATUS_REJECT;
     }
 
 	/**

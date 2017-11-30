@@ -19,7 +19,7 @@ use Yii;
  */
 class ClientContactPhoneCopy extends \yii\db\ActiveRecord
 {
-    public static function create(int $id, int $contact_id, $phone, string $country, string $city, string $number, string $comment): self
+    public static function create(int $id, int $contact_id, int $phone = null, string $country, string $city, string $number, string $comment): self
     {
         $clientContactPhoneCopy = new ClientContactPhoneCopy;
         $clientContactPhoneCopy->id = $id;

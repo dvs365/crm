@@ -4,6 +4,7 @@
 use yii\widgets\Menu;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Client */
@@ -19,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['label' => 'Создать', 'url' => ['/client/create']],
             ['label' => 'Свободные', 'url' => ['/client/free']],
             ['label' => 'Потенциальные', 'url' => ['/client/target']],
-            ['label' => 'Рабочие', 'url' => ['/client/worker']],
+            ['label' => 'Рабочие', 'url' => ['/client/load']],
             ['label' => 'Отказные', 'url' => ['/client/reject']],
             ['label' => 'Статистика', 'url' => ['/client/statistic'], 'visible' => Yii::$app->user->can('moder')],
         ],
@@ -35,10 +36,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="expand-link-com-inf" tit inf>Общая информация <span up>&#9652</span><span down>&#9662</span></div>
                 <div class="expand-block-com-inf"><?= Html::a('Редактировать', ['update', 'id' => $model->id], ['cust-edit' => '', 'size14' => ''])?>
                     <span expand-link-movetorefused cust-edit size14>Перенести в отказные</span>
-                    <form expand-block-movetorefused>
-                        <textarea title="Причина переноса" placeholder="Укажите причину переноса"></textarea>
-                        <input type="submit" value="Перенести" />
-                    </form>
+                    <?php $form = ActiveForm::begin([
+                        'action' => ['client/toreject'],
+                        'method' => 'post',
+                        'options' => [
+                            'expand-block-movetorefused' => ''
+                        ]
+                    ]); ?>
+                        <?= $form->field($reject, 'client_id')->label(false)->hiddenInput(['value' => $model->id])?>
+                        <?= $form->field($reject, 'reason', ['template' => '{input}'])->textarea(['rows' => 4, 'placeholder' => 'Укажите причину переноса'])?>
+                        <?= Html::submitInput('Перенести')?>
+                    <?php ActiveForm::end(); ?>
                     <? if ($model->clientJurs[0]->name) {?>
                     <p><span size14>Юр. лицо:</span><br />
                         <? foreach ($model->clientJurs as $indexClientJur => $clientJur) {

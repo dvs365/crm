@@ -12,6 +12,7 @@ use common\models\ClientContact;
 use common\models\ClientContactPhone;
 use common\models\ClientContactMail;
 use common\models\ClientAddress;
+use common\models\ClientReject;
 use app\models\ClientSearch;
 use frontend\services\client\ClientCopyService;
 use yii\web\Controller;
@@ -136,6 +137,7 @@ class ClientController extends Controller
             'modelsUser' =>  User::find()->all(),
         ]);
     }
+
     /**
      * Displays a single Client model.
      * @param integer $id
@@ -151,6 +153,7 @@ class ClientController extends Controller
 		$model->save(false);
         return $this->render('view', [
             'model' => $model,
+            'reject' => new ClientReject,
         ]);
     }
 
@@ -534,13 +537,38 @@ class ClientController extends Controller
 	/**
 	 * remove to reject
 	 */
-	public function actionToReject() {
-		$model = $this->findModel($id);
+	public function actionToreject()
+    {
+        $reject = new ClientReject;
+        if ($reject->load(Yii::$app->request->post())) {
+            $client = $this->findModel($reject->client_id);
+            if (!\Yii::$app->user->can('updateClient', ['client' => $client])) {
+                throw new ForbiddenHttpException('Нет разрешения на редактирование клиента"' . $client->name . '"');
+            }
+            $client->status = Client::STATUS_REJECT;
 
-		if (! \Yii::$app->user->can('updateClient', ['client' => $model])) {
-			throw new ForbiddenHttpException('Нет разрешения на редактирование клиента"'.$model->name.'"');
-		}
-	}
+            $valid = $client->validate();
+            $valid = $reject->validate() && $valid;
+
+            if ($valid) {
+                $transaction = \Yii::$app->db->beginTransaction();
+                try {
+                    if (! ($flag = $client->save(false))) {
+                        $transaction->rollBack();
+                    }
+                    if (! ($flag = $reject->save(false))) {
+                        $transaction->rollBack();
+                    }
+                    if ($flag) {
+                        $transaction->commit();
+                        return $this->redirect(['client/reject']);
+                    }
+                } catch (Exception $e) {
+                    $transaction->rolBack();
+                }
+            }
+        }
+    }
 
     /**
      * Deletes an existing Client model.
