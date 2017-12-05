@@ -19,6 +19,18 @@ use Yii;
  */
 class ClientContactPhone extends \yii\db\ActiveRecord
 {
+
+    public static function create(int $id, string $phone = null, string $country, string $city, string $number, string $comment): self
+    {
+        $ClientContactPhone = new ClientContactPhone;
+        $ClientContactPhone->id = $id;
+        $ClientContactPhone->phone = $phone;
+        $ClientContactPhone->country = $country;
+        $ClientContactPhone->city = $city;
+        $ClientContactPhone->number = $number;
+        $ClientContactPhone->comment = $comment;
+        return $ClientContactPhone;
+    }
     /**
      *
      */

@@ -5,6 +5,8 @@ namespace frontend\services\client;
 use common\models\Client;
 use common\models\ClientAddress;
 use common\models\ClientContact;
+use common\models\ClientContactMail;
+use common\models\ClientContactPhone;
 use common\models\ClientCopy;
 use common\models\ClientJur;
 use common\models\ClientJurCopy;
@@ -34,7 +36,8 @@ Class ClientCopyService
             $model->name,
             $model->anchor,
             $model->showed_at,
-            $model->updated_at
+            $model->updated_at,
+            $model->status
         );
         try {
             if (isset($modelOldCopy)) {
@@ -163,11 +166,11 @@ Class ClientCopyService
 
         if (!empty($contacts)) {
             foreach ($contacts as $indexContact => $modelClientContact) {
-                $contactPhones = $modelClientContact->clientContactPhonesID;
+                $contactPhones = ClientContactPhone::loadMultipleCopy($modelClientContact->clientContactPhonesID, $contactsCopy[$indexContact]->clientContactPhoneCopiesID);
                 $modelsClientContactPhone[$indexContact] = $contactPhones;
                 $oldPhones = ArrayHelper::merge(ArrayHelper::index($contactPhones, 'id'), $oldPhones);
 
-                $contactMails = $modelClientContact->clientContactMailsID;
+                $contactMails = ClientContactMail::loadMultipleCopy($modelClientContact->clientContactMailsID, $contactsCopy[$indexContact]->clientContactMailCopiesID);
                 $modelsClientContactMail[$indexContact] = $contactMails;
                 $oldMails = ArrayHelper::merge(ArrayHelper::index($contactMails, 'id'), $oldMails);
             }
@@ -210,16 +213,30 @@ Class ClientCopyService
                     $contactPhones = $contactCopy->clientContactPhoneCopiesID;
                     $phonesIDs = ArrayHelper::merge($phonesIDs, array_filter(ArrayHelper::getColumn($contactPhones, 'id')));
                     foreach ($contactPhones as $indexContactPhone => $contactPhone) {
+                        $contactPhone = (!empty($contactPhone['id']) && !empty($oldPhones[$contactPhone['id']])) ? $oldPhones[$contactPhone['id']] : ClientContactPhone::create(
+                            $contactPhone->id,
+                            $contactPhone->phone,
+                            $contactPhone->country,
+                            $contactPhone->city,
+                            $contactPhone->number,
+                            $contactPhone->comment
+                        );
+                        $modelsClientContactPhone[$indexContact][$indexContactPhone] = $contactPhone;
                         $valid = $valid && $contactPhone->validate();
                     }
                     $contactMails = $contactCopy->clientContactMailCopiesID;
                     $mailsIDs = ArrayHelper::merge($mailsIDs, array_filter(ArrayHelper::getColumn($contactMails, 'id')));
                     foreach ($contactMails as $indexContactMail => $contactMail) {
+                        $contactMail = (!empty($contactMail['id']) && !empty($oldMails[$contactMail['id']])) ? $oldMails[$contactMail['id']] : ClientContactMail::create(
+                            $contactMail->id,
+                            $contactMail->address,
+                            $contactMail->comment
+                        );
+                        $modelsClientContactMail[$indexContact][$indexContactMail] = $contactMail;
                         $valid = $valid && $contactMail->validate();
                     }
                 }
             }
-
             $oldIDsClientContactPhone = ArrayHelper::getColumn($oldPhones, 'id');
             $deletedIDsContactPhone = array_diff($oldIDsClientContactPhone, $phonesIDs);
 
@@ -258,7 +275,6 @@ Class ClientCopyService
                             }
                         }
                         foreach ($phones as $phone) {
-                            $phone->phone = preg_replace("/[^0-9]/", '', $phone->country.$phone->city.$phone->number);
                             if (! ($flag = $phone->save(false))) {
                                 $transaction->rollBack();
                                 break;
@@ -275,19 +291,18 @@ Class ClientCopyService
                                 $transaction->rollBack();
                                 break;
                             }
-                            $contactPhones = $contact->clientContactPhonesID;
-                            if (isset($contactPhones) && is_array($contactPhones)) {
-                                foreach ($contactPhones as $contactPhone) {
-                                    $contactPhone->phone = preg_replace("/[^0-9]/", '', $contactPhone->country.$contactPhone->city.$contactPhone->number);
+                            if (isset($modelsClientContactPhone[$indexContact]) && is_array($modelsClientContactPhone[$indexContact])) {
+                                foreach ($modelsClientContactPhone[$indexContact] as $contactPhone) {
+                                    $contactPhone->contact_id = $indexContact;
                                     if (! ($flag = $contactPhone->save(false))) {
                                         $transaction->rollBack();
                                         break;
                                     }
                                 }
                             }
-                            $contactMails = $contact->clientContactMailsID;
-                            if (isset($contactMails) && is_array($contactMails)) {
-                                foreach ($contactMails as $contactMail) {
+                            if (isset($modelsClientContactMail[$indexContact]) && is_array($modelsClientContactMail[$indexContact])) {
+                                foreach ($modelsClientContactMail[$indexContact] as $contactMail) {
+                                    $contactMail->contact_id = $indexContact;
                                     if (! ($flag = $contactMail->save(false))) {
                                         $transaction->rollBack();
                                         break;

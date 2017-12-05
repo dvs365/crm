@@ -31,14 +31,6 @@ class ClientContact extends \yii\db\ActiveRecord
             $contacts[$indexContact]->name = $contactCopy->name;
             $contacts[$indexContact]->main = $contactCopy->main;
             $contacts[$indexContact]->position = $contactCopy->position;
-            ClientContactPhone::loadMultipleCopy(
-                $contacts[$indexContact]->clientContactPhonesID,
-                $contactCopy->clientContactPhoneCopiesID
-            );
-            ClientContactMail::loadMultipleCopy(
-                $contacts[$indexContact]->clientContactMailsID,
-                $contactCopy->clientContactMailCopiesID
-            );
         }
         return $contacts;
     }

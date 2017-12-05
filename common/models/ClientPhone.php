@@ -30,7 +30,7 @@ class ClientPhone extends \yii\db\ActiveRecord
                 $phones[$indexPhone]->id = $phoneCopy->id;
             }
             $phones[$indexPhone]->client_id = $phoneCopy->client_id;
-            $phones[$indexPhone]->phone = $phoneCopy->phone;
+            $phones[$indexPhone]->phone = !empty($phoneCopy->phone) ? $phoneCopy->phone : null;
             $phones[$indexPhone]->country = $phoneCopy->country;
             $phones[$indexPhone]->city = $phoneCopy->city;
             $phones[$indexPhone]->number = $phoneCopy->number;

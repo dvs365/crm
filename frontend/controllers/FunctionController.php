@@ -30,38 +30,78 @@ class FunctionController extends Controller
         $clientEditSearch = new ClientEditSearch;
         $clientCopy = ClientCopy::find()->indexBy('id')->all();
 
-        $queryClient = Client::find()->select('client.*')->indexBy('id')
-            ->leftJoin('client_copy', Client::tableName() . '.`id` = ' . ClientCopy::tableName() .'.`id`')
-            ->where(ClientCopy::tableName() . '.`updated_at` <> ' . Client::tableName() . '.`updated_at`');
-        $countClients = clone $queryClient;
-        $pages = new Pagination(['totalCount' => $countClients->count(), 'pageSize' => 10]);
-        $pages->pageSizeParam = false;
-        $modelsClient = $queryClient->offset($pages->offset)->limit($pages->limit)->all();
+        $dataProvider = $clientEditSearch->search(Yii::$app->request->queryParams);
+        $modelsClient = $dataProvider->getModels();
 
         foreach ($modelsClient as $keyClient => $modelClient) {
             $change = new \stdClass;
             $change->name = $modelClient->name === $clientCopy[$keyClient]->name;
+            $clientJursDellID = array_keys(array_diff_key($clientCopy[$keyClient]->clientJurCopiesID, $modelClient->clientJursID));
+            foreach ($clientJursDellID as $clientJurDellID) {
+                $change->jur[$clientJurDellID] = false;
+            }
             foreach ($modelClient->clientJursID as $keyJur => $mClientJur) {
                 $change->jur[$keyJur] = $mClientJur->name === $clientCopy[$keyClient]->clientJurCopiesID[$keyJur]->name;
+            }
+            $clientMailsDellID = array_keys(array_diff_key($clientCopy[$keyClient]->clientMailCopiesID, $modelClient->clientMailsID));
+            foreach ($clientMailsDellID as $clientMailDellID) {
+                $change->mail[$clientMailDellID] = ['address' => false, 'comment' => false];
             }
             foreach ($modelClient->clientMailsID as $keyMail => $mClientMail) {
                 $change->mail[$keyMail]['address'] = $mClientMail->address === $clientCopy[$keyClient]->clientMailCopiesID[$keyMail]->address;
                 $change->mail[$keyMail]['comment'] = $mClientMail->comment === $clientCopy[$keyClient]->clientMailCopiesID[$keyMail]->comment;
             }
+            $clientPhonesDellID = array_keys(array_diff_key($clientCopy[$keyClient]->clientPhoneCopiesID, $modelClient->clientPhonesID));
+            foreach ($clientPhonesDellID as $clientPhoneDellID) {
+                $change->phone[$clientPhoneDellID] = ['phone' => false, 'comment' => false];
+            }
             foreach ($modelClient->clientPhonesID as $keyPhone => $mClientPhone) {
                 $change->phone[$keyPhone]['phone'] = $mClientPhone->phone === $clientCopy[$keyClient]->clientPhoneCopiesID[$keyPhone]->phone;
                 $change->phone[$keyPhone]['comment'] = $mClientPhone->comment === $clientCopy[$keyClient]->clientPhoneCopiesID[$keyPhone]->comment;
             }
+
+            $clientContactsDellID = array_keys(array_diff_key($clientCopy[$keyClient]->clientContactCopiesID, $modelClient->clientContactsID));
+
+            foreach ($clientContactsDellID as $clientContactDellID) {
+                $change->contact[$clientContactDellID] = ['name' => false, 'main' => false, 'position' => false];
+                foreach ($clientCopy[$keyClient]->clientContactCopiesID[$clientContactDellID]->clientContactPhoneCopiesID as $contactPhone) {
+                    $change->contact[$clientContactDellID]['phone'][$contactPhone->id] = ['phone' => false, 'comment' => false, 'notedit' => false];
+                }
+                foreach ($clientCopy[$keyClient]->clientContactCopiesID[$clientContactDellID]->clientContactMailCopiesID as $contactMail) {
+                    $change->contact[$clientContactDellID]['mail'][$contactMail->id] = ['address' => false, 'comment' => false, 'notedit' => false];
+                }
+            }
+
             foreach ($modelClient->clientContactsID as $keyContact => $mClientContact) {
                 $change->contact[$keyContact]['name'] = $mClientContact->name === $clientCopy[$keyClient]->clientContactCopiesID[$keyContact]->name;
                 $change->contact[$keyContact]['main'] = $mClientContact->main === $clientCopy[$keyClient]->clientContactCopiesID[$keyContact]->main;
                 $change->contact[$keyContact]['position'] = $mClientContact->position === $clientCopy[$keyClient]->clientContactCopiesID[$keyContact]->position;
+
+                $contactPhonesCopy = $clientCopy[$keyClient]->clientContactCopiesID[$keyContact]->clientContactPhoneCopiesID;
+                $contactPhones = $mClientContact->clientContactPhonesID;
+                if (is_array($contactPhonesCopy) && is_array($contactPhones)){
+                    $clientContactPhonesDellID = array_keys(array_diff_key($contactPhonesCopy, $contactPhones));
+                    foreach ($clientContactPhonesDellID as $clientContactPhoneDellID) {
+                        $change->contact[$keyContact]['phone'][$clientContactPhoneDellID] = ['notedit' => false];
+                    }
+                }
+
                 foreach ($mClientContact->clientContactPhonesID as $keyCPhone => $mClientContactPhone) {
                     $change->contact[$keyContact]['phone'][$keyCPhone]['phone'] = $mClientContactPhone->phone === $clientCopy[$keyClient]->clientContactCopiesID[$keyContact]->clientContactPhoneCopiesID[$keyCPhone]->phone;
                     $change->contact[$keyContact]['phone'][$keyCPhone]['comment'] = $mClientContactPhone->comment === $clientCopy[$keyClient]->clientContactCopiesID[$keyContact]->clientContactPhoneCopiesID[$keyCPhone]->comment;
                     $change->contact[$keyContact]['phone'][$keyCPhone]['notedit'] = array_search(false, $change->contact[$keyContact]['phone'][$keyCPhone]) === false;
                 }
                 $change->contact[$keyContact]['phone_notedit'] = !count(array_filter($change->contact[$keyContact]['phone'], function ($a) {return !$a['notedit'];}));
+
+                $contactMailsCopy = $clientCopy[$keyClient]->clientContactCopiesID[$keyContact]->clientContactMailCopiesID;
+                $contactMails = $mClientContact->clientContactMailsID;
+                if (is_array($contactMailsCopy) && is_array($contactMails)){
+                    $clientContactMailsDellID = array_keys(array_diff_key($contactMailsCopy, $contactMails));
+                    foreach ($clientContactMailsDellID as $clientContactMailDellID) {
+                        $change->contact[$keyContact]['mail'][$clientContactMailDellID] = ['notedit' => false];
+                    }
+                }
+
                 foreach ($mClientContact->clientContactMailsID as $keyCMail => $mClientContactMail) {
                     $change->contact[$keyContact]['mail'][$keyCMail]['address'] = $mClientContactMail->address === $clientCopy[$keyClient]->clientContactCopiesID[$keyContact]->clientContactMailCopiesID[$keyCMail]->address;
                     $change->contact[$keyContact]['mail'][$keyCMail]['comment'] = $mClientContactMail->comment === $clientCopy[$keyClient]->clientContactCopiesID[$keyContact]->clientContactMailCopiesID[$keyCMail]->comment;
@@ -87,16 +127,14 @@ class FunctionController extends Controller
             }
             $changes[$keyClient] = $change;
         }
-        //$dataProvider = $clientEditSearch->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $clientEditSearch,
-            //'dataProvider' => $dataProvider,
+            'pages' => $dataProvider->getPagination(),
             'modelsUser' =>  User::find()->all(),
             'changes' => $changes ?: [],
             'modelsClient' => $modelsClient,
             'mCopy' => $clientCopy,
-            'pages' => $pages,
         ]);
     }
 

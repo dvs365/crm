@@ -48,7 +48,7 @@ class Client extends \yii\db\ActiveRecord
             [['anchor'], 'string'],
 
             ['status', 'default', 'value' => self::STATUS_FREE],
-            ['status', 'in', 'range' => [self::STATUS_FREE, self::STATUS_REJECT]],
+            ['status', 'in', 'range' => [self::STATUS_FREE, self::STATUS_TARGET, self::STATUS_LOAD, self::STATUS_REJECT]],
 
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];

@@ -16,6 +16,14 @@ use Yii;
  */
 class ClientContactMail extends \yii\db\ActiveRecord
 {
+    public static function create(int $id, string $address, string $comment): self
+    {
+        $ClientContactMail = new ClientContactMail;
+        $ClientContactMail->id = $id;
+        $ClientContactMail->address = $address;
+        $ClientContactMail->comment = $comment;
+        return $ClientContactMail;
+    }
     /**
      *
      */
