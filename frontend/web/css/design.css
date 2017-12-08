@@ -405,9 +405,10 @@ body {
     margin-left: 20px;
     cursor: pointer;
 }
-form[expand-block-movetorefused] textarea, form[expand-block-movetorefused] input {
+form[expand-block-movetorefused] textarea, form[expand-block-movetorefused] input[type=submit] {
     margin-top: 10px;
 }
+
 [cust-inf-block] u[comment] {
     text-decoration: none;
     font-size: 14px;
@@ -1072,6 +1073,20 @@ ul.pagination li.active a{
     margin: 10px 100px 0 0;
 }
 
+[function] [refusals] a.a-submit {
+    display:block;
+    width:100px;
+    font-size:18px;
+    text-align:center;
+    background: rgb(115,140,215);
+    color: rgb(255,255,255);
+    padding: 8px 0;
+    margin-top: 8px;
+}
+[function] [refusals] a:hover{
+    background: rgb(220,20,60);
+}
+
 /* Functions-clients-transfer
 -----------------------------------------------------------------------------*/
 [search-block] {
@@ -1500,7 +1515,7 @@ div.help-block {
 	width: 800px;
 	margin: 15px 0 -5px;
 }
-div.has-error input, div.has-error input#date, div.has-error input#datestart, div.has-error select{
+div.has-error input, div.has-error input#date, div.has-error input#datestart, div.has-error select, div.has-error textarea{
     border: 1px solid red;
 }
 div.help-block {

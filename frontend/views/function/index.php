@@ -1,11 +1,9 @@
 <?php
 
 use yii\bootstrap\ActiveForm;
-use yii\widgets\Menu;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\LinkPager;
-//use yii\data\Pagination;
 
 use frontend\assets\FunctionAsset;
 
@@ -23,24 +21,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <div colswr="1">
         <div colcont clearfix>
             <div dop-menu>
-                <?= Menu::widget([
-                    'items' => [
-                        ['label' => 'Проверка изменений', 'url' => ['function/index']],
-                        ['label' => 'Проверка отказов', 'url' => ['function/reject']],
-                        ['label' => 'Передача клиентов', 'url' => ['function/transfer']],
-                        ['label' => 'Дополнительный доступ', 'url' => ['function/addaccess']],
-                    ],
-                    'activeCssClass' => 'cur',
-                    'options' => [
-                        'cust-dop-menu' => '',
-                    ]
-                ])?>
+                <?php echo $this->render('_menu'); ?>
             </div>
             <div filters>
-                <?php echo $this->render('_search', [
+                <?php echo $this->render('_searchEdit', [
                     'model' => $searchModel,
                     'modelsUser' => $modelsUser,
-                    'changes' => $changes,
                 ]); ?>
             </div>
             <?php $form = ActiveForm::begin(['action' => ['function/choose'], 'id' => 'contact-form', 'options' => ['cards' => '']]); ?>
@@ -50,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <? foreach ($changes as $id => $change) {?>
                     <div smallcard function>
-                        <?= $form->field($mCopy[$id], 'id[' . $id . ']', ['options' => ['tag' => false]])->checkbox(
+                        <?= $form->field($modelsClient[$id], 'id[' . $id . ']', ['options' => ['tag' => false]])->checkbox(
                                 [
                                     'template' => '<div check>{input}<label for="{label}"></label></div>',
                                     'label' => 'checkbox-' . Html::encode($id),

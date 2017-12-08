@@ -52,8 +52,8 @@ class ClientPhone extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'client_id'], 'integer'],
-			['phone', 'default', 'value' => null],
+            [['client_id'], 'integer'],
+            ['phone', 'default', 'value' => null],
             [['phone'], 'unique'],
             [['comment'], 'string', 'max' => '255'],
             ['country', 'match', 'pattern' => '/\+[7]$/'],

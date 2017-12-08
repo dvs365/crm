@@ -5,19 +5,19 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ClientSearch */
+/* @var $model app\models\ClientEditSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
 <?php $form = ActiveForm::begin([
-    'action' => [Yii::$app->controller->route],
+    'action' => ['index'],
     'method' => 'get',
     'options' => [
         'search-form' => ''
     ]
 ]); ?>
 <div search-field>
-    <?= $form->field($model, 'clientSearch', ['options' => ['class' => ''], 'template' => "{input}"])->textInput(['id' => 'search', 'class' => '']) ?>
+    <?= $form->field($model, 'clientEditSearch', ['options' => ['class' => ''], 'template' => "{input}"])->textInput(['id' => 'search', 'class' => '']) ?>
     <? $items = ArrayHelper::map($modelsUser, 'id', 'fullFio');?>
     <?= (Yii::$app->user->can('moder')) ? $form->field($model, 'user_id', ['options' => ['class' => 'client_field'], 'template' => "{input}"])->dropDownList($items, ['class' => '', 'id' =>'manager', 'prompt' => 'Все менеджеры'])->label(false) : ''?>
     <?= Html::submitInput('Найти')?>

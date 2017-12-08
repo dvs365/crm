@@ -83,7 +83,7 @@ class ClientController extends Controller
 	{
 		$searchModel = new ClientSearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andWhere(['status' => '0']);
+        $dataProvider->query->andWhere(['status' => Client::STATUS_FREE]);
 		return $this->render('index', [
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
@@ -100,7 +100,7 @@ class ClientController extends Controller
     {
         $searchModel = new ClientSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andWhere(['status' => '10']);
+        $dataProvider->query->andWhere(['status' => Client::STATUS_TARGET]);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -115,7 +115,7 @@ class ClientController extends Controller
     {
         $searchModel = new ClientSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andWhere(['status' => '20']);
+        $dataProvider->query->andWhere(['status' => Client::STATUS_LOAD]);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -130,7 +130,7 @@ class ClientController extends Controller
     {
         $searchModel = new ClientSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andWhere(['status' => '30']);
+        $dataProvider->query->andWhere(['status' => Client::STATUS_REJECT]);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -316,9 +316,9 @@ class ClientController extends Controller
      */
     public function actionUpdate($id)
     {
-		$model = $this->findModel($id);
+        $model = $this->findModel($id);
 
-		if (! \Yii::$app->user->can('updateClient', ['client' => $model])) {
+        if (! \Yii::$app->user->can('updateClient', ['client' => $model])) {
 			throw new ForbiddenHttpException('Нет разрешения на редактирование клиента "'.$model->name.'"');
 		}
         $modelsClientJur = $model->clientJurs;
@@ -373,7 +373,7 @@ class ClientController extends Controller
 			$deletedIDsContact = array_diff($oldIDsContact, array_filter(ArrayHelper::map($modelsClientContact, 'id', 'id')));
 			$deletedIDsAddress = array_diff($oldIDsAddress, array_filter(ArrayHelper::map($modelsClientAddress, 'id', 'id')));
 
-            if (empty($model->user_id) && $model->status == Client::STATUS_TARGET) {
+            if (empty($model->user_id)) {
                 $model->status = Client::STATUS_FREE;
             }
 
@@ -422,7 +422,7 @@ class ClientController extends Controller
 			if ($valid) {
 				$transaction = \Yii::$app->db->beginTransaction();
 				try {
-                    $model->updated_at = date('Y-m-d H:i:s');
+                    $dirty = empty($model->getDirtyAttributes());
 					if ($flag = $model->save(false)) {
 						if (!empty($deletedIDsJur)) {
 							ClientJur::deleteAll(['id' => $deletedIDsJur]);
@@ -447,49 +447,53 @@ class ClientController extends Controller
 						}
                         foreach ($modelsClientJur as $modelClientJur) {
                             $modelClientJur->client_id = $model->id;
-							if (! ($flag = $modelClientJur->save(false))) {
-								$transaction->rollBack();
-								break;
-							}
-						}
-						foreach ($modelsClientPhone as $modelClientPhone) {
-							$modelClientPhone->client_id = $model->id;
-							$phoneFull = $modelClientPhone->country.$modelClientPhone->city.$modelClientPhone->number;
-							$modelClientPhone->phone = preg_replace("/[^0-9]/", '', $phoneFull) ?: null;
-							if (! ($flag = $modelClientPhone->save(false))) {
-								$transaction->rollBack();
-								break;
-							}
-						}
-						foreach ($modelsClientMail as $modelClientMail) {
-							$modelClientMail->client_id = $model->id;
-							if (! ($flag = $modelClientMail->save(false))) {
-								$transaction->rollBack();
-								break;
-							}
-						}
+                            $dirty = $dirty && empty($modelClientJur->getDirtyAttributes());
+                            if (! ($flag = $modelClientJur->save(false))) {
+                                $transaction->rollBack();
+                                break;
+                            }
+                        }
+                        foreach ($modelsClientPhone as $modelClientPhone) {
+                            $modelClientPhone->client_id = $model->id;
+                            $phoneFull = $modelClientPhone->country.$modelClientPhone->city.$modelClientPhone->number;
+                            $modelClientPhone->phone = preg_replace("/[^0-9]/", '', $phoneFull) ?: null;
+                            $dirty = $dirty && empty($modelClientPhone->getDirtyAttributes());
+                            if (! ($flag = $modelClientPhone->save(false))) {
+                                $transaction->rollBack();
+                                break;
+                            }
+                        }
+                        foreach ($modelsClientMail as $modelClientMail) {
+                            $modelClientMail->client_id = $model->id;
+                            $dirty = $dirty && empty($modelClientMail->getDirtyAttributes());
+                            if (! ($flag = $modelClientMail->save(false))) {
+                                $transaction->rollBack();
+                                break;
+                            }
+                        }
 						foreach ($modelsClientContact as $indexContact => $modelClientContact) {
 							$modelClientContact->client_id = $model->id;
+                            $dirty = $dirty && empty($modelClientContact->getDirtyAttributes());
 							if (! ($flag = $modelClientContact->save(false))) {
 								$transaction->rollBack();
 								break;
 							}
-
 							if (isset($modelsClientContactPhone[$indexContact]) && is_array($modelsClientContactPhone[$indexContact])) {
 								foreach ($modelsClientContactPhone[$indexContact] as $indexPhone => $modelClientContactPhone) {
 									$modelClientContactPhone->contact_id = $modelClientContact->id;
                                     $phoneCFull = $modelClientContactPhone->country.$modelClientContactPhone->city.$modelClientContactPhone->number;
 									$modelClientContactPhone->phone = preg_replace("/[^0-9]/", '', $phoneCFull) ?: null;
+                                    $dirty = $dirty && empty($modelClientContactPhone->getDirtyAttributes());
 									if (! ($flag = $modelClientContactPhone->save(false))) {
 										$transaction->rollBack();
 										break;
 									}
 								}
 							}
-
 							if (isset($modelsClientContactMail[$indexContact]) && is_array($modelsClientContactMail[$indexContact])) {
 								foreach ($modelsClientContactMail[$indexContact] as $indexMail => $modelClientContactMail) {
 									$modelClientContactMail->contact_id = $modelClientContact->id;
+                                    $dirty = $dirty && empty($modelClientContactMail->getDirtyAttributes());
 									if (! ($flag = $modelClientContactMail->save(false))) {
 										$transaction->rollBack();
 										break;
@@ -499,11 +503,18 @@ class ClientController extends Controller
 						}
 						foreach ($modelsClientAddress as $modelClientAddress) {
 							$modelClientAddress->client_id = $model->id;
+                            $dirty = $dirty && empty($modelClientAddress->getDirtyAttributes());
 							if (! ($flag = $modelClientAddress->save(false))) {
 								$transaction->rollBack();
 								break;
 							}
 						}
+                        if (!$dirty) {
+                            $model->updated_at = date('Y-m-d H:i:s');
+                            if (! ($flag = $model->save(false))) {
+                                $transaction->rollBack();
+                            }
+                        }
 					}
 
 					if ($flag) {

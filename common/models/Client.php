@@ -50,6 +50,9 @@ class Client extends \yii\db\ActiveRecord
             ['status', 'default', 'value' => self::STATUS_FREE],
             ['status', 'in', 'range' => [self::STATUS_FREE, self::STATUS_TARGET, self::STATUS_LOAD, self::STATUS_REJECT]],
 
+            ['user_add_id', 'filter', 'filter' => 'intval'],
+
+            ['user_id', 'filter', 'filter' => 'intval'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -245,6 +248,11 @@ class Client extends \yii\db\ActiveRecord
     public function getClientCopy()
     {
         return $this->hasOne(ClientCopy::className(), ['id' => 'id']);
+    }
+
+    public function getClientReject()
+    {
+        return $this->hasOne(ClientReject::className(), ['client_id' => 'id']);
     }
 
 	/**

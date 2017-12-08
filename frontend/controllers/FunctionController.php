@@ -9,7 +9,7 @@ use common\models\User;
 use common\models\Client;
 use common\models\ClientCopy;
 use app\models\ClientEditSearch;
-use yii\data\Pagination;
+use app\models\ClientSearch;
 
 class FunctionController extends Controller
 {
@@ -166,8 +166,33 @@ class FunctionController extends Controller
         }
     }
 
-    public function actionChoose() {
-        $ids = Yii::$app->request->post('ClientCopy')['id'];
+    public function actionApprove_reject(int $id)
+    {
+        try {
+            $this->clientCopyService->approve_reject($id);
+            return $this->redirect(['function/check_reject']);
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+            Yii::$app->session->setFlash('error', $e->getMessage());
+            return false;
+        }
+    }
+
+    public function actionCancel_reject(int $id)
+    {
+        try {
+            $this->clientCopyService->cancel_reject($id);
+            return $this->redirect(['function/check_reject']);
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+            Yii::$app->session->setFlash('error', $e->getMessage());
+            return false;
+        }
+    }
+
+    public function actionChoose()
+    {
+        $ids = Yii::$app->request->post('Client')['id'];
         foreach ($ids as $id => $checked) {
             if ($checked) {
                 if (Yii::$app->request->post('recovery')) {
@@ -176,9 +201,29 @@ class FunctionController extends Controller
                 if (Yii::$app->request->post('backup')) {
                     $this->clientCopyService->backup($id);
                 }
+                if (Yii::$app->request->post('cancelreject')) {
+                    $this->clientCopyService->cancel_reject($id);
+                }
+                if (Yii::$app->request->post('approvereject')) {
+                    $this->clientCopyService->approve_reject($id);
+                }
             }
         }
-        return $this->redirect(['function/index']);
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionCheck_reject()
+    {
+        $searchModel = new ClientSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->joinWith('clientReject');
+        $dataProvider->query->andWhere(['status' => Client::STATUS_REJECT, 'approved' => 0]);
+        return $this->render('checkreject', [
+            'searchModel' => $searchModel,
+            'modelsUser' =>  User::find()->all(),
+            'dataProvider' => $dataProvider,
+            'models' => $dataProvider->getModels(),
+        ]);
     }
 
     public function backupClientRest()

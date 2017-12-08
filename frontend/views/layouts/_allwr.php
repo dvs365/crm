@@ -24,7 +24,7 @@ use yii\widgets\Menu;
 				['label' => 'Дела<span ecount>'.Yii::$app->count->todo().'</span>', 'url' => ['todo/day'], 'active' => $checkController('todo')],
 				['label' => 'Почта', 'url' => ['site/mail']],
 				['label' => 'Клиенты', 'url' => ['client/index'], 'active' => $checkController('client')],
-				['label' => 'Функции', 'url' => ['function/index'], 'visible' => Yii::$app->user->can('moder')],
+				['label' => 'Функции', 'url' => ['function/index'], 'active' => $checkController('function'), 'visible' => Yii::$app->user->can('moder')],
 				['label' => 'Регистрация', 'url' => ['site/signup'], 'visible' => Yii::$app->user->can('moder')],
 			],
 			'activeCssClass' => 'cur',

@@ -19,6 +19,7 @@ use common\models\ClientContactPhoneCopy;
 use common\models\ClientContactMailCopy;
 use common\models\ClientAddressCopy;
 use app\base\Model;
+use common\models\ClientReject;
 use yii\helpers\ArrayHelper;
 
 Class ClientCopyService
@@ -325,6 +326,29 @@ Class ClientCopyService
                 }
             }
 
+        }
+    }
+
+    public static function cancel_reject(int $id)
+    {
+        $client = Client::findOne($id);
+        $clientReject = ClientReject::findOne(['client_id' => $id]);
+        $transaction = \Yii::$app->db->beginTransaction();
+        $clientReject->delete();
+        $client->status = Client::STATUS_TARGET;
+        if (! ($client->validate() && $client->save(false))) {
+            $transaction->rollBack();
+        }else {
+            $transaction->commit();
+        }
+    }
+
+    public static function approve_reject(int $id)
+    {
+        $clientReject = ClientReject::findOne(['client_id' => $id]);
+        $clientReject->approved = 1;
+        if ($clientReject->validate()) {
+            $clientReject->save(false);
         }
     }
 }

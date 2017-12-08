@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'expand-block-movetorefused' => ''
                         ]
                     ]); ?>
-                        <?= $form->field($reject, 'client_id')->label(false)->hiddenInput(['value' => $model->id])?>
+                        <?= $form->field($reject, 'client_id', ['template' => '{input}'])->label(false)->hiddenInput(['value' => $model->id])?>
                         <?= $form->field($reject, 'reason', ['template' => '{input}'])->textarea(['rows' => 4, 'placeholder' => 'Укажите причину переноса'])?>
                         <?= Html::submitInput('Перенести')?>
                     <?php ActiveForm::end(); ?>
