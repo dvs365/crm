@@ -42,6 +42,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 				<?= $form->field($modelClientPhone, "[{$index}]city", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'city' => '', 'title' => 'Код города/оператора', 'placeholder' => '919']) ?>
 				<?= $form->field($modelClientPhone, "[{$index}]number", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'number' => '', 'title' => 'Номер', 'placeholder' => '456-45-45']) ?>
 				<?= $form->field($modelClientPhone, "[{$index}]comment", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->textInput(['maxlength' => true, 'class' => '', 'phone-comment' => '', 'title' => 'Комментарий', 'placeholder' => 'Комментарий']) ?>
+                <?= $form->field($modelClientPhone, "[{$index}]client_id", ['options' => ['class' => 'client_field'], 'template' => "{input}"])->hiddenInput(['client_id' => $model->id]) ?>
 				<?= Html::a('<span del></span>', '#', ['class' => 'remove-item_client_phone', 'title' => 'Удалить'])?>
 			</u>
 		</div>

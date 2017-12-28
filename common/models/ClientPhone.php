@@ -67,6 +67,7 @@ class ClientPhone extends \yii\db\ActiveRecord
                      || $('.item_client_phone input[number]').val() != '' 
                      || $('.item_client_phone input[phone-comment]').val() != '';
             }"],
+            [['city', 'number', 'country'], 'validatePhone'],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],
         ];
     }
@@ -93,5 +94,18 @@ class ClientPhone extends \yii\db\ActiveRecord
     public function getClient()
     {
         return $this->hasOne(Client::className(), ['id' => 'client_id']);
+    }
+
+    public function validatePhone($attribute, $params)
+    {
+        $fullphone = $this->country .' '. $this->city .' '. $this->number;
+        $phone = ClientPhone::find()->where(['country' => $this->country, 'city' => $this->city, 'number' => $this->number])->andWhere(['!=', 'client_id', $this->client_id])->all();
+
+        $contacts = ClientContact::find()->where(['client_id' => $this->client_id])->all();
+        $contactsID = array_column($contacts, 'id');
+        $contactPhone = ClientContactPhone::find()->where(['country' => $this->country, 'city' => $this->city, 'number' => $this->number])->AndWhere(['not in', 'contact_id', $contactsID])->all();
+        if (!empty($phone) || !empty($contactPhone)) {
+            $this->addError($attribute, 'Телефон ' . $fullphone . ' уже существует.');
+        }
     }
 }

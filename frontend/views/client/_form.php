@@ -5,11 +5,13 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use wbraganca\dynamicform\DynamicFormWidget;
 
+use frontend\assets\ClientAsset;
+
 /* @var $this yii\web\View */
 /* @var $model common\models\Client */
 /* @var $form yii\widgets\ActiveForm */
 
-
+ClientAsset::register($this);
 ?>
 <div cust-content edit-card>
 	<?php $form = ActiveForm::begin(['id' => 'dynamic-form']); ?>

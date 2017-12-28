@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\widgets\ActiveForm;
 use common\models\User;
 use common\models\Client;
 use common\models\ClientJur;
@@ -175,11 +176,14 @@ class ClientController extends Controller
         $clientCopyService = new ClientCopyService;
 
         if ($model->load(Yii::$app->request->post())) {
+            $isAjax = Yii::$app->request->isAjax;
+
             $modelsClientJur = Model::createMultiple(ClientJur::classname());
             $modelsClientPhone = Model::createMultiple(ClientPhone::classname());
             $modelsClientMail = Model::createMultiple(ClientMail::classname());
             $modelsClientContact = Model::createMultiple(ClientContact::classname());
             $modelsClientAddress = Model::createMultiple(ClientAddress::classname());
+
             Model::loadMultiple($modelsClientJur, Yii::$app->request->post());
             Model::loadMultiple($modelsClientPhone, Yii::$app->request->post());
             Model::loadMultiple($modelsClientMail, Yii::$app->request->post());
@@ -192,22 +196,41 @@ class ClientController extends Controller
             // validate all models
 			$valid = $model->validate();
 			$valid = Model::validateMultiple($modelsClientJur) && $valid;
-			$valid = Model::validateMultiple($modelsClientPhone) && $valid;
-			$valid = Model::validateMultiple($modelsClientMail) && $valid;
-			$valid = Model::validateMultiple($modelsClientContact) && $valid;
-			$valid = Model::validateMultiple($modelsClientAddress) && $valid;
+            $valid = Model::validateMultiple($modelsClientContact) && $valid;
+            $valid = Model::validateMultiple($modelsClientAddress) && $valid;
+            if ($isAjax) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                $validAjax = ActiveForm::validateMultiple($modelsClientPhone);
+                $validAjax += ActiveForm::validateMultiple($modelsClientMail);
+            } else {
+                $valid = Model::validateMultiple($modelsClientPhone) && $valid;
+                $valid = Model::validateMultiple($modelsClientMail) && $valid;
+            }
 
-			if (isset($_POST['ClientContactPhone'][0][0])) {
-				foreach ($_POST['ClientContactPhone'] as $indexContact => $phones) {
+
+            if (isset($_POST['ClientContactPhone'][0][0])) {
+                foreach ($_POST['ClientContactPhone'] as $indexContact => $phones) {
 					foreach ($phones as $indexPhone => $phone) {
 						$data['ClientContactPhone'] = $phone;
 						$modelClientContactPhone = new ClientContactPhone;
 						$modelClientContactPhone->load($data);
 						$modelsClientContactPhone[$indexContact][$indexPhone] = $modelClientContactPhone;
-						$valid = $modelClientContactPhone->validate();
 					}
-				}
+					if ($isAjax){
+                        $arrayError = ActiveForm::validateMultiple($modelsClientContactPhone[$indexContact]);
+                        $arrErrorAdd = [];
+                        foreach ($arrayError as $keyError => $valError) {
+                            $input = explode('-', $keyError);
+                            array_splice($input, 1, 0, $indexContact);
+                            $arrErrorAdd[implode('-', $input)] = $valError;
+                        }
+                        $validAjax += $arrErrorAdd;
+                    } else {
+                        $valid = Model::validateMultiple($modelsClientContactPhone[$indexContact]) && $valid;
+                    }
+                }
 			}
+
 			if (isset($_POST['ClientContactMail'][0][0])) {
 				foreach ($_POST['ClientContactMail'] as $indexContact => $mails) {
 					foreach ($mails as $indexMail => $mail) {
@@ -215,10 +238,25 @@ class ClientController extends Controller
 						$modelClientContactMail = new ClientContactMail;
 						$modelClientContactMail->load($data);
 						$modelsClientContactMail[$indexContact][$indexMail] = $modelClientContactMail;
-						$valid = $modelClientContactMail->validate();
 					}
+                    if ($isAjax){
+                        $arrayError = ActiveForm::validateMultiple($modelsClientContactMail[$indexContact]);
+                        $arrErrorAdd = [];
+                        foreach ($arrayError as $keyError => $valError) {
+                            $input = explode('-', $keyError);
+                            array_splice($input, 1, 0, $indexContact);
+                            $arrErrorAdd[implode('-', $input)] = $valError;
+                        }
+                        $validAjax += $arrErrorAdd;
+                    } else {
+                        $valid = Model::validateMultiple($modelsClientContactMail[$indexContact]) && $valid;
+                    }
 				}
 			}
+
+            if ($isAjax && !empty($validAjax)) {
+                return $validAjax;
+            }
 
 			if ($valid) {
 				$transaction = \Yii::$app->db->beginTransaction();
@@ -344,7 +382,7 @@ class ClientController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post())) {
-
+            $isAjax = Yii::$app->request->isAjax;
             //reset
 			$modelsClientContactPhone = [];
 			$modelsClientContactMail = [];
@@ -380,12 +418,18 @@ class ClientController extends Controller
 			//validate all models
 			$valid = $model->validate();
 			$valid = Model::validateMultiple($modelsClientJur) && $valid;
-			$valid = Model::validateMultiple($modelsClientPhone) && $valid;
-			$valid = Model::validateMultiple($modelsClientMail) && $valid;
-			$valid = Model::validateMultiple($modelsClientContact) && $valid;
-			$valid = Model::validateMultiple($modelsClientAddress) && $valid;
+            $valid = Model::validateMultiple($modelsClientContact) && $valid;
+            $valid = Model::validateMultiple($modelsClientAddress) && $valid;
+            if ($isAjax) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                $validAjax = ActiveForm::validateMultiple($modelsClientPhone);
+                $validAjax += ActiveForm::validateMultiple($modelsClientMail);
+            } else {
+                $valid = Model::validateMultiple($modelsClientPhone) && $valid;
+                $valid = Model::validateMultiple($modelsClientMail) && $valid;
+            }
 
-			$phonesIDs = [];
+            $phonesIDs = [];
 			if (isset($_POST['ClientContactPhone'][0][0])) {
 				foreach ($_POST['ClientContactPhone'] as $indexContact => $phones) {
 					$phonesIDs = ArrayHelper::merge($phonesIDs, array_filter(ArrayHelper::getColumn($phones, 'id')));
@@ -394,8 +438,19 @@ class ClientController extends Controller
 						$modelClientContactPhone = (isset($phone['id']) && isset($oldPhones[$phone['id']])) ? $oldPhones[$phone['id']] : new ClientContactPhone;
 						$modelClientContactPhone->load($data);
 						$modelsClientContactPhone[$indexContact][$indexPhone] = $modelClientContactPhone;
-						$valid = $modelClientContactPhone->validate();
 					}
+                    if ($isAjax){
+                        $arrayError = ActiveForm::validateMultiple($modelsClientContactPhone[$indexContact]);
+                        $arrErrorAdd = [];
+                        foreach ($arrayError as $keyError => $valError) {
+                            $input = explode('-', $keyError);
+                            array_splice($input, 1, 0, $indexContact);
+                            $arrErrorAdd[implode('-', $input)] = $valError;
+                        }
+                        $validAjax += $arrErrorAdd;
+                    } else {
+                        $valid = Model::validateMultiple($modelsClientContactPhone[$indexContact]) && $valid;
+                    }
 				}
 			}
 
@@ -411,13 +466,28 @@ class ClientController extends Controller
 						$modelClientContactMail = (isset($mail['id']) && isset($oldMails[$mail['id']])) ? $oldMails[$mail['id']] : new ClientContactMail;
 						$modelClientContactMail->load($data);
 						$modelsClientContactMail[$indexContact][$indexMail] = $modelClientContactMail;
-						$valid = $modelClientContactMail->validate();
 					}
+                    if ($isAjax){
+                        $arrayError = ActiveForm::validateMultiple($modelsClientContactMail[$indexContact]);
+                        $arrErrorAdd = [];
+                        foreach ($arrayError as $keyError => $valError) {
+                            $input = explode('-', $keyError);
+                            array_splice($input, 1, 0, $indexContact);
+                            $arrErrorAdd[implode('-', $input)] = $valError;
+                        }
+                        $validAjax += $arrErrorAdd;
+                    } else {
+                        $valid = Model::validateMultiple($modelsClientContactMail[$indexContact]) && $valid;
+                    }
 				}
 			}
 
 			$oldIDsClientContactMail = ArrayHelper::getColumn($oldMails, 'id');
 			$deletedIDsContactMail = array_diff($oldIDsClientContactMail, $mailsIDs);
+
+            if ($isAjax && !empty($validAjax)) {
+                return $validAjax;
+            }
 
 			if ($valid) {
 				$transaction = \Yii::$app->db->beginTransaction();
