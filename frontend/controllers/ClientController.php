@@ -216,8 +216,8 @@ class ClientController extends Controller
 						$modelClientContactPhone->load($data);
 						$modelsClientContactPhone[$indexContact][$indexPhone] = $modelClientContactPhone;
 					}
-					if ($isAjax){
-                        $arrayError = ActiveForm::validateMultiple($modelsClientContactPhone[$indexContact]);
+					if ($isAjax) {
+					    $arrayError = ActiveForm::validateMultiple($modelsClientContactPhone[$indexContact]);
                         $arrErrorAdd = [];
                         foreach ($arrayError as $keyError => $valError) {
                             $input = explode('-', $keyError);
@@ -239,7 +239,7 @@ class ClientController extends Controller
 						$modelClientContactMail->load($data);
 						$modelsClientContactMail[$indexContact][$indexMail] = $modelClientContactMail;
 					}
-                    if ($isAjax){
+                    if ($isAjax) {
                         $arrayError = ActiveForm::validateMultiple($modelsClientContactMail[$indexContact]);
                         $arrErrorAdd = [];
                         foreach ($arrayError as $keyError => $valError) {
@@ -434,12 +434,13 @@ class ClientController extends Controller
 				foreach ($_POST['ClientContactPhone'] as $indexContact => $phones) {
 					$phonesIDs = ArrayHelper::merge($phonesIDs, array_filter(ArrayHelper::getColumn($phones, 'id')));
 					foreach ($phones as $indexPhone => $phone) {
-						$data['ClientContactPhone'] = $phone;
-						$modelClientContactPhone = (isset($phone['id']) && isset($oldPhones[$phone['id']])) ? $oldPhones[$phone['id']] : new ClientContactPhone;
-						$modelClientContactPhone->load($data);
-						$modelsClientContactPhone[$indexContact][$indexPhone] = $modelClientContactPhone;
+                        $data['ClientContactPhone'] = $phone;
+                        $modelClientContactPhone = (isset($phone['id']) && isset($oldPhones[$phone['id']])) ? $oldPhones[$phone['id']] : new ClientContactPhone;
+                        $modelClientContactPhone->load($data);
+                        $modelClientContactPhone->client_id = $id;
+                        $modelsClientContactPhone[$indexContact][$indexPhone] = $modelClientContactPhone;
 					}
-                    if ($isAjax){
+                    if ($isAjax) {
                         $arrayError = ActiveForm::validateMultiple($modelsClientContactPhone[$indexContact]);
                         $arrErrorAdd = [];
                         foreach ($arrayError as $keyError => $valError) {
@@ -467,7 +468,7 @@ class ClientController extends Controller
 						$modelClientContactMail->load($data);
 						$modelsClientContactMail[$indexContact][$indexMail] = $modelClientContactMail;
 					}
-                    if ($isAjax){
+                    if ($isAjax) {
                         $arrayError = ActiveForm::validateMultiple($modelsClientContactMail[$indexContact]);
                         $arrErrorAdd = [];
                         foreach ($arrayError as $keyError => $valError) {
