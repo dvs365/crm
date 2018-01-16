@@ -66,24 +66,30 @@ class ClientContactPhone extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['contact_id'], 'integer'],
             ['phone', 'default', 'value' => null],
             [['phone'], 'unique'],
             [['phone'], 'match', 'pattern' => "/[0-9]{11}/"],
+
             [['comment'], 'string', 'max' => 255],
+            [['comment'], 'trim'],
+
             ['country', 'match', 'pattern' => '/\+[7]$/'],
             ['city', 'match', 'pattern' => '/^[0-9]{3}$/'],
             ['number', 'match', 'pattern' => '/^[0-9]{3}-[0-9]{2}-[0-9]{2}$/'],
+
             [['country', 'city', 'number'], 'required', 'when' => function ($model) {
-                return !empty($model->country) || !empty($model->city) || !empty($model->number) || !empty($model->comment);
             }, 'whenClient' => "function (attribute, value) {
+                return !empty($model->country) || !empty($model->city) || !empty($model->number) || !empty($model->comment);
                     return $('.item_client_contact_phone input[country]').val() != '' 
                     || $('.item_client_contact_phone input[city]').val() != '' 
                     || $('.item_client_contact_phone input[number]').val() != '' 
                     || $('.item_client_contact_phone input[phone-comment]').val() != '';
             }"],
+
             [['number'], 'validateContactp'],
-			[['contact_id'], 'exist', 'skipOnError' => true, 'targetClass' => ClientContact::className(), 'targetAttribute' => ['contact_id' => 'id']],
+
+            [['contact_id'], 'integer'],
+            [['contact_id'], 'exist', 'skipOnError' => true, 'targetClass' => ClientContact::className(), 'targetAttribute' => ['contact_id' => 'id']],
 		];
 	}
 

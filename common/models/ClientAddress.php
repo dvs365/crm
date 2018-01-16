@@ -57,8 +57,11 @@ class ClientAddress extends \yii\db\ActiveRecord
 	{
 		return [
 			[['client_id'], 'integer'],
+
 			[['country', 'region', 'city', 'street', 'home', 'comment', 'note'], 'string', 'max' => 255],
-			[['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],
+            [['country', 'region', 'city', 'street', 'home', 'comment', 'note'], 'trim'],
+
+            [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],
 		];
 	}
 

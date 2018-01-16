@@ -41,16 +41,19 @@ class Client extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
+            [['name'], 'string', 'max' => 255],
+            [['name'], 'trim'],
+
             [['user_id'], 'integer'],
+
             [['user_add_id'], 'integer'],
             ['user_add_id', 'default', 'value' => '0'],
-            [['name'], 'string', 'max' => 255],
+            ['user_add_id', 'filter', 'filter' => 'intval'],
+
             [['anchor'], 'string'],
 
             ['status', 'default', 'value' => self::STATUS_FREE],
             ['status', 'in', 'range' => [self::STATUS_FREE, self::STATUS_TARGET, self::STATUS_LOAD, self::STATUS_REJECT]],
-
-            ['user_add_id', 'filter', 'filter' => 'intval'],
 
             ['user_id', 'filter', 'filter' => 'intval'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],

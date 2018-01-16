@@ -50,7 +50,10 @@ class ClientContact extends \yii\db\ActiveRecord
 		return [
 			[['client_id'], 'integer'],
 			[['main'], 'string'],
-			[['name', 'position'], 'string', 'max' => 255],
+
+            [['name', 'position'], 'string', 'max' => 255],
+            [['name'], 'trim'],
+
 			[['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],
 		];
 	}

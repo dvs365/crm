@@ -52,23 +52,28 @@ class ClientPhone extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['client_id'], 'integer'],
             ['phone', 'default', 'value' => null],
             [['phone'], 'unique'],
             [['phone'], 'match', 'pattern' => "/[0-9]{11}/"],
+
             [['comment'], 'string', 'max' => '255'],
+            [['comment'], 'trim'],
+
             ['country', 'match', 'pattern' => '/\+[7]$/'],
             ['city', 'match', 'pattern' => '/^[0-9]{3}$/'],
             ['number', 'match', 'pattern' => '/^[0-9]{3}-[0-9]{2}-[0-9]{2}$/'],
+
             [['country', 'city', 'number'], 'required', 'when' => function ($model) {
-                return !empty($model->country) || !empty($model->city) || !empty($model->number) || !empty($model->comment);
             }, 'whenClient' => "function (attribute, value) {
+                return !empty($model->country) || !empty($model->city) || !empty($model->number) || !empty($model->comment);
                     return $('.item_client_phone input[country]').val() != ''
                      || $('.item_client_phone input[city]').val() != '' 
                      || $('.item_client_phone input[number]').val() != '' 
                      || $('.item_client_phone input[phone-comment]').val() != '';
             }"],
             [['number'], 'validatePhone'],
+
+            [['client_id'], 'integer'],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],
         ];
     }

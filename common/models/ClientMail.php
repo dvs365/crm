@@ -46,9 +46,12 @@ class ClientMail extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['client_id'], 'integer'],
 			[['address'], 'email'],
-			[['address', 'comment'], 'string', 'max' => 255],
+
+            [['address', 'comment'], 'string', 'max' => 255],
+            [['address', 'comment'], 'trim'],
+
+            [['client_id'], 'integer'],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],
         ];
     }

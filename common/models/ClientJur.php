@@ -47,6 +47,7 @@ class ClientJur extends \yii\db\ActiveRecord
             [['name'], 'required'],
 			[['client_id'], 'integer'],
             [['name'], 'string', 'max' => 255],
+            [['name'], 'trim'],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],
         ];
     }

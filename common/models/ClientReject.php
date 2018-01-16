@@ -29,9 +29,12 @@ class ClientReject extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['client_id', 'reason'], 'required'],
             [['client_id'], 'integer'],
+
             [['reason'], 'string', 'max' => 255],
+            [['reason'], 'trim'],
+
+            [['client_id', 'reason'], 'required'],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],
         ];
     }
