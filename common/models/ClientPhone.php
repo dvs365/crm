@@ -55,6 +55,7 @@ class ClientPhone extends \yii\db\ActiveRecord
             [['client_id'], 'integer'],
             ['phone', 'default', 'value' => null],
             [['phone'], 'unique'],
+            [['phone'], 'match', 'pattern' => "/[0-9]{11}/"],
             [['comment'], 'string', 'max' => '255'],
             ['country', 'match', 'pattern' => '/\+[7]$/'],
             ['city', 'match', 'pattern' => '/^[0-9]{3}$/'],
@@ -67,7 +68,7 @@ class ClientPhone extends \yii\db\ActiveRecord
                      || $('.item_client_phone input[number]').val() != '' 
                      || $('.item_client_phone input[phone-comment]').val() != '';
             }"],
-            [['city', 'number', 'country'], 'validatePhone'],
+            [['number'], 'validatePhone'],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],
         ];
     }
@@ -96,16 +97,33 @@ class ClientPhone extends \yii\db\ActiveRecord
         return $this->hasOne(Client::className(), ['id' => 'client_id']);
     }
 
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $this->phone = preg_replace("/[^0-9]/", '', $this->country.$this->city.$this->number) ?: null;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function validatePhone($attribute, $params)
     {
         $fullphone = $this->country .' '. $this->city .' '. $this->number;
-        $phone = ClientPhone::find()->where(['country' => $this->country, 'city' => $this->city, 'number' => $this->number])->andWhere(['!=', 'client_id', $this->client_id])->all();
+        $phoneQuery = ClientPhone::find()->where(['country' => $this->country, 'city' => $this->city, 'number' => $this->number]);
+        $contactPhoneQuery = ClientContactPhone::find()->where(['country' => $this->country, 'city' => $this->city, 'number' => $this->number]);
+        if (!empty($this->client_id)) {
+            $phoneQuery->andWhere(['!=', 'client_id', $this->client_id]);
+            $contactsID = array_column(ClientContact::find()->where(['client_id' => $this->client_id])->all(), 'id');
+            $contactPhoneQuery->AndWhere(['not in', 'contact_id', $contactsID]);
+        }
+        $phone = $phoneQuery->one();
+        $contactPhone = $contactPhoneQuery->one();
 
-        $contacts = ClientContact::find()->where(['client_id' => $this->client_id])->all();
-        $contactsID = array_column($contacts, 'id');
-        $contactPhone = ClientContactPhone::find()->where(['country' => $this->country, 'city' => $this->city, 'number' => $this->number])->AndWhere(['not in', 'contact_id', $contactsID])->all();
         if (!empty($phone) || !empty($contactPhone)) {
-            $this->addError($attribute, 'Телефон ' . $fullphone . ' уже существует.');
+            $this->addError('country', 'Телефон ' . $fullphone . ' уже существует.');
+            $this->addError('city', 'Телефон ' . $fullphone . ' уже существует.');
+            $this->addError('number', 'Телефон ' . $fullphone . ' уже существует.');
         }
     }
 }

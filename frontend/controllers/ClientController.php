@@ -207,7 +207,6 @@ class ClientController extends Controller
                 $valid = Model::validateMultiple($modelsClientMail) && $valid;
             }
 
-
             if (isset($_POST['ClientContactPhone'][0][0])) {
                 foreach ($_POST['ClientContactPhone'] as $indexContact => $phones) {
 					foreach ($phones as $indexPhone => $phone) {
@@ -271,8 +270,6 @@ class ClientController extends Controller
 						}
 						foreach ($modelsClientPhone as $modelClientPhone) {
 							$modelClientPhone->client_id = $model->id;
-                            $phoneCFull = $modelClientPhone->country.$modelClientPhone->city.$modelClientPhone->number;
-							$modelClientPhone->phone = preg_replace("/[^0-9]/", '', $phoneCFull) ?: null;
 							if (! ($flag = $modelClientPhone->save(false))) {
 								$transaction->rollBack();
 								break;
@@ -294,8 +291,6 @@ class ClientController extends Controller
 							if (isset($modelsClientContactPhone[$indexContact]) && is_array($modelsClientContactPhone[$indexContact])) {
 								foreach ($modelsClientContactPhone[$indexContact] as $indexPhone => $modelClientContactPhone) {
 									$modelClientContactPhone->contact_id = $modelClientContact->id;
-									$phoneFull = $modelClientContactPhone->country.$modelClientContactPhone->city.$modelClientContactPhone->number;
-									$modelClientContactPhone->phone = preg_replace("/[^0-9]/", '', $phoneFull) ?: null;
 									if (! ($flag = $modelClientContactPhone->save(false))) {
 										$transaction->rollBack();
 										break;
@@ -526,8 +521,6 @@ class ClientController extends Controller
                         }
                         foreach ($modelsClientPhone as $modelClientPhone) {
                             $modelClientPhone->client_id = $model->id;
-                            $phoneFull = $modelClientPhone->country.$modelClientPhone->city.$modelClientPhone->number;
-                            $modelClientPhone->phone = preg_replace("/[^0-9]/", '', $phoneFull) ?: null;
                             $dirty = $dirty && empty($modelClientPhone->getDirtyAttributes());
                             if (! ($flag = $modelClientPhone->save(false))) {
                                 $transaction->rollBack();
@@ -552,8 +545,6 @@ class ClientController extends Controller
 							if (isset($modelsClientContactPhone[$indexContact]) && is_array($modelsClientContactPhone[$indexContact])) {
 								foreach ($modelsClientContactPhone[$indexContact] as $indexPhone => $modelClientContactPhone) {
 									$modelClientContactPhone->contact_id = $modelClientContact->id;
-                                    $phoneCFull = $modelClientContactPhone->country.$modelClientContactPhone->city.$modelClientContactPhone->number;
-									$modelClientContactPhone->phone = preg_replace("/[^0-9]/", '', $phoneCFull) ?: null;
                                     $dirty = $dirty && empty($modelClientContactPhone->getDirtyAttributes());
 									if (! ($flag = $modelClientContactPhone->save(false))) {
 										$transaction->rollBack();

@@ -69,6 +69,7 @@ class ClientContactPhone extends \yii\db\ActiveRecord
 			[['contact_id'], 'integer'],
             ['phone', 'default', 'value' => null],
             [['phone'], 'unique'],
+            [['phone'], 'match', 'pattern' => "/[0-9]{11}/"],
             [['comment'], 'string', 'max' => 255],
             ['country', 'match', 'pattern' => '/\+[7]$/'],
             ['city', 'match', 'pattern' => '/^[0-9]{3}$/'],
@@ -109,6 +110,16 @@ class ClientContactPhone extends \yii\db\ActiveRecord
 	{
 		return $this->hasOne(ClientContact::className(), ['id' => 'contact_id']);
 	}
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $this->phone = preg_replace("/[^0-9]/", '', $this->country.$this->city.$this->number) ?: null;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public function validateContactp($attribute, $params)
     {
