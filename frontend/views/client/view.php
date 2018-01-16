@@ -193,14 +193,14 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 		<div col2>
 			<div cust-inf-block doing>
-				<div tit><?= Html::a('Дела', ['todo/index'])?><?= Html::a('<span add></span>', ['todo/create', 'client_id' => $model->id], ['title' => 'Добавить'])?></div>
+				<div tit><?= Html::a('Дела', ['todo/day'])?><?= Html::a('<span add></span>', ['todo/create', 'client_id' => $model->id], ['title' => 'Добавить'])?></div>
 				<table>
 					<? if ($model->todos[0]) {
 						foreach ($model->todos as $todo) {?>
 							<tr>
 								<td gray><?= \DateTime::createFromFormat('Y-m-d H:i:s', $todo->time_to)->format('d.m.y')?></td>
 								<td descript><?= Html::a($todo->name, ['todo/update', 'id' => $todo->id])?></td>
-								<?= ($todo->time_to < date('Y-m-d H:i')) ? '<td red bold>Просроченo' : '<td orange>На сегодня'?></td>
+								<?= ($todo->time_to < date('Y-m-d H:i')) ? '<td red bold>Просроченo' : '<td orange>На&nbsp;сегодня'?></td>
 							</tr>
 						<?}
 					}?>
