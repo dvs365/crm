@@ -64,8 +64,8 @@ class ClientPhone extends \yii\db\ActiveRecord
             ['number', 'match', 'pattern' => '/^[0-9]{3}-[0-9]{2}-[0-9]{2}$/'],
 
             [['country', 'city', 'number'], 'required', 'when' => function ($model) {
-            }, 'whenClient' => "function (attribute, value) {
                 return !empty($model->country) || !empty($model->city) || !empty($model->number) || !empty($model->comment);
+            }, 'whenClient' => "function (attribute, value) {
                     return $('.item_client_phone input[country]').val() != ''
                      || $('.item_client_phone input[city]').val() != '' 
                      || $('.item_client_phone input[number]').val() != '' 
