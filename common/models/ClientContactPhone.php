@@ -80,10 +80,11 @@ class ClientContactPhone extends \yii\db\ActiveRecord
             [['country', 'city', 'number'], 'required', 'when' => function ($model) {
                 return !empty($model->country) || !empty($model->city) || !empty($model->number) || !empty($model->comment);
             }, 'whenClient' => "function (attribute, value) {
-                    return $('.item_client_contact_phone input[country]').val() != '' 
-                    || $('.item_client_contact_phone input[city]').val() != '' 
-                    || $('.item_client_contact_phone input[number]').val() != '' 
-                    || $('.item_client_contact_phone input[phone-comment]').val() != '';
+                var parent = $('#' + $(attribute).prop('id')).closest('div.item_client_contact_phone');
+                return parent.find('input[country]').val().length
+                    || parent.find('input[city]').val().length
+                    || parent.find('input[number]').val().length
+                    || parent.find('input[phone-comment]').val().length;
             }"],
 
             [['contact_id'], 'integer'],
