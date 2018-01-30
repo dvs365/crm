@@ -16,7 +16,6 @@ use yii\filters\AccessControl;
  */
 class TodoController extends Controller
 {
-    public $test = '111';
 	/**
 	 * @inheritdoc
 	 */
@@ -71,12 +70,11 @@ class TodoController extends Controller
         )->andWhere(
             'time_from < \''.$date->format('Y-m-d 00:00:01').'\''
         )->andWhere(['OR',
-            ['repeat' => 'none'],
-//			['AND', ['>', 'time_to', $date->format('Y-m-d 00:00:01')], ['=', 'repeat', 'dayly']],
-			['repeat' => 'dayly'],
-            ['AND', ['=', 'DAYOFWEEK(time_from)', $date->format('w')+1], ['=', 'repeat', 'weekly']],
-            ['AND', ['=', 'DAYOFMONTH(time_from)', $date->format('j')], ['=', 'repeat', 'monthly']],
-            ['AND', ['=', 'DAYOFMONTH(time_from)', $date->format('j')], ['=', 'MONTH(time_from)', $date->format('n')], ['=', 'repeat', 'yearly']],
+            ['repeat' => Todo::REPEAT_NO],
+			['repeat' => Todo::REPEAT_DAY],
+            ['AND', ['=', 'EXTRACT(DOW FROM time_from)', $date->format('w')], ['=', 'repeat', Todo::REPEAT_WEEK]],
+            ['AND', ['=', 'EXTRACT(DAY FROM time_from)', $date->format('j')], ['=', 'repeat', Todo::REPEAT_MONTH]],
+            ['AND', ['=', 'EXTRACT(DAY FROM time_from)', $date->format('j')], ['=', 'EXTRACT(MONTH FROM time_from)', $date->format('n')], ['=', 'repeat', Todo::REPEAT_YEAR]],
         ])->orderBy(['time_to' => SORT_ASC])->all();
         return $this->render('day', [
             'models' => $models,
@@ -99,11 +97,11 @@ class TodoController extends Controller
             )->andWhere(
                 'time_to > \''.$date->format('Y-m-d 00:00:01').'\''
             )->andWhere(['OR',
-                ['repeat' => 'none'],
-                ['repeat' => 'dayly'],
-                ['AND', ['=', 'DAYOFWEEK(time_from)', $date->format('w')+1], ['=', 'repeat', 'weekly']],
-                ['AND', ['=', 'DAYOFMONTH(time_from)', $date->format('j')], ['=', 'repeat', 'monthly']],
-                ['AND', ['=', 'DAYOFMONTH(time_from)', $date->format('j')], ['=', 'MONTH(time_from)', $date->format('n')], ['=', 'repeat', 'yearly']],
+                ['repeat' => Todo::REPEAT_NO],
+                ['repeat' => Todo::REPEAT_DAY],
+                ['AND', ['=', 'EXTRACT(DOW FROM time_from)', $date->format('w')], ['=', 'repeat', Todo::REPEAT_WEEK]],
+                ['AND', ['=', 'EXTRACT(DAY FROM time_from)', $date->format('j')], ['=', 'repeat', Todo::REPEAT_MONTH]],
+                ['AND', ['=', 'EXTRACT(DAY FROM time_from)', $date->format('j')], ['=', 'EXTRACT(MONTH FROM time_from)', $date->format('n')], ['=', 'repeat', Todo::REPEAT_YEAR]],
             ])->orderBy(['time_to' => SORT_ASC])->all();
             $day[$i] = \DateTime::createFromFormat('d.m.Y', $date->format('d.m.Y'));
             $week[$i] = $this->dayOfWeek($date->format('w'));
@@ -124,6 +122,7 @@ class TodoController extends Controller
 		$date = \DateTime::createFromFormat('d.m.Y', '01.'.$dateCur->format('m').'.'.$dateCur->format('Y'));
 		$month = $date->format('m');
 		$lastDay = $date->format('t');
+        $flag = false;
 		for ($i = 1; $i <= $lastDay; $i++) {
 			$count = Todo::find()->where(
 				'todo.user_id = '.\Yii::$app->user->id
@@ -132,11 +131,11 @@ class TodoController extends Controller
 			)->andWhere(
 				'time_to > \''.$date->format('Y-m-d 00:00:01').'\''
 			)->andWhere(['OR',
-				['repeat' => 'none'],
-				['repeat' => 'dayly'],
-				['AND', ['=', 'DAYOFWEEK(time_from)', $date->format('w')+1], ['=', 'repeat', 'weekly']],
-				['AND', ['=', 'DAYOFMONTH(time_from)', $date->format('j')], ['=', 'repeat', 'monthly']],
-				['AND', ['=', 'DAYOFMONTH(time_from)', $date->format('j')], ['=', 'MONTH(time_from)', $date->format('n')], ['=', 'repeat', 'yearly']],
+				['repeat' => Todo::REPEAT_NO],
+				['repeat' => Todo::REPEAT_DAY],
+				['AND', ['=', 'EXTRACT(DOW FROM time_from)', $date->format('w')], ['=', 'repeat', Todo::REPEAT_WEEK]],
+				['AND', ['=', 'EXTRACT(DAY FROM time_from)', $date->format('j')], ['=', 'repeat', Todo::REPEAT_MONTH]],
+				['AND', ['=', 'EXTRACT(DAY FROM time_from)', $date->format('j')], ['=', 'EXTRACT(MONTH FROM time_from)', $date->format('n')], ['=', 'repeat', Todo::REPEAT_YEAR]],
 			])->count();
 			$monthArr[$month][$date->format('W')][$date->format('w')] = ['date' => \DateTime::createFromFormat('d.m.Y', $date->format('d.m.Y')), 'count' => $count];
 			$date->add(new \DateInterval('P1D'));//Добавляем 1 день

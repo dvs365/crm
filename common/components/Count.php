@@ -17,12 +17,12 @@ class Count extends Component {
         )->andWhere(
             'time_to > \''.$date->format('Y-m-d 00:00:01').'\''
         )->andWhere(['OR',
-            ['repeat' => 'none'],
-            ['repeat' => 'dayly'],
-            ['AND', ['=', 'DAYOFWEEK(time_from)', $date->format('w')+1], ['=', 'repeat', 'weekly']],
-            ['AND', ['=', 'DAYOFMONTH(time_from)', $date->format('j')], ['=', 'repeat', 'monthly']],
-            ['AND', ['=', 'DAYOFMONTH(time_from)', $date->format('j')], ['=', 'MONTH(time_from)', $date->format('n')], ['=', 'repeat', 'yearly']],
-        ])->orderBy(['time_to' => SORT_ASC])->count();
+            ['repeat' => Todo::REPEAT_NO],
+            ['repeat' => Todo::REPEAT_DAY],
+            ['AND', ['=', 'EXTRACT(DOW FROM time_from)', $date->format('w')], ['=', 'repeat', Todo::REPEAT_WEEK]],
+            ['AND', ['=', 'EXTRACT(DAY FROM time_from)', $date->format('j')], ['=', 'repeat', Todo::REPEAT_MONTH]],
+            ['AND', ['=', 'EXTRACT(DAY FROM time_from)', $date->format('j')], ['=', 'EXTRACT(MONTH FROM time_from)', $date->format('n')], ['=', 'repeat', Todo::REPEAT_YEAR]],
+        ])->count();
         return $models;
     }
 }

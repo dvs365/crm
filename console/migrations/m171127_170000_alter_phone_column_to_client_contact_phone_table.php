@@ -10,7 +10,15 @@ class m171127_170000_alter_phone_column_to_client_contact_phone_table extends Mi
 
     public function up()
     {
-        $this->alterColumn('client_contact_phone', 'phone', $this->string(255)->null()->unique());
+        $this->alterColumn('{{%client_contact_phone}}', 'phone', $this->string(255));
+        $this->alterColumn('{{%client_contact_phone}}', 'phone', 'DROP NOT NULL');
+        $this->alterColumn('{{%client_contact_phone}}', 'phone', 'SET DEFAULT NULL');
+        $this->createIndex(
+            'idx-phone_contact_phone-phone',
+            '{{%client_contact_phone}}',
+            'phone',
+            true
+        );
     }
 
     /**
@@ -18,6 +26,13 @@ class m171127_170000_alter_phone_column_to_client_contact_phone_table extends Mi
      */
     public function down()
     {
-        $this->alterColumn('client_contact_phone', 'phone', $this->string(255)->notNull());
+        // drops index for column `id`
+        $this->dropIndex(
+            'idx-phone_contact_phone-phone',
+            '{{%client_contact_phone}}'
+        );
+        $this->alterColumn('{{%client_contact_phone}}', 'phone', $this->string(255));
+        $this->alterColumn('{{%client_contact_phone}}', 'phone', 'DROP NULL');
+        $this->alterColumn('{{%client_contact_phone}}', 'phone', 'SET DEFAULT NOT NULL');
     }
 }

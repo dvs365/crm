@@ -9,7 +9,7 @@ class m171206_132000_add_approved_to_client_reject_table extends Migration
      */
     public function up()
     {
-        $this->addColumn('client_reject', 'approved', $this->boolean()->notNull()->defaultValue(0));
+        $this->addColumn('{{%client_reject}}', 'approved', $this->smallInteger(1)->defaultValue(0));
     }
 
     /**
@@ -17,6 +17,6 @@ class m171206_132000_add_approved_to_client_reject_table extends Migration
      */
     public function down()
     {
-        $this->dropColumn('client_reject', 'approved');
+        $this->dropColumn('{{%client_reject}}', 'approved');
     }
 }

@@ -10,13 +10,14 @@ class m171127_180000_alter_user_id_column_to_client_table extends Migration
 
     public function up()
     {
-        $this->dropForeignKey('client_ibfk_1', 'client');
-        $this->alterColumn('client', 'user_id', $this->integer()->null());
+        $this->alterColumn('{{%client}}', 'user_id', $this->integer());
+        $this->alterColumn('{{%client}}', 'user_id', 'DROP NOT NULL');
+        $this->alterColumn('{{%client}}', 'user_id', 'SET DEFAULT NULL');
         $this->addForeignKey(
             'fk-client-user_id',
-            'client',
+            '{{%client}}',
             'user_id',
-            'user',
+            '{{%user}}',
             'id',
             'CASCADE'
         );
@@ -27,13 +28,15 @@ class m171127_180000_alter_user_id_column_to_client_table extends Migration
      */
     public function down()
     {
-        $this->dropForeignKey('fk-client-user_id', 'client');
-        $this->alterColumn('client', 'user_id', $this->integer()->notNull());
+        $this->dropForeignKey('fk-client-user_id', '{{%client}}');
+        $this->alterColumn('{{%client}}', 'user_id', $this->integer());
+        $this->alterColumn('{{%client}}', 'user_id', 'DROP NULL');
+        $this->alterColumn('{{%client}}', 'user_id', 'SET DEFAULT NOT NULL');
         $this->addForeignKey(
             'fk-client-user_id',
-            'client',
+            '{{%client}}',
             'user_id',
-            'user',
+            '{{%user}}',
             'id',
             'CASCADE'
         );

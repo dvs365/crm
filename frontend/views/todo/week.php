@@ -103,14 +103,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             foreach ($tr as $todo) {?>
                                 <tr class="num">
                                     <? for ($i = 1; $i <=7; $i++) {?>
-                                        <? if ($todo[$i]->repeat == 'dayly') {
+                                       <? if ($todo[$i] && $todo[$i]->repeat == $todo[$i]::REPEAT_DAY) {
                                             $datetime1 = new DateTime($todo[$i]->time_from);
                                             $datetime2 = new DateTime($todo[$i]->time_to);
 											$datetime3 = new DateTime($day[$i]->format('d.m.Y'));
 											$interval = $datetime1->diff($datetime2);
 									    	$current = $datetime3->diff($datetime1);
                                         }?>
-                                    <td><?=($todo[$i]) ? Html::a($todo[$i]->name.(($todo[$i]->repeat == 'dayly') ? ' <span long>'.(($current->format('%a'))+1).'/'.(($interval->format('%a'))+1).'</span>':''), ['todo/update', 'id' => $todo[$i]->id]) : '' ?></td>
+                                    <td><?=($todo[$i]) ? Html::a($todo[$i]->name.(($todo[$i]->repeat == $todo[$i]::REPEAT_DAY) ? ' <span long>'.(($current->format('%a'))+1).'/'.(($interval->format('%a'))+1).'</span>':''), ['todo/update', 'id' => $todo[$i]->id]) : '' ?></td>
                                 <?}?>
                             </tr>
                             <?}?>

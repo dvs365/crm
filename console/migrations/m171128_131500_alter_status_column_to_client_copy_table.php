@@ -10,7 +10,7 @@ class m171128_131500_alter_status_column_to_client_copy_table extends Migration
 
     public function up()
     {
-        $this->alterColumn('client_copy', 'status', $this->smallInteger(6));
+        $this->alterColumn('{{%client_copy}}', 'status', $this->smallInteger(6));
     }
 
     /**
@@ -18,6 +18,6 @@ class m171128_131500_alter_status_column_to_client_copy_table extends Migration
      */
     public function down()
     {
-        $this->alterColumn('client_copy', 'status', 'ENUM("target", "load", "reject") DEFAULT "target"');
+        $this->alterColumn('{{%client_copy}}', 'status', $this->integer()->notNull());
     }
 }

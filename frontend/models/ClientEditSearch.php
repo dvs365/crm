@@ -46,8 +46,8 @@ class ClientEditSearch extends Client
     public function search($params)
     {
         $query = Client::find()->select('client.*')->indexBy('id')
-            ->leftJoin('client_copy', Client::tableName() . '.`id` = ' . ClientCopy::tableName() .'.`id`')
-            ->where(ClientCopy::tableName() . '.`updated_at` <> ' . Client::tableName() . '.`updated_at`');
+            ->leftJoin('client_copy', Client::tableName() . '.id = ' . ClientCopy::tableName() .'.id')
+            ->where(ClientCopy::tableName() . '.updated_at <> ' . Client::tableName() . '.updated_at');
 
         // add conditions that should always apply here
 

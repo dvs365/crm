@@ -9,7 +9,7 @@ class m171124_151000_add_status_column_to_client_table extends Migration
      */
     public function up()
     {
-        $this->addColumn('client', 'status', 'ENUM("target", "load", "reject") DEFAULT "target"');
+        $this->addColumn('{{%client}}', 'status', $this->integer()->notNull());
     }
 
     /**
@@ -17,6 +17,6 @@ class m171124_151000_add_status_column_to_client_table extends Migration
      */
     public function down()
     {
-        $this->dropColumn('client', 'status');
+        $this->dropColumn('{{%client}}', 'status');
     }
 }

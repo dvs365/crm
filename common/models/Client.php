@@ -50,7 +50,8 @@ class Client extends \yii\db\ActiveRecord
             ['user_add_id', 'default', 'value' => '0'],
             ['user_add_id', 'filter', 'filter' => 'intval'],
 
-            [['anchor'], 'string'],
+            [['anchor'], 'integer'],
+            [['anchor'], 'filter', 'filter' => 'intval'],
 
             ['status', 'default', 'value' => self::STATUS_FREE],
             ['status', 'in', 'range' => [self::STATUS_FREE, self::STATUS_TARGET, self::STATUS_LOAD, self::STATUS_REJECT]],
@@ -266,19 +267,19 @@ class Client extends \yii\db\ActiveRecord
 		$todoAll = (new Query())->select('id')->where(['<', 'time_from', date('Y-m-d H:i:00')]);
 		//$todoAll->andWhere(['=', 'status', '']);
 		$todoAll->from('todo');
-		$todoWeek = (new Query())->select('id')->where(['=', 'DAYOFWEEK(time_from)', date('w')+1]);
-		$todoWeek->andWhere(['=', 'repeat', 'week']);
+		$todoWeek = (new Query())->select('id')->where(['=', 'EXTRACT(DOW FROM time_from)', date('w')]);
+		$todoWeek->andWhere(['=', 'repeat', Todo::REPEAT_WEEK]);
 		$todoWeek->from('todo');
-		$todoMonth = (new Query())->select('id')->where(['=', 'DAYOFMONTH(time_from)', date('j')]);
-		$todoMonth->andWhere(['=', 'repeat', 'month']);
+		$todoMonth = (new Query())->select('id')->where(['=', 'EXTRACT(DAY FROM time_from)', date('j')]);
+		$todoMonth->andWhere(['=', 'repeat', Todo::REPEAT_MONTH]);
 		$todoMonth->from('todo');
-		$todoYear = (new Query())->select('id')->where(['=', 'DAYOFMONTH(time_from)', date('j')]);
-		$todoYear->andWhere(['=', 'MONTH(time_from)', date('n')]);
-		$todoYear->andWhere(['=', 'repeat', 'year']);
+		$todoYear = (new Query())->select('id')->where(['=', 'EXTRACT(DAY FROM time_from)', date('j')]);
+		$todoYear->andWhere(['=', 'EXTRACT(MONTH FROM time_from)', date('n')]);
+		$todoYear->andWhere(['=', 'repeat', Todo::REPEAT_YEAR]);
 		$todoYear->from('todo');
 		$query = $this->hasMany(Todo::className(), ['client_id' => 'id']);
 		$query->where(['id' => $todoAll]);
-		$query->andWhere(['OR',	['repeat' => 'none'], ['id' => $todoWeek], ['id' => $todoMonth], ['id' => $todoYear]]);
+		$query->andWhere(['OR',	['repeat' => Todo::REPEAT_NO], ['id' => $todoWeek], ['id' => $todoMonth], ['id' => $todoYear]]);
 		$query->orderBy(['todo.time_to' => SORT_ASC]);
 		return $query;
 	}

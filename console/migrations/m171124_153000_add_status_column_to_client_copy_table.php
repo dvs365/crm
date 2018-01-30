@@ -9,7 +9,7 @@ class m171124_153000_add_status_column_to_client_copy_table extends Migration
      */
     public function up()
     {
-        $this->addColumn('client_copy', 'status', 'ENUM("target", "load", "reject") DEFAULT "target"');
+        $this->addColumn('{{%client_copy}}', 'status', $this->integer()->notNull());
     }
 
     /**
@@ -17,6 +17,6 @@ class m171124_153000_add_status_column_to_client_copy_table extends Migration
      */
     public function down()
     {
-        $this->dropColumn('client_copy', 'status');
+        $this->dropColumn('{{%client_copy}}', 'status');
     }
 }

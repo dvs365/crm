@@ -49,7 +49,10 @@ class ClientContact extends \yii\db\ActiveRecord
 	{
 		return [
 			[['client_id'], 'integer'],
-			[['main'], 'string'],
+            ['client_id', 'filter', 'filter' => 'intval'],
+
+			[['main'], 'integer'],
+            ['main', 'filter', 'filter' => 'intval'],
 
             [['name', 'position'], 'string', 'max' => 255],
             [['name'], 'trim'],

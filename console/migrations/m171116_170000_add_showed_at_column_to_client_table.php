@@ -9,7 +9,7 @@ class m171116_170000_add_showed_at_column_to_client_table extends Migration
      */
     public function up()
     {
-        $this->addColumn('client', 'showed_at', 'timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP');
+        $this->addColumn('{{%client}}', 'showed_at', 'timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP');
     }
 
     /**
@@ -17,6 +17,6 @@ class m171116_170000_add_showed_at_column_to_client_table extends Migration
      */
     public function down()
     {
-        $this->dropColumn('client', 'showed_at');
+        $this->dropColumn('{{%client}}', 'showed_at');
     }
 }

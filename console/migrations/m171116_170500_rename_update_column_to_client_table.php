@@ -9,7 +9,7 @@ class m171116_170500_rename_update_column_to_client_table extends Migration
      */
     public function up()
     {
-        $this->renameColumn('client', 'update', 'updated_at');
+        $this->renameColumn('{{%client}}', 'update', 'updated_at');
     }
 
     /**
@@ -17,6 +17,6 @@ class m171116_170500_rename_update_column_to_client_table extends Migration
      */
     public function down()
     {
-        $this->renameColumn('client', 'updated_at', 'update');
+        $this->renameColumn('{{%client}}', 'updated_at', 'update');
     }
 }

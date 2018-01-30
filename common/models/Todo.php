@@ -23,6 +23,12 @@ class Todo extends ActiveRecord
     public $date1;
     public $date2;
 
+    const REPEAT_NO = 0;
+    const REPEAT_DAY = 10;
+    const REPEAT_WEEK = 20;
+    const REPEAT_MONTH = 30;
+    const REPEAT_YEAR = 40;
+
     /**
      * @inheritdoc
      */
@@ -49,7 +55,7 @@ class Todo extends ActiveRecord
             [['date', 'date1', 'date2'], 'date', 'format' => 'php:d.m.Y'],
             ['time', 'date', 'format' => 'php:H:i'],
             [['time_from', 'time_to'], 'safe'],
-            [['repeat'], 'string'],
+            ['repeat', 'in', 'range' => [self::REPEAT_NO, self::REPEAT_DAY, self::REPEAT_WEEK, self::REPEAT_MONTH, self::REPEAT_YEAR]],
             [['name'], 'string', 'max' => 255],
             [['desc'], 'string', 'max' => 255],
         ];
@@ -103,7 +109,7 @@ class Todo extends ActiveRecord
             return \DateTime::createFromFormat('d.m.Y', $this->date2)->format('Y-m-d 23:59');
         }
 
-        if ($this->date1 && $this->repeat !== 'none') {
+        if ($this->date1 && $this->repeat !== self::REPEAT_NO) {
             return \DateTime::createFromFormat('d.m.Y', $this->date1)->format('9999-m-d 23:59');
         }
 
@@ -117,22 +123,22 @@ class Todo extends ActiveRecord
     //return ($this->repeat === 'none') ? Yii::$app->formatter->asDate($this->time_to) : false;
     public function getDate()
     {
-        return ($this->repeat === 'none') ? \DateTime::createFromFormat('Y-m-d H:i:s', $this->time_to)->format('d.m.Y') : false;
+        return ($this->repeat === self::REPEAT_NO) ? \DateTime::createFromFormat('Y-m-d H:i:s', $this->time_to)->format('d.m.Y') : false;
     }
 
     public function getTime()
     {
-        return ($this->repeat === 'none') ? \DateTime::createFromFormat('Y-m-d H:i:s', $this->time_to)->format('H:i') : false;
+        return ($this->repeat === self::REPEAT_NO) ? \DateTime::createFromFormat('Y-m-d H:i:s', $this->time_to)->format('H:i') : false;
     }
 
     public function getDate1()
     {
-        return ($this->repeat !== 'none') ? \DateTime::createFromFormat('Y-m-d H:i:s', $this->time_from)->format('d.m.Y') : false;
+        return ($this->repeat !== self::REPEAT_NO) ? \DateTime::createFromFormat('Y-m-d H:i:s', $this->time_from)->format('d.m.Y') : false;
     }
 
     public function getDate2()
     {
-        return ($this->repeat !== 'none') ? \DateTime::createFromFormat('Y-m-d H:i:s', $this->time_to)->format('d.m.Y') : false;
+        return ($this->repeat !== self::REPEAT_NO) ? \DateTime::createFromFormat('Y-m-d H:i:s', $this->time_to)->format('d.m.Y') : false;
     }
 
 }

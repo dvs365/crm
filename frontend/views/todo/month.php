@@ -35,8 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			</div>
 			<div cards>
 				<? foreach ($month as $num => $tr) {?>
-                    <? $date = \DateTime::createFromFormat('m', $num)?>
-					<u h2><?= strftime("%B", strtotime($date->format('m').'/'.$date->format('d').'/'.$date->format('Y')))?></u>
+                    <u h2><?= strftime("%B", strtotime($num.'/01/'. date('Y')))?></u>
 					<div month>
 						<table>
 							<tr>
