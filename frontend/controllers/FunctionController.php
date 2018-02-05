@@ -192,20 +192,21 @@ class FunctionController extends Controller
 
     public function actionChoose()
     {
-        $ids = Yii::$app->request->post('Client')['id'];
-        foreach ($ids as $id => $checked) {
-            if ($checked) {
-                if (Yii::$app->request->post('recovery')) {
-                    $this->clientCopyService->recovery($id);
-                }
-                if (Yii::$app->request->post('backup')) {
-                    $this->clientCopyService->backup($id);
-                }
-                if (Yii::$app->request->post('cancelreject')) {
-                    $this->clientCopyService->cancel_reject($id);
-                }
-                if (Yii::$app->request->post('approvereject')) {
-                    $this->clientCopyService->approve_reject($id);
+        if ($ids = Yii::$app->request->post('Client')['id']) {
+            foreach ($ids as $id => $checked) {
+                if ($checked) {
+                    if (Yii::$app->request->post('recovery')) {
+                        $this->clientCopyService->recovery($id);
+                    }
+                    if (Yii::$app->request->post('backup')) {
+                        $this->clientCopyService->backup($id);
+                    }
+                    if (Yii::$app->request->post('cancelreject')) {
+                        $this->clientCopyService->cancel_reject($id);
+                    }
+                    if (Yii::$app->request->post('approvereject')) {
+                        $this->clientCopyService->approve_reject($id);
+                    }
                 }
             }
         }

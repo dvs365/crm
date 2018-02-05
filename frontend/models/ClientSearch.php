@@ -95,20 +95,20 @@ class ClientSearch extends Client
 		    $searchPhone = str_replace([' ', '-'], '', $this->clientSearch);
             if (is_numeric($searchPhone)) {
                 $query->where([
-                    'or',
-                    'client_phone.phone LIKE "%' . $searchPhone. '%"',
-                    'client_contact_phone.phone LIKE "%' . $searchPhone. '%"',
+                    "or",
+                    "client_phone.phone LIKE '%" . $searchPhone. "%'",
+                    "client_contact_phone.phone LIKE '%" . $searchPhone. "%'",
                 ]);
             } else {
                 $query->where([
-                    'or',
-                    'client.name LIKE "%' . $this->clientSearch . '%"',
-                    'client_jur.name LIKE "%' . $this->clientSearch . '%"',
-                    'client_mail.address LIKE "%' . $this->clientSearch. '%"',
-                    'client_contact.name LIKE "%' . $this->clientSearch. '%"',
-                    'client_phone.comment LIKE "%' . $this->clientSearch. '%"',
-                    'client_contact_phone.comment LIKE "%' . $this->clientSearch. '%"',
-                    'client_contact_mail.address LIKE "%' . $this->clientSearch. '%"',
+                    "or",
+                    "client.name LIKE '%" . $this->clientSearch . "%'",
+                    "client_jur.name LIKE '%" . $this->clientSearch . "%'",
+                    "client_mail.address LIKE '%" . $this->clientSearch. "%'",
+                    "client_contact.name LIKE '%" . $this->clientSearch. "%'",
+                    "client_phone.comment LIKE '%" . $this->clientSearch. "%'",
+                    "client_contact_phone.comment LIKE '%" . $this->clientSearch. "%'",
+                    "client_contact_mail.address LIKE '%" . $this->clientSearch. "%'",
                 ]);
             }
         }
@@ -118,7 +118,7 @@ class ClientSearch extends Client
 		if ($this->anchor) {
 			$query->AndWhere('client.anchor = \'' . $this->anchor.'\'');
 		}
-		$query->groupBy(['id']);
+		$query->groupBy(['client.id', 'client_contact.main']);
 		return $dataProvider;
 	}
 }
