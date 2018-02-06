@@ -45,6 +45,10 @@ class Client extends \yii\db\ActiveRecord
             [['name'], 'trim'],
 
             [['user_id'], 'integer'],
+            ['user_id', 'default', 'value' => null],
+            ['user_id', 'filter', 'filter' => function($value) {
+                return is_null($value) ? null : intval($value);
+            }],
 
             [['user_add_id'], 'integer'],
             ['user_add_id', 'default', 'value' => '0'],
@@ -56,7 +60,6 @@ class Client extends \yii\db\ActiveRecord
             ['status', 'default', 'value' => self::STATUS_FREE],
             ['status', 'in', 'range' => [self::STATUS_FREE, self::STATUS_TARGET, self::STATUS_LOAD, self::STATUS_REJECT]],
 
-            ['user_id', 'filter', 'filter' => 'intval'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }

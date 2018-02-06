@@ -89,20 +89,20 @@ class ClientEditSearch extends Client
             $searchPhone = str_replace([' ', '-'], '', $this->clientEditSearch);
             if (is_numeric($searchPhone)) {
                 $query->AndWhere([
-                    'or',
-                    'client_phone.phone LIKE "%' . $searchPhone. '%"',
-                    'client_contact_phone.phone LIKE "%' . $searchPhone. '%"',
+                    "or",
+                    "client_phone.phone LIKE '%" . $searchPhone. "%'",
+                    "client_contact_phone.phone LIKE '%" . $searchPhone. "%'",
                 ]);
             } else {
                 $query->AndWhere([
-                    'or',
-                    'client.name LIKE "%' . $this->clientEditSearch . '%"',
-                    'client_jur.name LIKE "%' . $this->clientEditSearch . '%"',
-                    'client_mail.address LIKE "%' . $this->clientEditSearch. '%"',
-                    'client_contact.name LIKE "%' . $this->clientEditSearch. '%"',
-                    'client_phone.comment LIKE "%' . $this->clientEditSearch. '%"',
-                    'client_contact_phone.comment LIKE "%' . $this->clientEditSearch. '%"',
-                    'client_contact_mail.address LIKE "%' . $this->clientEditSearch. '%"',
+                    "or",
+                    "client.name LIKE '%" . $this->clientEditSearch . "%'",
+                    "client_jur.name LIKE '%" . $this->clientEditSearch . "%'",
+                    "client_mail.address LIKE '%" . $this->clientEditSearch. "%'",
+                    "client_contact.name LIKE '%" . $this->clientEditSearch. "%'",
+                    "client_phone.comment LIKE '%" . $this->clientEditSearch. "%'",
+                    "client_contact_phone.comment LIKE '%" . $this->clientEditSearch. "%'",
+                    "client_contact_mail.address LIKE '%" . $this->clientEditSearch. "%'",
                 ]);
             }
         }

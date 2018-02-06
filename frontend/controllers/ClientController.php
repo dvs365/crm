@@ -190,12 +190,15 @@ class ClientController extends Controller
             Model::loadMultiple($modelsClientContact, Yii::$app->request->post());
             Model::loadMultiple($modelsClientAddress, Yii::$app->request->post());
 
-            $model->user_id = ($model->user_id) ?: Yii::$app->user->id;
-            $model->status = empty($model->user_id)? Client::STATUS_FREE : Client::STATUS_TARGET;
+            $model->user_id = Yii::$app->user->can('moder') ? (($model->user_id) ?: null) : Yii::$app->user->id;
+
+            if (!empty($model->user_id)) {
+                $model->status = Client::STATUS_TARGET;
+            }
 
             // validate all models
-			$valid = $model->validate();
-			$valid = Model::validateMultiple($modelsClientJur) && $valid;
+            $valid = $model->validate();
+            $valid = Model::validateMultiple($modelsClientJur) && $valid;
             $valid = Model::validateMultiple($modelsClientContact) && $valid;
             $valid = Model::validateMultiple($modelsClientAddress) && $valid;
             if ($isAjax) {
@@ -377,6 +380,13 @@ class ClientController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post())) {
+            if (Yii::$app->user->can('moder')) {
+                if (!$model->user_id) {
+                    $model->status =  Client::STATUS_FREE;
+                } elseif (!$model->getOldAttribute('user_id')) {
+                    $model->status =  Client::STATUS_TARGET;
+                }
+            }
             $isAjax = Yii::$app->request->isAjax;
             //reset
 			$modelsClientContactPhone = [];
@@ -405,10 +415,6 @@ class ClientController extends Controller
 			$deletedIDsMail = array_diff($oldIDsMail, array_filter(ArrayHelper::map($modelsClientMail, 'id', 'id')));
 			$deletedIDsContact = array_diff($oldIDsContact, array_filter(ArrayHelper::map($modelsClientContact, 'id', 'id')));
 			$deletedIDsAddress = array_diff($oldIDsAddress, array_filter(ArrayHelper::map($modelsClientAddress, 'id', 'id')));
-
-            if (empty($model->user_id)) {
-                $model->status = Client::STATUS_FREE;
-            }
 
 			//validate all models
 			$valid = $model->validate();
@@ -488,7 +494,7 @@ class ClientController extends Controller
 			if ($valid) {
 				$transaction = \Yii::$app->db->beginTransaction();
 				try {
-                    $dirty = empty($model->getDirtyAttributes());
+                    $dirty = empty($model->getDirtyAttributes(['name']));
 					if ($flag = $model->save(false)) {
 						if (!empty($deletedIDsJur)) {
 							ClientJur::deleteAll(['id' => $deletedIDsJur]);
@@ -641,6 +647,15 @@ class ClientController extends Controller
                 }
             }
         }
+    }
+
+    public function actionTake($id)
+    {
+        $model = $this->findModel($id);
+        $model->user_id = Yii::$app->user->id;
+        $model->status = Client::STATUS_TARGET;
+        $model->save(false);
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     /**

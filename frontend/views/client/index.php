@@ -57,8 +57,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     $templateAdd = '<span size14 gray>Последнее открытие: ' . Html::encode($model->agoTime) . '</span><br />';
                     $templateAdd .= ($model->user->name1)? '<span size14>Менеджер: ' . Html::encode($model->user->name1.' '.mb_substr($model->user->name2, 0, 1, 'utf-8').'. '.mb_substr($model->user->name3, 0, 1, 'utf-8').'.') . '</span><br />' : '';
                     $templateAdd .= '<span size14>Статус:</span> <span size14 ' . $model->statusColor . '>' . $model->statusLabel . '</span>';
+                    $aTake = Html::a('Взять себе', ['client/take', 'id' => $model->id], ['style' => 'text-decoration:underline;margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent;color:rgb(65,105,225)']);
                     $template .= $model->isFree ? '' : $templateAdd;
-                    return $model->isReject ? '<div class="reject">' . $template . '</div>' : Html::a($template, ['view', 'id' => $model->id]);
+                    return $model->isReject ? '<div class="reject">' . $template . '</div>' : Html::a($template, ['view', 'id' => $model->id]) . ($model->isFree ? $aTake : '');
 				},
 			]) ?>
 			</div>
