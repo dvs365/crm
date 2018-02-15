@@ -76,5 +76,20 @@ return [
 			'allowedIPs' => ['*'],
 		]
 	],
+    'as access' => [
+        'class' => 'yii\filters\AccessControl',
+        'except' => ['site/login', 'site/error'],
+        'rules' => [
+            [
+                'allow' => true,
+                'roles' => ['@'],
+            ],
+            [
+                'actions' => ['client/create'],
+                'allow' => true,
+                'roles' => ['createClient'],
+            ],
+        ],
+    ],
     'params' => $params,
 ];

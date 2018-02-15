@@ -56,7 +56,7 @@ class SiteController extends Controller
                         'actions' => ['logout', 'index', 'set'],
                         'allow' => true,
                         'roles' => ['@'],
-                    ],				
+                    ],
                     [	//регистрация только для admin(гостя=?)
                         'actions' => ['signup'],
                         'allow' => true,

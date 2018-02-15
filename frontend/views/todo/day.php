@@ -40,11 +40,11 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div cards>
                 <p important><?= Html::a('Важные', 'javascript:void(0)', ['not-link' => '', 'id' => 'client'])?><?= Html::a('Текущие', 'javascript:void(0)', ['not-link' => '', 'id' => 'current'])?><?= Html::a('Просроченные', 'javascript:void(0)', ['not-link' => '', 'id' => 'missed'])?></p>
-                <div all>
+                <div todoall>
                     <table>
 						<? $date = \DateTime::createFromFormat('d.m.Y H:i', (Yii::$app->request->post('date')) ?  Yii::$app->request->post('date').' 00:00' : date('d.m.Y H:i'))?>
                         <? foreach ($models as $model) {?>
-							<? if ($model->repeat == 'dayly') {
+							<? if ($model->repeat == '10') {
                                 $datetime1 = new DateTime($model->time_from);
                                 $datetime2 = new DateTime($model->time_to);
                                 $datetime3 = min($datetime2, new DateTime(Yii::$app->request->post('date')));
@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td><input type="checkbox"></td>
                                 <td><span class="flag">&#127986; </span></td>
                                 <td><?= Html::encode($model->client->name) ?></td>
-                                <th><?= Html::a($model->name, ['todo/update', 'id' => $model->id]).(($model->repeat == 'dayly') ? ' <span long>'.(($current->format('%a'))+1).'/'.(($interval->format('%a'))+1) : '')?></th>
+                                <th><?= Html::a($model->name, ['todo/update', 'id' => $model->id]).(($model->repeat == '10') ? ' <span long>'.(($current->format('%a'))+1).'/'.(($interval->format('%a'))+1) : '')?></th>
                                 <td><?= \DateTime::createFromFormat('Y-m-d H:i:s', $model->time_to)->format('d.m.y')?></td>
                                 <td><?= \DateTime::createFromFormat('Y-m-d H:i:s', $model->time_to)->format('H:i')?></td>
                             </tr>

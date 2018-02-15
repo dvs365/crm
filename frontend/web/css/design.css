@@ -732,38 +732,38 @@ td[status] {
     font-size: 18px;
     font-weight: bold;
 }
-[missed] table, [current] table {
+[todoall] table, [current] table {
     width: 100%;
     margin-left: -36px;
 }
-[missed] tr:hover, [current] tr:hover {
+[todoall] tr:hover, [current] tr:hover {
     background: rgb(245,245,245);
 }
-[missed] tr:hover input[type=checkbox], [current] tr:hover input[type=checkbox] {
+[todoall] tr:hover input[type=checkbox], [current] tr:hover input[type=checkbox] {
     opacity: 100;
     cursor: pointer;
 }
-[missed] td, [current] td {
+[todoall] td, [current] td {
     font-size: 16px;
     color: rgb(128,128,128);
     padding: 8px 5px;
 }
-[missed] td:first-child, [missed] td:nth-child(2), [current] td:first-child, [current] td:nth-child(2) {
+[todoall] td:first-child, [todoall] td:nth-child(2), [current] td:first-child, [current] td:nth-child(2) {
     width: 20px;
 }
-[missed] td:nth-child(3), [current] td:nth-child(3) {
+[todoall] td:nth-child(3), [current] td:nth-child(3) {
     width: 150px;
     font-size: 18px;
     color: rgb(0,0,0);
 }
-[missed] td:nth-child(5), [missed] td:nth-child(6), [current] td:nth-child(5), [current] td:nth-child(6) {
+[todoall] td:nth-child(5), [todoall] td:nth-child(6), [current] td:nth-child(5), [current] td:nth-child(6) {
     width: 80px;
     text-align: right;
 }
-[missed] td:last-child, [current] td:last-child {
+[todoall] td:last-child, [current] td:last-child {
     padding-right: 10px;
 }
-[missed] th, [current] th {
+[todoall] th, [current] th {
     text-align: left;
     font-weight: normal;
     font-size: 18px;
@@ -773,7 +773,7 @@ td[status] {
 [missed] th a {
     color: rgb(220,20,60);
 }
-[missed] input[type=checkbox], [current] input[type=checkbox] {
+[todoall] input[type=checkbox], [current] input[type=checkbox] {
     width: 20px;
     height: 18px;
     vertical-align: middle;

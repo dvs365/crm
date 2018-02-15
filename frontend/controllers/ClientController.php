@@ -36,22 +36,6 @@ class ClientController extends Controller
     public function behaviors()
     {
         return [
-			'access' => [
-				'class' => AccessControl::className(),
-//				'only' => ['index', 'create', 'update', 'view'],
-				'rules' => [
-					[
-//						'actions' => ['index','view', 'update', 'create'],
-						'allow' => true,
-						'roles' => ['@'],
-					],
-					[
-						'actions' => ['create'],
-						'allow' => true,
-						'roles' => ['createClient'],
-					],
-				],
-			],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -84,7 +68,7 @@ class ClientController extends Controller
 	{
 		$searchModel = new ClientSearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andWhere(['status' => Client::STATUS_FREE]);
+        $dataProvider->query->where(['status' => Client::STATUS_FREE]);
 		return $this->render('index', [
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
@@ -131,7 +115,7 @@ class ClientController extends Controller
     {
         $searchModel = new ClientSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andWhere(['status' => Client::STATUS_REJECT]);
+        $dataProvider->query->where(['status' => Client::STATUS_REJECT]);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

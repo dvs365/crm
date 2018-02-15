@@ -22,17 +22,6 @@ class TodoController extends Controller
 	public function behaviors()
 	{
 		return [
-            'access' => [
-                'class' => AccessControl::className(),
-//              'only' => ['*'],
-                'rules' => [
-                    [
-//                      'actions' => ['index','view', 'update', 'create', 'day', 'week'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
 			'verbs' => [
 				'class' => VerbFilter::className(),
 				'actions' => [
